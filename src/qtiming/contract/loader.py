@@ -317,7 +317,8 @@ def load_contract_dict(
     for i, row in enumerate(c.feedback_tier):
         ref = row.get("latency")
         if ref not in seen:
-            errs.append(QtError("E-CT-SCHEMA", f"feedback_tier.{i}.latency: unknown latency {ref!r}"))
+            errs.append(
+                QtError("E-CT-SCHEMA", f"feedback_tier.{i}.latency: unknown latency {ref!r}"))
 
     if errs:
         raise ContractLoadError(errs)
