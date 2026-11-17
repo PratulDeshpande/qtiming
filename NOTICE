@@ -1,0 +1,8 @@
+qtiming
+Copyright 2026 The qtiming authors
+
+Licensed under the Apache License, Version 2.0.
+
+Third-party tools used only as external oracles (never vendored or linked):
+  - CSTNU Tool (LGPL-3.0), invoked as a subprocess
+  - HEATlab Prob-in-Ctrl (MIT), test data only

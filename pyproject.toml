@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "qtiming"
+version = "0.1.0.dev0"
+description = "A static timing checker for dynamic quantum circuits"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+dependencies = ["pydantic>=2.5"]
+
+[project.optional-dependencies]
+qiskit = ["qiskit>=2.3,<2.7", "openqasm3>=1.0,<2"]
+z3 = ["z3-solver>=4.13"]
+synth = ["networkx>=3"]
+bench = ["pyarrow", "pandas", "matplotlib", "pyyaml"]
+docs = ["mkdocs-material"]
+dev = ["pytest", "pytest-cov", "pytest-xdist", "hypothesis", "ruff", "mypy", "import-linter"]
+
+[project.scripts]
+qtiming = "qtiming.cli.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/qtiming"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["src/qtiming/core"]

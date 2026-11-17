@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use qtiming, please cite it as below."
+title: "qtiming: a static timing checker for dynamic quantum circuits"
+type: software
+license: Apache-2.0
+version: 0.1.0.dev0
+date-released: 2026-11-17
+authors:
+  - name: "The qtiming authors"

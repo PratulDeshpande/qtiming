@@ -1,0 +1,71 @@
+[importlinter]
+root_package = qtiming
+include_external_packages = True
+
+[importlinter:contract:core-is-pure]
+name = core imports only stdlib
+type = forbidden
+source_modules = qtiming.core
+forbidden_modules =
+    qiskit
+    z3
+    pydantic
+    openqasm3
+    networkx
+    numpy
+    pandas
+
+[importlinter:contract:qiskit-confined]
+name = qiskit only in adapters
+type = forbidden
+source_modules =
+    qtiming.core
+    qtiming.contract.schema
+    qtiming.contract.loader
+    qtiming.elab
+    qtiming.graph
+    qtiming.dispatch
+    qtiming.oblig
+    qtiming.solve
+    qtiming.verdict
+    qtiming.exec
+    qtiming.evidence
+    qtiming.repair
+forbidden_modules = qiskit
+
+[importlinter:contract:executor-independence]
+name = executor never sees the graph side
+type = forbidden
+source_modules = qtiming.exec
+forbidden_modules =
+    qtiming.graph
+    qtiming.dispatch
+    qtiming.oblig
+    qtiming.solve
+    qtiming.elab
+    qtiming.verdict
+
+[importlinter:contract:synthesis-isolated]
+name = verification path never imports synthesis
+type = forbidden
+source_modules =
+    qtiming.solve.concrete
+    qtiming.solve.interval
+    qtiming.solve.smt
+    qtiming.solve.smt_o5
+    qtiming.solve.dispatcher
+forbidden_modules = qtiming.solve.synth
+
+[importlinter:contract:layers]
+name = pipeline layering
+type = layers
+layers =
+    qtiming.cli
+    qtiming.qiskit_pass | qtiming.repair
+    qtiming.verdict
+    qtiming.solve
+    qtiming.oblig
+    qtiming.graph | qtiming.dispatch
+    qtiming.elab
+    qtiming.contract | qtiming.frontend
+    qtiming.core
