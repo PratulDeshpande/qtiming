@@ -1,0 +1,65 @@
+[meta]
+name = "qm_qua"
+version = "0.2.0"
+schema = "qtiming-contract/0.2"
+personality = "qua"
+
+[timebase]
+dt_ns = "4"   # clock cycle
+
+[timeline]
+late_policy = "compile_error"   # with strict_timing_ on; warnings otherwise
+
+[[latency]]
+key = "align.same_fem"
+src = "align"
+dst = "align"
+tier = "same_fem"
+lo_ns = 0
+hi_ns = 12   # ILLUSTRATIVE PLACEHOLDER: "a few cycles" is the only published statement
+prov = "vendor"
+placeholder = true
+source = "QM Timing in QUA: non-deterministic align leaves 'a few cycles'; no number published"
+
+[[latency]]
+key = "align.cross_fem"
+src = "align"
+dst = "align"
+tier = "cross_fem"
+lo_ns = 0
+hi_ns = 24   # ILLUSTRATIVE PLACEHOLDER (ordering documented, value is not)
+prov = "vendor"
+placeholder = true
+source = "QM Timing in QUA; topology dependent: same FEM < cross-FEM < cross-chassis"
+
+[[latency]]
+key = "align.cross_chassis"
+src = "align"
+dst = "align"
+tier = "cross_chassis"
+lo_ns = 0
+hi_ns = 48   # ILLUSTRATIVE PLACEHOLDER
+prov = "vendor"
+placeholder = true
+source = "QM Timing in QUA"
+
+[[latency]]
+key = "active_reset"
+src = "measure"
+dst = "branch"
+tier = "default"
+lo_ns = 0
+hi_ns = 224
+prov = "vendor"
+source = "QM claim: 224 ns active reset (vendor)"
+
+[branch]
+class = "resync"
+default_policy = "sync"
+
+[personality_params.qua]
+skip_implicit_align = false   # compiler flag skip-add-implicit-align
+strict_timing = true   # strict_timing_ ; "not-strict-timing" turns gap errors into warnings
+# Implicit aligns: at the start of for_/while_/if_/else_/switch_ for participating elements
+# (removable with skip_implicit_align); ALSO non-suppressible implicit aligns for broadcast
+# operations and for measure() results that are read by another core.

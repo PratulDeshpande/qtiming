@@ -1,0 +1,62 @@
+[meta]
+name = "ibm_heron"
+version = "0.2.0"
+schema = "qtiming-contract/0.2"
+personality = "ibm"
+
+[target]
+# Offline snapshot so CI needs no network. Pass a live Target to load_contract() to override.
+# The snapshot is UNOFFICIAL (fixture only); see README.md in this directory.
+source = "snapshot:ibm_heron_snapshot.json"
+backend = "ibm_kingston"
+import = ["dt", "alignments", "durations"]
+
+[timebase]
+dt_ns = "from_target"
+latency_resolution = "continuous"
+
+[timeline]
+late_policy = "compile_error"
+# commit_lead: IBM does not expose a commit model; not required for this personality
+
+[durations]
+# gate, measure and measure_2 durations come from the Target; they differ per backend.
+import_from_target = true
+
+[[latency]]
+key = "ff.default"
+src = "measure"
+dst = "branch"
+tier = "default"
+lo_ns = 0   # conservative placeholder: no lower bound is published
+hi_ns = 600
+data_dependent = false
+prov = "vendor"
+source = "IBM blog, 2025-11-19 (feedforward about 600 ns); vendor claim, not a certified bound"
+
+[branch]
+class = "restricted"
+default_policy = "sync"
+allow_nested = false
+allow_measure_in_branch = false
+allow_loops = false
+max_cond_bits = 32
+
+[capacity]
+instr_per_qubit = 26_800_000
+broadcast_budget = { wide_60bit = 300, narrow_1bit = 2400 }   # approximate job limits, verify at release
+
+[personality_params.ibm]
+# Join behaviour for unequal if/else arms.
+#   "pad_to_longest_block": both arms padded to the longest block (documented for the OLD
+#                           fast-path stack, qiskit-ibm-runtime <= 0.39 only)
+#   "restart_at_join":      each arm ends when it ends; the next block restarts at the join
+join_behavior = "pad_to_longest_block"
+join_behavior_prov = { prov = "vendor", source = "old fast-path stack docs; to be calibrated from scheduler_timing evidence (plan Section 18)" }
+
+[idle]
+max_gap_variation_ns = { default = 0 }
+dd_inserted_by_backend = "unknown"
+
+[loop]
+while_supported = false

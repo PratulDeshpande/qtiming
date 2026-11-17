@@ -1,0 +1,87 @@
+[meta]
+name = "qblox_q1"
+version = "0.2.0"
+schema = "qtiming-contract/0.2"
+personality = "q1"
+
+[timebase]
+dt_ns = "4"   # RT instruction durations are multiples of 4 ns
+grid = { rt = 1 }
+
+[timeline]
+commit_lead = { lo_ns = 0, prov = { prov = "cyc", source = "Q1 docs: RT queue is fed ahead of use; lead = classical issue cost, see [issue_cost]" } }
+late_policy = "halt"   # SEQUENCE_PROCESSOR_RT_EXEC_COMMAND_UNDERFLOW; sequencer halts
+
+[issue_cost]   # classical Q1 core, ns (cycle-counted design values)
+set_mov = { ns = 4, prov = "cyc", source = "Q1 instruction table (v1 value; re-verify)" }
+alu = { ns = 12, prov = "cyc", source = "Q1 instruction table (v1 value; re-verify)" }
+nop = { ns = 4, prov = "cyc", source = "Q1 docs" }
+jmp = { ns = 16, prov = "cyc", source = "Q1 docs" }
+# Old jge/jlt/loop forms are deprecated; the current form is cmp or sub followed by a flag jump,
+# i.e. ONE EXTRA INSTRUCTION. The elaborator inserts it (cost = alu).
+cond_jump = { taken_ns = 24, not_taken_ns = 4, prov = "cyc", source = "Q1 docs: jge, jlt, loop" }
+
+[capacity]
+rt_queue_depth = 32   # underflow halts, overflow back-pressures the Q1 core
+
+[[latency]]
+key = "trigger.network"   # thresholded result -> all trigger-network receivers
+src = "measure"
+dst = "branch"
+tier = "all_receivers"
+lo_ns = 212
+hi_ns = 239   # 212 to 239 ns depending on the 28 ns timegrid
+prov = "vendor"
+source = "docs.qblox.com trigger_handling; documented figure, not cycle-certified [verify page path]"
+
+[[latency]]
+key = "trigger.network_busy"   # network occupied; a SECOND trigger inside this window is lost or delayed
+src = "network"
+dst = "network"
+tier = "all_receivers"
+lo_ns = 252
+hi_ns = 252
+prov = "vendor"
+source = "docs.qblox.com trigger_handling"
+
+[[latency]]
+key = "path.opip.base"   # OP + IP base
+src = "measure"
+dst = "network"
+tier = "base"
+lo_ns = 149
+hi_ns = 149
+prov = "vendor"
+source = "docs.qblox.com trigger_handling: output 40 ns (baseband) or 50 ns (RF) + input 109 ns"
+
+[[latency]]
+key = "path.rtp_output"   # real-time-processing output adder
+src = "rt"
+dst = "output"
+tier = "rtp"
+lo_ns = 24
+hi_ns = 24
+prov = "vendor"
+source = "docs.qblox.com trigger_handling"
+
+# Consistency fixture (not a contract entry): the documented worked example totals 388 ns =
+# 149 (OP+IP) + 239 (network, worst timegrid case). [verify the decomposition against the page]
+
+[branch]
+class = "predicated"
+default_policy = "eq"
+allow_nested = true
+allow_measure_in_branch = true
+allow_loops = true
+max_cond_bits = 15   # trigger-network addresses [verify]
+
+[personality_params.q1]
+set_cond_else_time_per_instruction = true   # else_time ns are waited PER skipped RT instruction (plan Section 8.5)
+ttl_input_speedup_ns = 35   # TTL input path is 35 ns faster than the standard input path (documented)
+
+[idle]
+max_gap_variation_ns = { default = 0 }
+dd_inserted_by_backend = "unknown"
+
+[loop]
+while_supported = true

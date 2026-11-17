@@ -5,7 +5,8 @@ from hypothesis import given
 from hypothesis import strategies as st
 
 from qtiming.core.errors import QtError
-from qtiming.core.time import Interval, dt_to_ns, ns_to_dt
+from qtiming.core.provenance import Prov, ProvClass
+from qtiming.core.time import Interval, Latency, dt_to_ns, ns_to_dt
 
 DT = Fraction(4)
 
@@ -71,6 +72,13 @@ def test_interval_add_hull_contains() -> None:
     assert a + b == Interval(3, 13)
     assert a.hull(b) == Interval(1, 10)
     assert a.contains(Fraction(3, 2)) and not a.contains(4)
+
+
+def test_latency_pairs_interval_with_provenance() -> None:
+    p = Prov(ProvClass.VENDOR, "blog")
+    lat = Latency("ff.default", Interval(0, 150), p)
+    assert (lat.key, lat.iv.hi, lat.prov.source) == ("ff.default", 150, "blog")
+    assert lat == Latency("ff.default", Interval(0, 150), p)
 
 
 def test_unbounded_interval_propagates() -> None:

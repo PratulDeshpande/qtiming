@@ -7,6 +7,7 @@ from fractions import Fraction
 from typing import Literal
 
 from .errors import QtError
+from .provenance import Prov
 
 Dt = int  # integer multiples of the backend dt
 Time = Fraction  # solver / executor time (exact rational, in dt)
@@ -84,3 +85,12 @@ class Interval:
 
     def contains(self, x: Time | Dt) -> bool:
         return self.lo <= x and (self.hi is None or x <= self.hi)
+
+
+@dataclass(frozen=True, slots=True)
+class Latency:
+    """A named uncertain latency from the contract: interval plus structured provenance."""
+
+    key: str  # contract name, e.g. "ff.default"
+    iv: Interval
+    prov: Prov

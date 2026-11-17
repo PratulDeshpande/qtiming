@@ -1,0 +1,45 @@
+[meta]
+name = "artiq_rtio"
+version = "0.2.0"
+schema = "qtiming-contract/0.2"
+personality = "artiq"
+
+[timebase]
+dt_ns = "1"   # machine unit mu = 1 ns (typical)
+grid = { coarse = 8 }   # coarse clock typically 125 MHz = 8 mu
+
+[timeline]
+# commit_lead is a REQUIRED but UNPUBLISHED number (minimum slack for an RTIO write to be accepted).
+# Left absent: obligations depending on it are UNKNOWN until the user supplies
+# --assume timeline.commit_lead=...
+late_policy = "mixed"   # underflow/overflow: raise; sequence/collision/busy: drop_log
+
+[capacity]
+lanes = 8   # SED lanes, gateware parameter sed_lanes (default 8)
+coarse_mu = 8
+sed_spread_enable = false   # if true, lane assignment is not deterministic from reset
+lane_fifo_depth = "unknown"   # "nearly full" rule needs this; gateware dependent [verify]
+
+[[latency]]
+key = "in2cpu"   # input event timestamp -> value usable by the kernel CPU
+src = "input"
+dst = "cpu"
+tier = "default"
+lo_ns = 0
+# hi_ns absent: no number published ("low and predictable")
+prov = "vendor"
+source = "ARTIQ manual (no numeric bound)"
+
+[issue_cost]
+cpu_issue = { lo_ns = 0, prov = { prov = "vendor", source = "none published; kernel-compiler dependent" } }
+
+[branch]
+class = "exposed"
+default_policy = "exp"
+
+[idle]
+max_gap_variation_ns = { default = 0 }
+dd_inserted_by_backend = "unknown"
+
+[loop]
+while_supported = true

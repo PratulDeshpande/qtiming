@@ -1,0 +1,8 @@
+{
+  "backend": "ibm_kingston",
+  "unofficial": true,
+  "note": "UNOFFICIAL snapshot: values copied from the plan's Heron r2 notes; fixture only, not vendor-certified.",
+  "dt_ns": "4",
+  "alignments": {"acquire": 1, "pulse": 1, "granularity": 1},
+  "durations_ns": {"measure": "2180", "measure_2": "1380"}
+}
