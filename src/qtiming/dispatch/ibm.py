@@ -48,11 +48,14 @@ class IbmBuilder(GraphBuilder):
         join = self.contract.param("ibm", "join_behavior", "pad_to_longest_block")
         res = [f"q{q}" for q in sorted(touched(s.then_) | (touched(s.else_) if s.else_ else set()))]
         v = self.cond_valid(s.cond, s.nid)
+        ready = self.node("join", s.nid, "bready")  # resources only: when the arm COULD start
+        self.join_from(res, ready, "ibm.block-ready")
         b = self.node("start", s.nid, "bstart")
+        self.g.add_edge(ready, b, 0, TOP, "ibm.block-start")
         self.g.add_edge(v, b, 0, TOP, "ibm.cond-valid")
-        self.join_from(res, b, "ibm.block-start")
         self.g.fact("block", s.nid, v, b)
-        self.set_front(res, b)
+        self.g.fact("ready", s.nid, v, ready)
+        self.set_front(res, b, real=False)
         lit_t, lit_f = self.cond_labels(s.cond, s.nid)
         arms = [(lit_t, self.arm(s.then_, lit_t)), (lit_f, self.arm(s.else_, lit_f))]
         bend = self.node("end", s.nid, "bend")  # after the arms: creation order is topological
@@ -66,6 +69,7 @@ class IbmBuilder(GraphBuilder):
                         c = conj(lab, lit)
                         if c is not None:
                             self.g.add_edge(n, bend, 0, c, "ibm.arm-end")
+        self.g.fact("blockend", s.nid, bend)
         self.set_front(res, bend)
 
 

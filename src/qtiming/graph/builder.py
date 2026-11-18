@@ -77,6 +77,8 @@ class GraphBuilder:
         self.front: Front = {}
         self.ctx: Label = TOP
         self.valid_node: dict[Prop, int] = {}
+        # (frontier node, resource) -> alternatives for the end of the last REAL op on r
+        self.endof: dict[tuple[int, str], list[tuple[int, Label]]] = {}
 
     # -- frontier ---------------------------------------------------------------------
     def entries(self, r: str) -> list[tuple[int, Label]]:
@@ -89,9 +91,22 @@ class GraphBuilder:
             for n, lab in self.entries(r):
                 self.g.add_edge(n, dst, 0, lab, tag)
 
-    def set_front(self, resources: list[str], node: int) -> None:
+    def ends(self, r: str) -> list[tuple[int, Label]]:
+        """End nodes of the last real op on r (joins and aligns are transparent), under ctx."""
+        out: list[tuple[int, Label]] = []
+        for n, lab in self.entries(r):
+            for e, el in self.endof.get((n, r), [(n, TOP)]):
+                c = conj(lab, el)
+                if c is not None:
+                    out.append((e, c))
+        return out
+
+    def set_front(self, resources: list[str], node: int, real: bool = True) -> None:
+        """`real`: node ends an op. Otherwise it is a join: gap bookkeeping passes through."""
         for r in resources:
+            prev = [(node, TOP)] if real else self.ends(r)
             self.front[r] = [(node, TOP)]
+            self.endof[(node, r)] = prev
 
     def node(self, kind: str, nid: int, tag: str, resource: str | None = None,
              obs: Prop | None = None) -> int:
@@ -189,6 +204,9 @@ class GraphBuilder:
              tags: tuple[str, str] = ("start", "end")) -> tuple[int, int]:
         res = [f"q{q}" for q in qubits]
         start = self.node("start", nid, tags[0])
+        for r in res:
+            for e, lab in self.ends(r):
+                self.g.fact("gap", nid, r, e, start, lab)
         self.join_from(res, start, "common.ready")
         end = self.node("end", nid, tags[1], res[0])
         self.g.add_edge(start, end, dur, TOP, f"common.{op}")
@@ -205,7 +223,9 @@ class GraphBuilder:
         res = [f"q{q}" for q in s.qubits]
         j = self.node("join", s.nid, "join")
         self.join_from(res, j, "common.barrier")
-        self.set_front(res, j)
+        self.set_front(res, j, real=False)
+        if s.origin_nid is not None:  # a synthesised EQ barrier: the reference for O7
+            self.g.fact("eqbar", s.origin_nid, j)
 
     def measure_dur(self, s: Measure) -> int:
         return self.contract.duration("measure_2" if s.variant == "mid" else "measure")

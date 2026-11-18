@@ -14,7 +14,7 @@ from __future__ import annotations
 from collections.abc import Mapping
 from dataclasses import dataclass, field
 from fractions import Fraction
-from typing import Union
+from typing import Any, Union
 
 from qtiming.core.labels import TOP, Derived, Label, Prop, evaluate
 from qtiming.core.provenance import Prov
@@ -72,9 +72,14 @@ class LTEG:
     #   "rt":        (ast nid, issue node, exec node)           Q1 O1
     #   "cond_read": (ast nid, exec node, valid node)           Q1 O2a
     #   "block":     (ast nid, valid node, bstart node)         IBM/QUA branch start
-    facts: dict[str, list[tuple[int, ...]]] = field(default_factory=dict)
+    #   "ready":     (ast nid, valid node, bready node)         O2b (resources-only ready node)
+    #   "gap":       (ast nid, resource, end node, start node, label)   O4
+    #   "eqbar":     (if nid, barrier join node)                 EQ reference for O7
+    #   "blockend":  (if nid, bend node)                         IBM block end
+    #   "q1join":    (if nid, first exec in block, next exec)    Q1 O7
+    facts: dict[str, list[tuple[Any, ...]]] = field(default_factory=dict)
 
-    def fact(self, kind: str, *ids: int) -> None:
+    def fact(self, kind: str, *ids: Any) -> None:
         self.facts.setdefault(kind, []).append(tuple(ids))
 
     def add_node(self, kind: str, nid: int, tag: str, resource: str | None = None,
@@ -103,7 +108,8 @@ class LTEG:
 def _env(g: LTEG, omega: Mapping[str, int]) -> dict[str, int]:
     env = dict(omega)
     for p, d in g.derived.items():  # derived propositions: exact definitions over bit props
-        env[p] = evaluate(d.expr, env)
+        if all(o in omega for o in d.operands):  # a cone restriction may not bind unrelated ones
+            env[p] = evaluate(d.expr, env)
     return env
 
 
@@ -112,13 +118,18 @@ def holds(label: Label, env: Mapping[str, int]) -> bool:
 
 
 def dispatch_times(
-    g: LTEG, omega: Mapping[str, int], theta: Mapping[str, Fraction | int]
+    g: LTEG,
+    omega: Mapping[str, int],
+    theta: Mapping[str, Fraction | int],
+    restrict: set[int] | None = None,
 ) -> dict[int, Fraction]:
-    """Dispatch time of every node that exists, keyed by node id."""
+    """Dispatch time of every node that exists, keyed by node id (optionally only `restrict`)."""
     env = _env(g, omega)
     t: dict[int, Fraction] = {g.origin: Fraction(0)}
     for n in g.nodes:  # creation order is a topological order (every edge points forward)
-        if n.id == g.origin or not holds(n.label, env):
+        if n.id == g.origin or (restrict is not None and n.id not in restrict):
+            continue
+        if not holds(n.label, env):
             continue
         cands = []
         for ei in g.in_edges[n.id]:

@@ -37,6 +37,7 @@ class Q1Builder(GraphBuilder):
         self.last_issue = self.g.origin
         self.execs: list[int] = []
         self.prev: tuple[int, int, tuple[Label, Label] | None] | None = None  # node, dur, cond
+        self.pending_join: list[tuple[int, int]] = []  # (if nid, first exec in block)
 
     def _issue(self, nid: int, tag: str, k_for_queue: int | None) -> int:
         n = self.g.add_node("issue", nid, tag)
@@ -51,6 +52,9 @@ class Q1Builder(GraphBuilder):
         k = len(self.execs)
         issue = self._issue(nid, "issue", k)
         ex = self.g.add_node("exec", nid, "exec", "rt")
+        for if_nid, first in self.pending_join:  # first instruction after a conditional block
+            self.g.fact("q1join", if_nid, first, ex)
+        self.pending_join = []
         if k == 0:
             self.g.add_edge(issue, ex, 0, TOP, "q1.rt-start")
         else:
@@ -87,9 +91,12 @@ class Q1Builder(GraphBuilder):
     def if_(self, s: If) -> None:
         lit_t, lit_f = self.cond_labels(s.cond, s.nid)
         v = self.cond_valid(s.cond, s.nid)
+        first_k = len(self.execs)
         for arm, lit, pol in ((s.then_, lit_t, "set_cond"), (s.else_, lit_f, "set_cond_else")):
             if arm is None:
                 continue
             self._issue(s.nid, pol, None)  # set_cond runs on the Q1 core, takes no RT time
             for ins in rt_instrs(arm):
                 self._rt(ins.nid, ins.dur, (lit, lit_f if lit == lit_t else lit_t), v)
+        if len(self.execs) > first_k:
+            self.pending_join.append((s.nid, self.execs[first_k]))

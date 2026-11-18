@@ -41,7 +41,8 @@ from qtiming.core.labels import Derived, EBin, EBit, EUn, Expr
 class ElabProgram:
     body: Stmt
     derived: tuple[Derived, ...]
-    first_ops: dict[int, dict[int, int]]  # within nid -> qubit -> first-op nid
+    first_ops: dict[int, dict[int, tuple[int, ...]]]  # within nid -> qubit -> first-op nids
+    within: dict[int, tuple[int, str]]  # within nid -> (deadline dt, anchor proposition)
     missing: frozenset[str]  # contract keys needed but unbounded (dependants are UNKNOWN)
     policy_map: dict[int, Policy]  # effective policy per branch nid
     contract_sha256: str
@@ -100,7 +101,9 @@ class Elaborator:
         self.meas: dict[str, Measure] = {}
         self.missing: set[str] = set()
         self.policy_map: dict[int, Policy] = {}
-        self.first_ops: dict[int, dict[int, int]] = {}
+        self.first_ops: dict[int, dict[int, tuple[int, ...]]] = {}
+        self.within: dict[int, tuple[int, str]] = {}
+        self.last_write: dict[tuple[str, int], str] = {}
 
     def fresh(self) -> int:
         self.next += 1
@@ -164,7 +167,9 @@ class Elaborator:
     # -- main ---------------------------------------------------------------------------
     def elab(self, s: Stmt, m: dict[str, str]) -> Stmt:
         if isinstance(s, Measure):
-            self.meas[bit_prop(s.cbit.reg, s.cbit.idx, s.nid)] = s
+            prop = bit_prop(s.cbit.reg, s.cbit.idx, s.nid)
+            self.meas[prop] = s
+            self.last_write[(s.cbit.reg, s.cbit.idx)] = prop
             return s
         if isinstance(s, (Gate, Delay, Barrier, Reset)):
             return s
@@ -174,9 +179,15 @@ class Elaborator:
             return replace(s, body=self.elab(s.body, m))
         if isinstance(s, Within):
             body = self.elab(s.body, m)
-            firsts: dict[int, int] = {}
-            self._firsts(body, firsts)
-            self.first_ops[s.nid] = firsts
+            anchor = self.last_write.get((s.anchor.reg, s.anchor.idx))
+            if anchor is None:
+                raise QtError("E-ELAB-WITHIN-ANCHOR",
+                              f"within anchor {s.anchor.reg}[{s.anchor.idx}] is never written",
+                              s.loc)
+            self.within[s.nid] = (s.deadline, anchor)
+            firsts: dict[int, list[int]] = {}
+            self._firsts(body, firsts, set(), False)
+            self.first_ops[s.nid] = {q: tuple(v) for q, v in firsts.items()}
             return body
         if isinstance(s, For):
             if s.n > self.limit:
@@ -193,15 +204,27 @@ class Elaborator:
             raise QtError("E-ELAB-UNSUPPORTED", f"{type(s).__name__} is not elaborated yet", s.loc)
         raise QtError("E-ELAB-UNSUPPORTED", type(s).__name__)  # pragma: no cover
 
-    def _firsts(self, s: Stmt, out: dict[int, int]) -> None:
+    def _firsts(self, s: Stmt, out: dict[int, list[int]], seen: set[int], in_arm: bool) -> None:
+        """First USER operation per qubit; both arms of a branch are alternatives. Synthesised
+        prefix delays and barriers are skipped; padding inside an arm counts (plan A.3)."""
         if isinstance(s, Seq):
             for x in s.stmts:
-                self._firsts(x, out)
-        elif isinstance(s, (Gate, Delay)):
-            for q in s.qubits:
-                out.setdefault(q, s.nid)
-        elif isinstance(s, Measure):
-            out.setdefault(s.qubit, s.nid)
+                self._firsts(x, out, seen, in_arm)
+        elif isinstance(s, (Gate, Delay, Measure)):
+            if isinstance(s, Delay) and s.origin_nid is not None and not in_arm:
+                return
+            for q in (s.qubits if not isinstance(s, Measure) else (s.qubit,)):
+                if q not in seen:
+                    out.setdefault(q, []).append(s.nid)
+                    seen.add(q)
+        elif isinstance(s, If):
+            merged = set(seen)
+            for arm in (s.then_, s.else_):
+                if arm is not None:
+                    sa = set(seen)
+                    self._firsts(arm, out, sa, True)
+                    merged |= sa
+            seen |= merged
 
     def elab_while(self, s: While, m: dict[str, str]) -> Stmt:
         """Capped while as nested ifs: iteration j exists only if iterations < j all looped."""
@@ -310,5 +333,5 @@ def elaborate(prog: Stmt, contract: Contract, *, unroll_limit: int = 64) -> Elab
     el = Elaborator(contract, unroll_limit)
     el.next = _max_nid(prog)
     body = el.elab(prog, {})
-    return ElabProgram(body, (), el.first_ops, frozenset(el.missing), el.policy_map,
+    return ElabProgram(body, (), el.first_ops, el.within, frozenset(el.missing), el.policy_map,
                        contract.sha256)

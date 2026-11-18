@@ -27,16 +27,23 @@ class QuaBuilder(GraphBuilder):
 
     def _align(self, qubits: list[int], nid: int, join_tag: str, extra: int | None = None) -> None:
         res = [f"q{q}" for q in qubits]
-        j = self.node("join", nid, join_tag)
+        ready: int | None = None
         if extra is not None:
+            ready = self.node("join", nid, "bready")  # resources only: when the arm COULD start
+            self.join_from(res, ready, "qua.block-ready")
+        j = self.node("join", nid, join_tag)
+        if ready is not None and extra is not None:
+            self.g.add_edge(ready, j, 0, TOP, "qua.block-start")
             self.g.add_edge(extra, j, 0, TOP, "qua.cond-valid")
-        self.join_from(res, j, "qua.align")
+            self.g.fact("ready", nid, extra, ready)
+        else:
+            self.join_from(res, j, "qua.align")
         last = j
         if any(q in self.dynamic for q in qubits):  # non-deterministic align: uncertain gap
             last = self.node("align", nid, "align")
             self.g.add_edge(j, last, self.latvar(nid, "align", "align", self.tier), TOP,
                             "qua.align-gap")
-        self.set_front(res, last)
+        self.set_front(res, last, real=False)
         self.dynamic.difference_update(qubits)
 
     def barrier(self, s: Barrier) -> None:
@@ -50,7 +57,7 @@ class QuaBuilder(GraphBuilder):
                 ready = self.node("start", s.nid, f"ready{q}")
                 self.g.add_edge(v, ready, 0, TOP, "qua.cond-valid")
                 self.join_from([f"q{q}"], ready, "qua.ready")
-                self.set_front([f"q{q}"], ready)
+                self.set_front([f"q{q}"], ready, real=False)
         else:
             self._align(part, s.nid, "ialign", extra=v)
         lit_t, lit_f = self.cond_labels(s.cond, s.nid)
