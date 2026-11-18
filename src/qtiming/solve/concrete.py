@@ -26,6 +26,7 @@ class Result:
     theta: dict[str, Fraction] = field(default_factory=dict)
     shortfall: Fraction | None = None
     second: dict[str, int] | None = None  # Variation: the second execution's outcomes
+    second_theta: dict[str, Fraction] | None = None
     event_time: Fraction | None = None
 
 

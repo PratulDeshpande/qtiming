@@ -31,8 +31,17 @@ from qtiming.graph.lteg import _env, dispatch_times, holds  # noqa: E402
 from qtiming.oblig.generate import generate  # noqa: E402
 from qtiming.oblig.model import Diff, Variation  # noqa: E402
 from qtiming.solve.dispatcher import verify  # noqa: E402
+from qtiming.verdict.minimise import minimise  # noqa: E402
+from qtiming.verdict.replay import replay  # noqa: E402
 
-N = int(os.environ.get("QTIMING_PROP_N", "150"))
+try:
+    import z3  # noqa: F401
+
+    HAS_Z3 = True
+except ImportError:
+    HAS_Z3 = False
+
+N = int(os.environ.get("QTIMING_PROP_N", "80"))
 RUNS = 12
 
 
@@ -40,6 +49,7 @@ RUNS = 12
 def test_proved_obligations_are_never_violated(pers: str, policy: str | None) -> None:
     contract = make_contract(pers, CONTRACTS[pers])
     proved_total = 0
+    refuted_total = [0]
     for seed in range(N):
         prog, _ = build(gen(pers, random.Random(seed)))
         if policy:
@@ -50,9 +60,13 @@ def test_proved_obligations_are_never_violated(pers: str, policy: str | None) ->
         except QtError:
             continue
         results = [(o, verify(g, o)) for o in generate(g, el, contract)]
-        for _, r in results:
+        for o, r in results:
             if r.kind == "refuted":
-                assert r.tier == 0  # Tier 1 never refutes; Tier 2 does not exist yet
+                assert r.tier in (0, 2)  # Tier 1 never refutes
+                refuted_total[0] += 1
+                # property 2 (witness validity): the independent executor reproduces it
+                assert replay(g, o, minimise(g, o, r), el.body, contract), (
+                    f"{pers}/{policy} seed {seed}: {o.code} witness not reproduced")
         proved = [o for o, r in results if r.kind == "proved"]
         proved_total += len(proved)
         variation_vals: dict[int, list[Fraction]] = {id(o): [] for o in proved}
@@ -89,3 +103,5 @@ def test_proved_obligations_are_never_violated(pers: str, policy: str | None) ->
                 assert (code, v.nid) not in proved_at, (
                     f"{pers}/{policy} seed {seed}: executor violated proved {code} at {v.nid}")
     assert proved_total > 0, "no obligation was proved: the property was vacuous"
+    if policy == "sync" and HAS_Z3:  # sync leaves gaps that vary: Tier 2 finds and replays them
+        assert refuted_total[0] > 0

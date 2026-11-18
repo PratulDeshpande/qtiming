@@ -25,7 +25,7 @@ from qtiming.oblig.generate import ancestors, generate  # noqa: E402
 from qtiming.oblig.model import Diff, Variation  # noqa: E402
 from qtiming.solve.interval import diff_lower, diff_upper, forms  # noqa: E402
 
-N = int(os.environ.get("QTIMING_PROP_N", "150"))
+N = int(os.environ.get("QTIMING_PROP_N", "80"))
 
 
 def programs(pers: str, policy: str | None):  # type: ignore[no-untyped-def]

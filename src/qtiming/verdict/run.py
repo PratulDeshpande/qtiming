@@ -16,7 +16,9 @@ from qtiming.graph.invariants import check_invariants
 from qtiming.oblig.generate import NOT_GENERATED, generate
 from qtiming.solve.dispatcher import SolveCfg, verify
 
+from .minimise import minimise
 from .model import REFUTED, ObResult, Verdict, combine
+from .replay import require_replay
 
 _CHILDREN = ("stmts", "body", "then_", "else_", "default", "exhaust")
 
@@ -48,7 +50,13 @@ def check_program(
         raise
     g = build_graph(el.body, contract)
     check_invariants(g)
-    results = [ObResult(o, verify(g, o, cfg)) for o in generate(g, el, contract)]
+    results = []
+    for o in generate(g, el, contract):
+        r = verify(g, o, cfg)
+        if r.kind == "refuted":  # shrink, then require the independent executor to agree
+            r = minimise(g, o, r)
+            require_replay(g, o, r, el.body, contract)
+        results.append(ObResult(o, r))
     verdict, reasons = combine(results, el.missing)
     ass = {a for r in results for a in r.obl.assumptions}
     wk = weakest(ass)

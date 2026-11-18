@@ -78,6 +78,7 @@ class IbmExec(Engine):
                 raise QtError("E-EXEC-UNSUPPORTED", "IBM arms may not nest ifs or measure", s.loc)
         res = sorted(touched(s.then_) | (touched(s.else_) if s.else_ else set()))
         v = self.cond_valid(s.cond)
+        self.rec(s.nid, "bready", max([Fraction(0), *(self.clock[q] for q in res)]))
         mode = self.contract.param("ibm", "block_start", "all_resources")
         if mode != "all_resources":
             raise QtError("E-EXEC-UNSUPPORTED", "only block_start = all_resources is implemented")

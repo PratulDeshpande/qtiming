@@ -3375,6 +3375,11 @@ P5 (executor) is placed before P6 (builder) deliberately: the executor is writte
 | 51 | Unchecked obligation kinds (P7) | every verdict lists `not_checked`: O4a, O6, O8, O9, O7 for SYNC with a spread bound | silent omission | PROVED must never read as covering them | P7 ruling |
 | 52 | Gate durations for non-Target contracts (P7) | `--assume durations.NAME=ns`; illustrative values only in the unofficial IBM fixture | inventing vendor numbers in shipped contracts | unpublished numbers stay absent | P7 ruling |
 | 53 | q1simulator cross-check and advisor sign-off (P4, P5 gates) | not done: needs a separate Python 3.12+ venv and a person | claiming them | stated as open in the project status | P5 ruling |
+| 54 | Replay of a witness that targets a later event (P8) | accepted when the executor HALTS on an earlier violation of the same kind | requiring the same node | RTIOUnderflow and the Q1 halt stop the run first; the program still fails under the witness | P8 ruling |
+| 55 | Executor events added so witnesses are replayable (P8) | `bready` (IBM, QUA) and `fstart`/`fend` (QUA false-path wait); the program origin counts as time 0 | leaving them graph-only | replay compares executor times, so every node an obligation names must be an executor event | P8 ruling |
+| 56 | O5 symbolic encoding and triple agreement (P8 gate) | not built: Tier 2 returns UNKNOWN for `Events` obligations | a partial encoding | `sed_simulate` (Tier 0) and the executor agree on goldens; the symbolic version is future work | P8 ruling |
+| 57 | Parametric margins by `Optimize` (P8) | margins come from Tier 1 or Tier 0; `max_safe` is bisection over full re-checks | Z3 `Optimize` | bisection matches the plan's description; Tier 2 proofs report no margin | P8 ruling |
+| 58 | `qtiming-bench diff` H1 smoke (P8 gate) | covered by `tests/property/test_soundness.py` (proved never violated, refuted always replays) | the bench CLI | the harness is P13; the property test is the same check on random programs | P8 ruling |
 
 ---
 

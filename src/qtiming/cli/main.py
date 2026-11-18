@@ -77,7 +77,8 @@ def _check(args: argparse.Namespace) -> int:
         else:
             prog = from_qasm3(path.read_text(encoding="utf-8"), filename=str(path),
                               contract=contract)
-        cfg = SolveCfg(use_tier1=not args.no_tier1)
+        cfg = SolveCfg(use_tier1=not args.no_tier1, use_tier2=not args.no_tier2,
+                       timeout_ms=int(args.timeout * 1000))
         verdict = check_program(prog.body, contract, policy=args.policy, cfg=cfg)
         if args.max_safe:
             h = max_safe(prog.body, contract, args.max_safe, policy=args.policy)
@@ -122,6 +123,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                    help="e.g. durations.x=32, timeline.commit_lead=100, ff.default=0:600")
     c.add_argument("--max-safe", metavar="KEY", help="bisect the largest safe hi of a latency")
     c.add_argument("--no-tier1", action="store_true")
+    c.add_argument("--no-tier2", action="store_true", help="skip exact SMT (no z3 needed)")
+    c.add_argument("--timeout", type=float, default=10.0, help="seconds per SMT query")
     c.add_argument("--strict-proved", action="store_true",
                    help="treat PROVED-UNDER as failure (exit 1)")
     args = ap.parse_args(argv)

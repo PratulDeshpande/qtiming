@@ -74,7 +74,9 @@ class QuaExec(Engine):
             for q in part:
                 self.clock[q] = max(v, self.clock[q])
         else:
-            base = max([v, *(self.clock[q] for q in part)])
+            ready = max([Fraction(0), *(self.clock[q] for q in part)])
+            self.rec(s.nid, "bready", ready)  # resources only: when the arm could start
+            base = max(v, ready)
             for q in part:
                 self.clock[q] = base
             self._align(part, s.nid, "ialign")
@@ -84,6 +86,10 @@ class QuaExec(Engine):
         if arm is not None:
             self.exec_stmt(arm)
         elif lone is not None:  # false path: wait as long as the play would have lasted
-            self.clock[lone.qubits[0]] += lone.dur
+            q = lone.qubits[0]
+            start = self.clock[q]
+            self.rec(lone.nid, "fstart", start)
+            self.clock[q] = start + lone.dur
+            self.rec(lone.nid, "fend", self.clock[q])
         if lone is None:
             self.dynamic.update(part)
