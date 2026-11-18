@@ -1,0 +1,142 @@
+{
+  "verdict": "REFUTED",
+  "policy": "sync",
+  "contract": {
+    "name": "ibm_heron",
+    "sha256": "9cf4d27a06ae933e22874481a6271bcf272f8b30ebe8dee63c7e473d6d4ccbee"
+  },
+  "assumptions": [
+    {
+      "latency": "ff.default",
+      "lo_dt": 0,
+      "hi_dt": 150,
+      "lo_ns": "0",
+      "hi_ns": "600",
+      "prov": "vendor",
+      "source": "IBM blog, 2025-11-19 (feedforward about 600 ns); vendor claim, not a certified bound"
+    }
+  ],
+  "weakest_class": "vendor",
+  "obligations": [
+    {
+      "code": "O4",
+      "nid": 1,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 2,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 2,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 3,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 3,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 4,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 5,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 6,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 11,
+      "result": "refuted",
+      "tier": 2,
+      "margin_dt": null,
+      "margin_ns": null,
+      "reason": "idle gap on q2 must not vary with outcomes or latencies"
+    }
+  ],
+  "counterexamples": [
+    {
+      "obligation": {
+        "code": "O4",
+        "nid": 11
+      },
+      "tier": 2,
+      "message": "idle gap on q2 must not vary with outcomes or latencies",
+      "omega": {
+        "c[1]@m6": 1
+      },
+      "theta": {
+        "ff.default@m5": "0",
+        "ff.default@m6": "1/2"
+      },
+      "shortfall_dt": null,
+      "second": {
+        "omega": {
+          "c[1]@m6": 1
+        },
+        "theta": {
+          "ff.default@m5": "0",
+          "ff.default@m6": "0"
+        }
+      }
+    }
+  ],
+  "reasons": [
+    "O4 at node 11: idle gap on q2 must not vary with outcomes or latencies"
+  ],
+  "not_checked": [
+    "O4a (off by default)",
+    "O6 (blocking calls)",
+    "O8 (grid)",
+    "O9 (loop windows)",
+    "O7 for SYNC with a spread bound"
+  ],
+  "notes": [],
+  "max_safe": {}
+}

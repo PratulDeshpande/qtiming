@@ -1,0 +1,17 @@
+REFUTED  (contract ibm_heron, policy sync, sha256 9cf4d27a06ae)
+  why: O4 at node 11: idle gap on q2 must not vary with outcomes or latencies
+  O4 failed at benchmarks/families/teleportation/tp_sync.qasm:17 (tier 2)
+  assumptions (weakest class: vendor):
+    ff.default: [0 ns, 600 ns]  vendor: IBM blog, 2025-11-19 (feedforward about 600 ns); vendor claim, not a certified bound
+  O4: 9 obligation(s): proved (tier 0, margin 0 ns); refuted (tier 2)
+  timeline (counterexample):
+    t(ns)     0                                                2406
+    q0        ....ch.....................................................m.
+    q1        h.c.c......................................................m.
+    q2        ..c.........................................................x
+  timeline (second execution):
+    t(ns)     0                                                2404
+    q0        ....ch......................................................m
+    q1        h.c.c......................................................m.
+    q2        ..c.........................................................x
+  not checked by this build: O4a (off by default), O6 (blocking calls), O8 (grid), O9 (loop windows), O7 for SYNC with a spread bound

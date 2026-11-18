@@ -1,0 +1,168 @@
+{
+  "verdict": "PROVED-UNDER",
+  "policy": "sync",
+  "contract": {
+    "name": "ibm_heron",
+    "sha256": "9cf4d27a06ae933e22874481a6271bcf272f8b30ebe8dee63c7e473d6d4ccbee"
+  },
+  "assumptions": [
+    {
+      "latency": "ff.default",
+      "lo_dt": 0,
+      "hi_dt": 150,
+      "lo_ns": "0",
+      "hi_ns": "600",
+      "prov": "vendor",
+      "source": "IBM blog, 2025-11-19 (feedforward about 600 ns); vendor claim, not a certified bound"
+    }
+  ],
+  "weakest_class": "vendor",
+  "obligations": [
+    {
+      "code": "O2b",
+      "nid": 9,
+      "result": "proved",
+      "tier": 1,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O3",
+      "nid": 7,
+      "result": "proved",
+      "tier": 1,
+      "margin_dt": "600",
+      "margin_ns": "2400",
+      "reason": null
+    },
+    {
+      "code": "O3",
+      "nid": 7,
+      "result": "proved",
+      "tier": 1,
+      "margin_dt": "600",
+      "margin_ns": "2400",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 1,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 2,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 2,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 3,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 3,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 4,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 5,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 6,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 16,
+      "result": "proved",
+      "tier": 0,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 11,
+      "result": "proved",
+      "tier": 1,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O4",
+      "nid": 13,
+      "result": "proved",
+      "tier": 1,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    },
+    {
+      "code": "O7",
+      "nid": 9,
+      "result": "proved",
+      "tier": 1,
+      "margin_dt": "0",
+      "margin_ns": "0",
+      "reason": null
+    }
+  ],
+  "counterexamples": [],
+  "reasons": [],
+  "not_checked": [
+    "O4a (off by default)",
+    "O6 (blocking calls)",
+    "O8 (grid)",
+    "O9 (loop windows)",
+    "O7 for SYNC with a spread bound"
+  ],
+  "notes": [],
+  "max_safe": {}
+}

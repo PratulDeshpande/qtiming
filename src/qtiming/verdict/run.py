@@ -6,12 +6,14 @@ from dataclasses import fields, is_dataclass, replace
 from typing import Any
 
 from qtiming.contract.model import Contract
-from qtiming.core.ast import If, Policy, Stmt, While
+from qtiming.core.ast import If, Policy, SourceLoc, Stmt, While
 from qtiming.core.errors import QtError
 from qtiming.core.provenance import weakest
 from qtiming.core.time import Interval
 from qtiming.dispatch import build_graph
 from qtiming.elab import elaborate
+from qtiming.exec.engine import ExecResult, execute
+from qtiming.exec.oracle import Fixed
 from qtiming.graph.invariants import check_invariants
 from qtiming.oblig.generate import NOT_GENERATED, generate
 from qtiming.solve.dispatcher import SolveCfg, verify
@@ -35,8 +37,20 @@ def with_policy(s: Any, pol: Policy) -> Any:
     return replace(s, **ch)
 
 
+def collect_locs(s: Any, out: dict[int, SourceLoc]) -> dict[int, SourceLoc]:
+    if hasattr(s, "nid") and hasattr(s, "loc"):
+        out.setdefault(s.nid, s.loc)
+    for name in _CHILDREN:
+        v = getattr(s, name, None)
+        for c in (v if isinstance(v, tuple) else (v,)):
+            if c is not None and hasattr(c, "nid"):
+                collect_locs(c, out)
+    return out
+
+
 def check_program(
-    prog: Stmt, contract: Contract, *, policy: str | None = None, cfg: SolveCfg | None = None
+    prog: Stmt, contract: Contract, *, policy: str | None = None, cfg: SolveCfg | None = None,
+    first_failure: bool = False,
 ) -> Verdict:
     if policy:
         prog = with_policy(prog, Policy(policy))  # type: ignore[arg-type]
@@ -57,15 +71,31 @@ def check_program(
             r = minimise(g, o, r)
             require_replay(g, o, r, el.body, contract)
         results.append(ObResult(o, r))
+        if first_failure and r.kind == "refuted":
+            break
     verdict, reasons = combine(results, el.missing)
     ass = {a for r in results for a in r.obl.assumptions}
     wk = weakest(ass)
     notes = [f"contract assumed value: {a}" for a in contract.assumed]
     notes += [w for w in contract.warnings]
+    traces: list[tuple[str, ExecResult]] = []
+    bad = next((r for r in results if r.res.kind == "refuted"), None)
+    try:
+        if bad is not None:
+            traces.append(("counterexample", execute(el.body, contract,
+                                                      Fixed(bad.res.omega, bad.res.theta))))
+            if bad.res.second is not None:
+                traces.append(("second execution", execute(
+                    el.body, contract, Fixed(bad.res.second, bad.res.second_theta or {}))))
+        else:
+            traces.append(("typical run", execute(el.body, contract, Fixed())))
+    except QtError as e:  # e.g. an unspecified ARTIQ commit_lead: no trace, the verdict stands
+        notes.append(f"no executor trace: {e.message}")
     return Verdict(
         verdict, contract.name, contract.sha256, eff,
         tuple(sorted(ass, key=lambda a: a.key)), None if wk is None else wk.name.lower(),
         tuple(results), tuple(reasons), NOT_GENERATED, tuple(notes),
+        locs=collect_locs(el.body, {}), traces=tuple(traces),
     )
 
 

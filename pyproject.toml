@@ -17,7 +17,7 @@ z3 = ["z3-solver>=4.13"]
 synth = ["networkx>=3"]
 bench = ["pyarrow", "pandas", "matplotlib", "pyyaml"]
 docs = ["mkdocs-material"]
-dev = ["pytest", "pytest-cov", "pytest-xdist", "hypothesis", "ruff", "mypy", "import-linter"]
+dev = ["pytest", "pytest-cov", "pytest-xdist", "hypothesis", "ruff", "mypy", "import-linter", "jsonschema"]
 
 [project.scripts]
 qtiming = "qtiming.cli.main:main"

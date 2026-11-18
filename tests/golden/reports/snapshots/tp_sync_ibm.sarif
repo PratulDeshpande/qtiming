@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "qtiming",
+          "informationUri": "https://github.com/",
+          "rules": [
+            {
+              "id": "V-ASSUME",
+              "shortDescription": {
+                "text": "A contract number the verdict relies on"
+              }
+            },
+            {
+              "id": "E-LINT-IBM-BOX",
+              "shortDescription": {
+                "text": "E-LINT-IBM-BOX"
+              }
+            },
+            {
+              "id": "V-O4",
+              "shortDescription": {
+                "text": "No unplanned gap: idle gaps must not vary with outcomes or latencies"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "V-O4",
+          "level": "error",
+          "message": {
+            "text": "O4: idle gap on q2 must not vary with outcomes or latencies"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/families/teleportation/tp_sync.qasm"
+                },
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 8
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "qtiming/v1": "84c7fe676e9c6cc52e802cb18109ca87"
+          },
+          "properties": {
+            "contractSha256": "9cf4d27a06ae933e22874481a6271bcf272f8b30ebe8dee63c7e473d6d4ccbee",
+            "policy": "sync",
+            "tier": 2,
+            "counterexample": {
+              "omega": {
+                "c[1]@m6": 1
+              },
+              "theta": {
+                "ff.default@m5": "0",
+                "ff.default@m6": "1/2"
+              }
+            }
+          }
+        },
+        {
+          "ruleId": "V-ASSUME",
+          "level": "note",
+          "message": {
+            "text": "relies on ff.default in [0 ns, 600 ns] (vendor: IBM blog, 2025-11-19 (feedforward about 600 ns); vendor claim, not a certified bound)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "program"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "qtiming/v1": "55718016196c578b689accdbe80ab16b"
+          },
+          "properties": {
+            "contractSha256": "9cf4d27a06ae933e22874481a6271bcf272f8b30ebe8dee63c7e473d6d4ccbee",
+            "policy": "sync",
+            "latency": "ff.default"
+          }
+        },
+        {
+          "ruleId": "E-LINT-IBM-BOX",
+          "level": "warning",
+          "message": {
+            "text": "box present Hint: strip timing annotations before submission (StripTimingAnnotations)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/families/teleportation/tp_sync.qasm"
+                },
+                "region": {
+                  "startLine": 14
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "verdict": "REFUTED",
+        "contract": "ibm_heron",
+        "contractSha256": "9cf4d27a06ae933e22874481a6271bcf272f8b30ebe8dee63c7e473d6d4ccbee",
+        "notChecked": [
+          "O4a (off by default)",
+          "O6 (blocking calls)",
+          "O8 (grid)",
+          "O9 (loop windows)",
+          "O7 for SYNC with a spread bound"
+        ]
+      }
+    }
+  ]
+}

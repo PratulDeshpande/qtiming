@@ -1,0 +1,8 @@
+PROVED-UNDER  (contract ibm_heron, policy sync, sha256 9cf4d27a06ae)
+  assumptions (weakest class: vendor):
+    ff.default: [0 ns, 600 ns]  vendor: IBM blog, 2025-11-19 (feedforward about 600 ns); vendor claim, not a certified bound
+  O2b: 1 obligation(s): proved (tier 1, margin 0 ns)
+  O3: 2 obligation(s): proved (tier 1, margin 2400 ns)
+  O4: 11 obligation(s): proved (tier 0, margin 0 ns); proved (tier 1, margin 0 ns)
+  O7: 1 obligation(s): proved (tier 1, margin 0 ns)
+  not checked by this build: O4a (off by default), O6 (blocking calls), O8 (grid), O9 (loop windows), O7 for SYNC with a spread bound

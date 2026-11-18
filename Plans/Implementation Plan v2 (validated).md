@@ -3380,6 +3380,10 @@ P5 (executor) is placed before P6 (builder) deliberately: the executor is writte
 | 56 | O5 symbolic encoding and triple agreement (P8 gate) | not built: Tier 2 returns UNKNOWN for `Events` obligations | a partial encoding | `sed_simulate` (Tier 0) and the executor agree on goldens; the symbolic version is future work | P8 ruling |
 | 57 | Parametric margins by `Optimize` (P8) | margins come from Tier 1 or Tier 0; `max_safe` is bisection over full re-checks | Z3 `Optimize` | bisection matches the plan's description; Tier 2 proofs report no margin | P8 ruling |
 | 58 | `qtiming-bench diff` H1 smoke (P8 gate) | covered by `tests/property/test_soundness.py` (proved never violated, refuted always replays) | the bench CLI | the harness is P13; the property test is the same check on random programs | P8 ruling |
+| 59 | SARIF schema for the P9 gate | the official OASIS `sarif-schema-2.1.0.json` is vendored in `tests/fixtures` and used with `jsonschema` (dev extra) | a hand-written structural check | the gate says "validated against the 2.1.0 schema" | P9 ruling |
+| 60 | RUS verdict wiring (P9) | `verdict/rus.py` implements the 13.5 formulas exactly and reproduces the table; `check` does not call it yet | wiring it before `timing.pmin` reaches the elaborator | the front end parses `pmin` but loops are not carried through as RUS nodes; the formulas are tested stand-alone | P9 ruling |
+| 61 | Report paths and fingerprints (P9) | paths in reports use `/`; SARIF `partialFingerprints` hash (code, nid, contract sha) | OS-specific paths | snapshots and CI deduplication must not depend on the machine | P9 ruling |
+| 62 | HTML report (P9) | static page, inline SVG, no scripts, built from the replayed executor trace | an interactive viewer | meets 13.6; trivially safe to open from CI artifacts | P9 ruling |
 
 ---
 

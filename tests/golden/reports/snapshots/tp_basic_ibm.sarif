@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "qtiming",
+          "informationUri": "https://github.com/",
+          "rules": [
+            {
+              "id": "V-ASSUME",
+              "shortDescription": {
+                "text": "A contract number the verdict relies on"
+              }
+            },
+            {
+              "id": "E-LINT-IBM-BOX",
+              "shortDescription": {
+                "text": "E-LINT-IBM-BOX"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "V-ASSUME",
+          "level": "note",
+          "message": {
+            "text": "relies on ff.default in [0 ns, 600 ns] (vendor: IBM blog, 2025-11-19 (feedforward about 600 ns); vendor claim, not a certified bound)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "program"
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "qtiming/v1": "55718016196c578b689accdbe80ab16b"
+          },
+          "properties": {
+            "contractSha256": "9cf4d27a06ae933e22874481a6271bcf272f8b30ebe8dee63c7e473d6d4ccbee",
+            "policy": "sync",
+            "latency": "ff.default"
+          }
+        },
+        {
+          "ruleId": "E-LINT-IBM-BOX",
+          "level": "warning",
+          "message": {
+            "text": "box present Hint: strip timing annotations before submission (StripTimingAnnotations)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/families/teleportation/tp_basic.qasm"
+                },
+                "region": {
+                  "startLine": 14
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "verdict": "PROVED-UNDER",
+        "contract": "ibm_heron",
+        "contractSha256": "9cf4d27a06ae933e22874481a6271bcf272f8b30ebe8dee63c7e473d6d4ccbee",
+        "notChecked": [
+          "O4a (off by default)",
+          "O6 (blocking calls)",
+          "O8 (grid)",
+          "O9 (loop windows)",
+          "O7 for SYNC with a spread bound"
+        ]
+      }
+    }
+  ]
+}
