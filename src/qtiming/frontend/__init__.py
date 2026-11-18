@@ -9,7 +9,15 @@ from .program import ContractView, Program
 if TYPE_CHECKING:
     from qiskit import QuantumCircuit
 
-__all__ = ["ContractView", "Program", "from_circuit", "from_qpy"]
+__all__ = ["ContractView", "Program", "from_circuit", "from_qasm3", "from_qpy"]
+
+
+def from_qasm3(text: str, *, filename: str = "<string>",
+               contract: ContractView | None = None) -> Program:
+    """OpenQASM 3 text through the `openqasm3` parser (no Qiskit needed)."""
+    from .qasm3_fe import from_qasm3 as _from_qasm3
+
+    return _from_qasm3(text, filename=filename, contract=contract)
 
 
 def from_circuit(qc: QuantumCircuit, *, contract: ContractView | None = None) -> Program:

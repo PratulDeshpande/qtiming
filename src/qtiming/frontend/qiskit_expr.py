@@ -17,6 +17,8 @@ from qiskit.circuit.classical import expr, types
 from qtiming.core.errors import QtError
 from qtiming.core.labels import EBin, EBit, EConst, EUn, Expr
 
+from ._shared import reg_value as _reg_value
+
 
 @dataclass(frozen=True, slots=True)
 class ExprCtx:
@@ -36,13 +38,6 @@ _BIN = {
 def _unsupported(what: str) -> QtError:
     return QtError("E-FE-EXPR-UNSUPPORTED", f"{what} is not supported in conditions",
                    hint="rewrite the condition with bit/register comparisons, parity or and/or/not")
-
-
-def _reg_value(props: list[str]) -> Expr:
-    acc: Expr = EBit(props[0])
-    for i, p in enumerate(props[1:], start=1):
-        acc = EBin("add", acc, EBin("mul", EConst(1 << i, len(props)), EBit(p)))
-    return acc
 
 
 def to_expr(cond: Any, ctx: ExprCtx) -> Expr:

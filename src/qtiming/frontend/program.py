@@ -6,7 +6,7 @@ from dataclasses import dataclass, fields, is_dataclass, replace
 from fractions import Fraction
 from typing import Any, Protocol
 
-from qtiming.core.ast import BitRef, Node, SourceLoc, Stmt
+from qtiming.core.ast import BitRef, For, Node, SourceLoc, Stmt
 from qtiming.core.errors import QtError
 
 
@@ -14,7 +14,8 @@ class ContractView(Protocol):
     """What the front end needs from a contract. `contract` and `frontend` are sibling layers
     and may not import each other, so this is structural; `qtiming.contract.Contract` fits."""
 
-    dt_ns: Fraction
+    @property
+    def dt_ns(self) -> Fraction: ...
 
     def duration(self, name: str) -> int: ...
 
@@ -38,9 +39,12 @@ def _norm_value(v: Any) -> Any:
 
 def normalise(s: Any) -> Any:
     """A copy with source locations and elaboration origins cleared, for comparing ASTs that
-    came from different front ends. Node ids are kept (both walkers assign them in source order)."""
+    came from different front ends. Node ids are kept (both walkers assign them in source order).
+    A loop's variable name is cleared too: Qiskit's importer renames unused ones."""
     assert is_dataclass(s) and isinstance(s, Node)
     changes: dict[str, Any] = {"loc": SourceLoc(""), "origin_nid": None}
+    if isinstance(s, For):
+        changes["var"] = ""
     for f in fields(s):
         if f.name not in changes:
             changes[f.name] = _norm_value(getattr(s, f.name))
