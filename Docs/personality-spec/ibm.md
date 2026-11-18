@@ -37,7 +37,7 @@ Under EQ elaboration a barrier and a wait of `hi` precede the block, so `bstart`
 
 | Parameter | Values | Default | Provenance |
 | --- | --- | --- | --- |
-| `block_start` | `all_resources`, `per_resource` | `all_resources` | `vendor`, from IBM documentation of the old fast-path stack |
+| `block_start` | `all_resources` (`per_resource` is named but not implemented: both stages refuse it) | `all_resources` | `vendor`, from IBM documentation of the old fast-path stack |
 | `join_behavior` | `pad_to_longest_block`, `restart_at_join` | `pad_to_longest_block` | `vendor`, documented only for qiskit-ibm-runtime <= 0.39; to be calibrated from `scheduler_timing` evidence (plan Section 18) |
 
 Neither value is hidden behaviour: both are contract parameters (`personality_params.ibm`).

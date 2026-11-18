@@ -65,7 +65,8 @@ layers =
     qtiming.verdict
     qtiming.solve
     qtiming.oblig
-    qtiming.graph | qtiming.dispatch
+    qtiming.dispatch
+    qtiming.graph
     qtiming.elab
     qtiming.contract | qtiming.frontend
     qtiming.core

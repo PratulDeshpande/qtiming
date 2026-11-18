@@ -16,9 +16,11 @@ from qtiming.contract.loader import load_contract_dict
 from qtiming.contract.model import Contract
 from qtiming.core.ast import Barrier, BitRef, Delay, Gate, If, Measure, Seq, SourceLoc, Stmt
 from qtiming.core.ids import bit_prop, lat_occurrence
-from qtiming.core.labels import EBit, EUn, Expr
+from qtiming.core.labels import EBin, EBit, EUn, Expr
 
 ROOT = Path(__file__).parent
+KLASS = {"ibm": "restricted", "q1": "predicated", "qua": "resync", "artiq": "exposed"}
+POLICY = {"ibm": "sync", "q1": "eq", "qua": "sync", "artiq": "exp"}
 LOC = SourceLoc("golden")
 
 
@@ -55,8 +57,8 @@ def make_contract(personality: str, spec: dict[str, Any]) -> Contract:
              "prov": "vendor", "source": "golden"}
             for x in spec["latencies"]
         ],
-        "branch": {"class": "restricted", "default_policy": "eq", "allow_nested": False,
-                   **spec.get("branch", {})},
+        "branch": {"class": KLASS[personality], "default_policy": POLICY[personality],
+                   "allow_nested": False, **spec.get("branch", {})},
         "personality_params": {personality: spec.get("params", {})},
     }
     if spec.get("commit_lead") is not None:
@@ -93,14 +95,21 @@ class _Builder:
                            variant=op.get("variant", "std"), tier=op.get("tier", "default"))
         if kind == "if":
             name = op["cond"]
-            m = self.ids[name.lstrip("!")]
-            cond: Expr = EBit(bit_prop("c", self.bit_of[m], m))
+            parts = [self.ids[x] for x in name.lstrip("!").split("^")]
+            cond: Expr = EBit(bit_prop("c", self.bit_of[parts[0]], parts[0]))
+            for extra in parts[1:]:  # "m0^m1": xor of two bits (a derived condition)
+                cond = EBin("xor", cond, EBit(bit_prop("c", self.bit_of[extra], extra)))
             if name.startswith("!"):
                 cond = EUn("not", cond)
             then_ = self.seq(op["then"])
             else_ = self.seq(op["else"]) if op.get("else") is not None else None
             return If(nid=nid, loc=LOC, cond=cond, then_=then_, else_=else_)
         raise ValueError(f"unknown op {kind}")
+
+
+def build(ops: list[dict[str, Any]]) -> tuple[Stmt, dict[str, int]]:
+    b = _Builder()
+    return b.seq(ops), b.ids
 
 
 def load_case(path: Path) -> Case:

@@ -10,15 +10,15 @@ from qtiming.core.ast import Barrier, Box, Delay, Gate, If, Measure, Seq, Stmt
 from .engine import Engine, touched
 
 
-def _single_op_element(s: Stmt | None) -> bool:
+def single_op(s: Stmt | None) -> Gate | Delay | None:
     """A lone Gate/Delay on one element: QUA compiles it to a conditional play with an
     equal-length wait on the false path, so the element's end time is outcome independent."""
     while isinstance(s, (Seq, Box)):
         inner = s.stmts if isinstance(s, Seq) else (s.body,)
         if len(inner) != 1:
-            return False
+            return None
         s = inner[0]
-    return isinstance(s, (Gate, Delay)) and len(s.qubits) == 1
+    return s if isinstance(s, (Gate, Delay)) and len(s.qubits) == 1 else None
 
 
 class QuaExec(Engine):
@@ -80,7 +80,10 @@ class QuaExec(Engine):
             self._align(part, s.nid, "ialign")
         taken = self.cond_value(s.cond)
         arm = s.then_ if taken else s.else_
+        lone = single_op(s.then_) if s.else_ is None else None
         if arm is not None:
             self.exec_stmt(arm)
-        if not (s.else_ is None and _single_op_element(s.then_)):
+        elif lone is not None:  # false path: wait as long as the play would have lasted
+            self.clock[lone.qubits[0]] += lone.dur
+        if lone is None:
             self.dynamic.update(part)

@@ -79,6 +79,8 @@ class IbmExec(Engine):
         res = sorted(touched(s.then_) | (touched(s.else_) if s.else_ else set()))
         v = self.cond_valid(s.cond)
         mode = self.contract.param("ibm", "block_start", "all_resources")
+        if mode != "all_resources":
+            raise QtError("E-EXEC-UNSUPPORTED", "only block_start = all_resources is implemented")
         join = self.contract.param("ibm", "join_behavior", "pad_to_longest_block")
         if mode == "all_resources":
             b = max([v, *(self.clock[q] for q in res)])

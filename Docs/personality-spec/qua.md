@@ -44,9 +44,9 @@ Broadcast and cross-core measurement implicit aligns (always added, not suppress
 
 ## Golden cases (hand-computed)
 
-Seven cases: a deterministic align, measurement validity, an `if` followed by a non-deterministic
+Eight cases: a deterministic align, measurement validity, an `if` followed by a non-deterministic
 align, an implicit align after a dynamic element, skip versus implicit align on two elements, and a
-single conditional play that stays deterministic.
+single conditional play (both outcomes) that stays deterministic.
 
 ## Sources
 

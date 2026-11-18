@@ -77,7 +77,7 @@
  },
  "expect": {
   "times": {
-   "a.join": 1100
+   "a.join": 1260
   },
   "absent": [
    "a.align"
