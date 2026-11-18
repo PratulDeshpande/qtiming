@@ -1,0 +1,100 @@
+{
+ "name": "artiq-05_kernel_if_then",
+ "personality": "artiq",
+ "note": "",
+ "contract": {
+  "durations": {
+   "measure": 100,
+   "reset": 10
+  },
+  "issue_cost": {
+   "cpu_issue": 5
+  },
+  "capacity": {
+   "lanes": 8,
+   "coarse_mu": 8
+  },
+  "commit_lead": 50,
+  "latencies": [
+   {
+    "key": "in2cpu",
+    "src": "input",
+    "dst": "cpu",
+    "lo": 0
+   }
+  ],
+  "branch": {
+   "class": "exposed",
+   "default_policy": "exp",
+   "allow_nested": true
+  }
+ },
+ "program": [
+  {
+   "op": "delay",
+   "id": "d0",
+   "q": [
+    0
+   ],
+   "dur": 1000
+  },
+  {
+   "op": "measure",
+   "id": "m0",
+   "q": 0,
+   "bit": 0
+  },
+  {
+   "op": "delay",
+   "id": "d1",
+   "q": [
+    0
+   ],
+   "dur": 200
+  },
+  {
+   "op": "if",
+   "id": "i0",
+   "cond": "m0",
+   "then": [
+    {
+     "op": "gate",
+     "id": "p0",
+     "name": "g",
+     "q": [
+      0
+     ],
+     "dur": 10
+    }
+   ],
+   "else": [
+    {
+     "op": "gate",
+     "id": "p1",
+     "name": "g",
+     "q": [
+      1
+     ],
+     "dur": 10
+    }
+   ]
+  }
+ ],
+ "omega": {
+  "m0": 1
+ },
+ "theta": {
+  "in2cpu@m0": 100
+ },
+ "expect": {
+  "times": {
+   "m0.valid": 1200,
+   "p0.issue": 1215,
+   "p0.commit": 1300
+  },
+  "absent": [
+   "p1.commit"
+  ],
+  "violations": []
+ }
+}

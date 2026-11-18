@@ -1,0 +1,78 @@
+{
+ "name": "ibm-07_block_waits_for_busy_arm_resource",
+ "personality": "ibm",
+ "note": "all_resources: arm resource q1 busy until 2000 delays the block",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "measure_2": 1000,
+   "reset": 100
+  },
+  "latencies": [
+   {
+    "key": "ff.default",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 0,
+    "hi": 600
+   }
+  ],
+  "params": {}
+ },
+ "program": [
+  {
+   "op": "gate",
+   "id": "busy",
+   "name": "g",
+   "q": [
+    1
+   ],
+   "dur": 2000
+  },
+  {
+   "op": "measure",
+   "id": "m0",
+   "q": 0,
+   "bit": 0
+  },
+  {
+   "op": "if",
+   "id": "i0",
+   "cond": "m0",
+   "then": [
+    {
+     "op": "gate",
+     "id": "x1",
+     "name": "g",
+     "q": [
+      1
+     ],
+     "dur": 160
+    }
+   ],
+   "else": [
+    {
+     "op": "delay",
+     "id": "d1",
+     "q": [
+      1
+     ],
+     "dur": 40
+    }
+   ]
+  }
+ ],
+ "omega": {
+  "m0": 1
+ },
+ "theta": {
+  "ff.default@m0": 150
+ },
+ "expect": {
+  "times": {
+   "i0.bstart": 2000,
+   "x1.start": 2000,
+   "i0.bend": 2160
+  }
+ }
+}

@@ -1,0 +1,108 @@
+{
+ "name": "q1-06_skipped_arm_else_taken",
+ "personality": "q1",
+ "note": "a and b skipped (1 each), c executes: arm totals differ (203 vs 102): O7 would fail",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "reset": 100
+  },
+  "issue_cost": {
+   "nop": 1
+  },
+  "capacity": {
+   "rt_queue_depth": 32
+  },
+  "latencies": [
+   {
+    "key": "trigger.network",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 212,
+    "hi": 239
+   }
+  ],
+  "branch": {
+   "allow_nested": true
+  },
+  "params": {
+   "else_time_dt": 1
+  }
+ },
+ "program": [
+  {
+   "op": "measure",
+   "id": "m0",
+   "q": 0,
+   "bit": 0
+  },
+  {
+   "op": "delay",
+   "id": "w",
+   "q": [
+    0
+   ],
+   "dur": 220
+  },
+  {
+   "op": "if",
+   "id": "i0",
+   "cond": "m0",
+   "then": [
+    {
+     "op": "gate",
+     "id": "a",
+     "name": "g",
+     "q": [
+      0
+     ],
+     "dur": 100
+    },
+    {
+     "op": "gate",
+     "id": "b",
+     "name": "g",
+     "q": [
+      0
+     ],
+     "dur": 100
+    }
+   ],
+   "else": [
+    {
+     "op": "gate",
+     "id": "c",
+     "name": "g",
+     "q": [
+      0
+     ],
+     "dur": 100
+    }
+   ]
+  },
+  {
+   "op": "gate",
+   "id": "z",
+   "name": "g",
+   "q": [
+    0
+   ],
+   "dur": 10
+  }
+ ],
+ "omega": {
+  "m0": 0
+ },
+ "theta": {
+  "trigger.network@m0": 212
+ },
+ "expect": {
+  "times": {
+   "a.exec": 1221,
+   "b.exec": 1222,
+   "c.exec": 1223,
+   "z.exec": 1323
+  },
+  "violations": []
+ }
+}

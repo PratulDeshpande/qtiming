@@ -1,0 +1,70 @@
+{
+ "name": "artiq-02_underflow",
+ "personality": "artiq",
+ "note": "slack = 40 - 10 = 30 < lead 50: RTIOUnderflow, shortfall 20",
+ "contract": {
+  "durations": {
+   "measure": 100,
+   "reset": 10
+  },
+  "issue_cost": {
+   "cpu_issue": 5
+  },
+  "capacity": {
+   "lanes": 8,
+   "coarse_mu": 8
+  },
+  "commit_lead": 50,
+  "latencies": [
+   {
+    "key": "in2cpu",
+    "src": "input",
+    "dst": "cpu",
+    "lo": 0
+   }
+  ],
+  "branch": {
+   "class": "exposed",
+   "default_policy": "exp",
+   "allow_nested": true
+  }
+ },
+ "program": [
+  {
+   "op": "delay",
+   "id": "d0",
+   "q": [
+    0
+   ],
+   "dur": 40
+  },
+  {
+   "op": "gate",
+   "id": "p0",
+   "name": "g",
+   "q": [
+    0
+   ],
+   "dur": 10
+  }
+ ],
+ "omega": {},
+ "theta": {},
+ "expect": {
+  "times": {
+   "p0.issue": 10,
+   "p0.commit": 40
+  },
+  "absent": [
+   "p0.emit"
+  ],
+  "violations": [
+   {
+    "kind": "underflow",
+    "id": "p0",
+    "shortfall": 20
+   }
+  ],
+  "halted": true
+ }
+}

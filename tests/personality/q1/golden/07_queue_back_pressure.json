@@ -1,0 +1,81 @@
+{
+ "name": "q1-07_queue_back_pressure",
+ "personality": "q1",
+ "note": "depth 2: the Q1 core stalls issuing p3 until p1 leaves the queue at 11",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "reset": 100
+  },
+  "issue_cost": {
+   "nop": 1
+  },
+  "capacity": {
+   "rt_queue_depth": 2
+  },
+  "latencies": [
+   {
+    "key": "trigger.network",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 212,
+    "hi": 239
+   }
+  ],
+  "branch": {
+   "allow_nested": true
+  },
+  "params": {
+   "else_time_dt": 1
+  }
+ },
+ "program": [
+  {
+   "op": "gate",
+   "id": "p0",
+   "name": "g",
+   "q": [
+    0
+   ],
+   "dur": 10
+  },
+  {
+   "op": "gate",
+   "id": "p1",
+   "name": "g",
+   "q": [
+    0
+   ],
+   "dur": 10
+  },
+  {
+   "op": "gate",
+   "id": "p2",
+   "name": "g",
+   "q": [
+    0
+   ],
+   "dur": 10
+  },
+  {
+   "op": "gate",
+   "id": "p3",
+   "name": "g",
+   "q": [
+    0
+   ],
+   "dur": 10
+  }
+ ],
+ "omega": {},
+ "theta": {},
+ "expect": {
+  "times": {
+   "p2.issue": 3,
+   "p2.exec": 21,
+   "p3.issue": 11,
+   "p3.exec": 31
+  },
+  "violations": []
+ }
+}

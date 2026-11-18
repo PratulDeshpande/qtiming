@@ -1,0 +1,70 @@
+{
+ "name": "ibm-05_if_pad_else_taken",
+ "personality": "ibm",
+ "note": "short arm taken but block end still padded to the longest arm",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "measure_2": 1000,
+   "reset": 100
+  },
+  "latencies": [
+   {
+    "key": "ff.default",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 0,
+    "hi": 600
+   }
+  ],
+  "params": {}
+ },
+ "program": [
+  {
+   "op": "measure",
+   "id": "m0",
+   "q": 0,
+   "bit": 0
+  },
+  {
+   "op": "if",
+   "id": "i0",
+   "cond": "m0",
+   "then": [
+    {
+     "op": "gate",
+     "id": "x1",
+     "name": "g",
+     "q": [
+      1
+     ],
+     "dur": 160
+    }
+   ],
+   "else": [
+    {
+     "op": "delay",
+     "id": "d1",
+     "q": [
+      1
+     ],
+     "dur": 40
+    }
+   ]
+  }
+ ],
+ "omega": {
+  "m0": 0
+ },
+ "theta": {
+  "ff.default@m0": 150
+ },
+ "expect": {
+  "times": {
+   "i0.bstart": 1150,
+   "d1.start": 1150,
+   "d1.end": 1190,
+   "i0.bend": 1310
+  }
+ }
+}

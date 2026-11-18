@@ -1,0 +1,87 @@
+{
+ "name": "ibm-08_eq_elaborated_is_latency_independent",
+ "personality": "ibm",
+ "note": "EQ barrier + wait of hi: block start is 1600 for every theta <= 600 (here theta = hi)",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "measure_2": 1000,
+   "reset": 100
+  },
+  "latencies": [
+   {
+    "key": "ff.default",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 0,
+    "hi": 600
+   }
+  ],
+  "params": {}
+ },
+ "program": [
+  {
+   "op": "measure",
+   "id": "m0",
+   "q": 0,
+   "bit": 0
+  },
+  {
+   "op": "barrier",
+   "id": "bar",
+   "q": [
+    0,
+    1
+   ]
+  },
+  {
+   "op": "delay",
+   "id": "wait",
+   "q": [
+    1
+   ],
+   "dur": 600
+  },
+  {
+   "op": "if",
+   "id": "i0",
+   "cond": "m0",
+   "then": [
+    {
+     "op": "gate",
+     "id": "x1",
+     "name": "g",
+     "q": [
+      1
+     ],
+     "dur": 160
+    }
+   ],
+   "else": [
+    {
+     "op": "delay",
+     "id": "d1",
+     "q": [
+      1
+     ],
+     "dur": 160
+    }
+   ]
+  }
+ ],
+ "omega": {
+  "m0": 1
+ },
+ "theta": {
+  "ff.default@m0": 600
+ },
+ "expect": {
+  "times": {
+   "bar.join": 1000,
+   "wait.end": 1600,
+   "m0.valid": 1600,
+   "i0.bstart": 1600,
+   "i0.bend": 1760
+  }
+ }
+}

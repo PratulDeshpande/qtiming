@@ -1,0 +1,89 @@
+{
+ "name": "qua-01_deterministic_align",
+ "personality": "qua",
+ "note": "align after static durations adds no gap",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "reset": 100
+  },
+  "latencies": [
+   {
+    "key": "active_reset",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 0,
+    "hi": 224
+   },
+   {
+    "key": "align.same_fem",
+    "src": "align",
+    "dst": "align",
+    "tier": "same_fem",
+    "lo": 0,
+    "hi": 12
+   },
+   {
+    "key": "align.cross_fem",
+    "src": "align",
+    "dst": "align",
+    "tier": "cross_fem",
+    "lo": 0,
+    "hi": 24
+   }
+  ],
+  "params": {},
+  "branch": {
+   "allow_nested": true
+  }
+ },
+ "program": [
+  {
+   "op": "gate",
+   "id": "p0",
+   "name": "g",
+   "q": [
+    0
+   ],
+   "dur": 160
+  },
+  {
+   "op": "gate",
+   "id": "p1",
+   "name": "g",
+   "q": [
+    1
+   ],
+   "dur": 400
+  },
+  {
+   "op": "barrier",
+   "id": "a0",
+   "q": [
+    0,
+    1
+   ]
+  },
+  {
+   "op": "gate",
+   "id": "p2",
+   "name": "g",
+   "q": [
+    0
+   ],
+   "dur": 40
+  }
+ ],
+ "omega": {},
+ "theta": {},
+ "expect": {
+  "times": {
+   "a0.join": 400,
+   "p2.start": 400,
+   "p2.end": 440
+  },
+  "absent": [
+   "a0.align"
+  ]
+ }
+}

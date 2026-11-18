@@ -1,0 +1,76 @@
+{
+ "name": "q1-04_wait_covers_latency",
+ "personality": "q1",
+ "note": "1221 >= valid 1213: no stale read",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "reset": 100
+  },
+  "issue_cost": {
+   "nop": 1
+  },
+  "capacity": {
+   "rt_queue_depth": 32
+  },
+  "latencies": [
+   {
+    "key": "trigger.network",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 212,
+    "hi": 239
+   }
+  ],
+  "branch": {
+   "allow_nested": true
+  },
+  "params": {
+   "else_time_dt": 1
+  }
+ },
+ "program": [
+  {
+   "op": "measure",
+   "id": "m0",
+   "q": 0,
+   "bit": 0
+  },
+  {
+   "op": "delay",
+   "id": "w",
+   "q": [
+    0
+   ],
+   "dur": 220
+  },
+  {
+   "op": "if",
+   "id": "i0",
+   "cond": "m0",
+   "then": [
+    {
+     "op": "gate",
+     "id": "a",
+     "name": "g",
+     "q": [
+      0
+     ],
+     "dur": 100
+    }
+   ]
+  }
+ ],
+ "omega": {
+  "m0": 1
+ },
+ "theta": {
+  "trigger.network@m0": 212
+ },
+ "expect": {
+  "times": {
+   "a.exec": 1221
+  },
+  "violations": []
+ }
+}

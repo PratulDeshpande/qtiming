@@ -1,0 +1,51 @@
+{
+ "name": "ibm-02_two_qubit_waits_for_both",
+ "personality": "ibm",
+ "note": "multi-resource op starts at the max of the resource clocks",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "measure_2": 1000,
+   "reset": 100
+  },
+  "latencies": [
+   {
+    "key": "ff.default",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 0,
+    "hi": 600
+   }
+  ],
+  "params": {}
+ },
+ "program": [
+  {
+   "op": "gate",
+   "id": "x0",
+   "name": "g",
+   "q": [
+    0
+   ],
+   "dur": 160
+  },
+  {
+   "op": "gate",
+   "id": "cx",
+   "name": "g",
+   "q": [
+    0,
+    1
+   ],
+   "dur": 300
+  }
+ ],
+ "omega": {},
+ "theta": {},
+ "expect": {
+  "times": {
+   "cx.start": 160,
+   "cx.end": 460
+  }
+ }
+}

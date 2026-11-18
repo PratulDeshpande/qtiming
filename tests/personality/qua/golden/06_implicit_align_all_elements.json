@@ -1,0 +1,95 @@
+{
+ "name": "qua-06_implicit_align_all_elements",
+ "personality": "qua",
+ "note": "implicit align holds q1 until q2 is ready",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "reset": 100
+  },
+  "latencies": [
+   {
+    "key": "active_reset",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 0,
+    "hi": 224
+   },
+   {
+    "key": "align.same_fem",
+    "src": "align",
+    "dst": "align",
+    "tier": "same_fem",
+    "lo": 0,
+    "hi": 12
+   },
+   {
+    "key": "align.cross_fem",
+    "src": "align",
+    "dst": "align",
+    "tier": "cross_fem",
+    "lo": 0,
+    "hi": 24
+   }
+  ],
+  "params": {},
+  "branch": {
+   "allow_nested": true
+  }
+ },
+ "program": [
+  {
+   "op": "gate",
+   "id": "busy",
+   "name": "g",
+   "q": [
+    2
+   ],
+   "dur": 1500
+  },
+  {
+   "op": "measure",
+   "id": "m0",
+   "q": 0,
+   "bit": 0
+  },
+  {
+   "op": "if",
+   "id": "i0",
+   "cond": "m0",
+   "then": [
+    {
+     "op": "gate",
+     "id": "x1",
+     "name": "g",
+     "q": [
+      1
+     ],
+     "dur": 160
+    },
+    {
+     "op": "gate",
+     "id": "z2",
+     "name": "g",
+     "q": [
+      2
+     ],
+     "dur": 100
+    }
+   ]
+  }
+ ],
+ "omega": {
+  "m0": 1
+ },
+ "theta": {
+  "active_reset@m0": 100
+ },
+ "expect": {
+  "times": {
+   "i0.ialign": 1500,
+   "x1.start": 1500,
+   "z2.start": 1500
+  }
+ }
+}

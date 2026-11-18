@@ -1,0 +1,75 @@
+{
+ "name": "q1-03_stale_read",
+ "personality": "q1",
+ "note": "the RT core consults the trigger network at 1001 but the result arrives at 1213",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "reset": 100
+  },
+  "issue_cost": {
+   "nop": 1
+  },
+  "capacity": {
+   "rt_queue_depth": 32
+  },
+  "latencies": [
+   {
+    "key": "trigger.network",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 212,
+    "hi": 239
+   }
+  ],
+  "branch": {
+   "allow_nested": true
+  },
+  "params": {
+   "else_time_dt": 1
+  }
+ },
+ "program": [
+  {
+   "op": "measure",
+   "id": "m0",
+   "q": 0,
+   "bit": 0
+  },
+  {
+   "op": "if",
+   "id": "i0",
+   "cond": "m0",
+   "then": [
+    {
+     "op": "gate",
+     "id": "a",
+     "name": "g",
+     "q": [
+      0
+     ],
+     "dur": 100
+    }
+   ]
+  }
+ ],
+ "omega": {
+  "m0": 1
+ },
+ "theta": {
+  "trigger.network@m0": 212
+ },
+ "expect": {
+  "times": {
+   "m0.valid": 1213,
+   "a.exec": 1001
+  },
+  "violations": [
+   {
+    "kind": "stale-read",
+    "id": "a",
+    "shortfall": 212
+   }
+  ]
+ }
+}

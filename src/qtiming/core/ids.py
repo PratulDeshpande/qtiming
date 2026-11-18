@@ -27,3 +27,8 @@ def bit_prop(reg: str, idx: int, nid: int, it: int | None = None) -> str:
 def cond_prop(nid: int, it: int | None = None) -> str:
     """Derived proposition for the condition of node `nid`: 'cond@n42#i3'."""
     return f"cond@n{nid}{_iter(it)}"
+
+
+def lat_occurrence(key: str, meas_nid: int, it: int | None = None) -> str:
+    """One contingent latency occurrence (key + the measurement it follows): 'ff.default@m17#i3'."""
+    return f"{key}@m{meas_nid}{_iter(it)}"

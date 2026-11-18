@@ -1,0 +1,58 @@
+{
+ "name": "qua-02_measure_valid",
+ "personality": "qua",
+ "note": "",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "reset": 100
+  },
+  "latencies": [
+   {
+    "key": "active_reset",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 0,
+    "hi": 224
+   },
+   {
+    "key": "align.same_fem",
+    "src": "align",
+    "dst": "align",
+    "tier": "same_fem",
+    "lo": 0,
+    "hi": 12
+   },
+   {
+    "key": "align.cross_fem",
+    "src": "align",
+    "dst": "align",
+    "tier": "cross_fem",
+    "lo": 0,
+    "hi": 24
+   }
+  ],
+  "params": {},
+  "branch": {
+   "allow_nested": true
+  }
+ },
+ "program": [
+  {
+   "op": "measure",
+   "id": "m0",
+   "q": 0,
+   "bit": 0
+  }
+ ],
+ "omega": {},
+ "theta": {
+  "active_reset@m0": 100
+ },
+ "expect": {
+  "times": {
+   "m0.end": 1000,
+   "m0.valid": 1100
+  }
+ }
+}

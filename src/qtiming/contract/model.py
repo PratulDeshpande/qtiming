@@ -80,3 +80,44 @@ class Contract:
             f"contract {self.name!r} has no duration for {name!r}",
             hint="add it to [durations] or import it from the backend Target",
         )
+
+    def find_latency(self, src: str, dst: str, tier: str = "default") -> ContractLatency:
+        """The latency declared from `src` to `dst` for `tier` (falls back to tier 'default')."""
+        hit = None
+        for cl in self.latencies:
+            if cl.src == src and cl.dst == dst:
+                if cl.tier == tier:
+                    return cl
+                if cl.tier == "default" and hit is None:
+                    hit = cl
+        if hit is None:  # a single declared src->dst latency serves every tier
+            cands = [cl for cl in self.latencies if cl.src == src and cl.dst == dst]
+            hit = cands[0] if len(cands) == 1 else None
+        if hit is None:
+            raise QtError("E-CT-MISSING", f"contract {self.name!r} has no latency {src}->{dst}")
+        return hit
+
+    def param(self, personality: str, name: str, default: object = None) -> object:
+        """A personality parameter from `[personality_params.<personality>]`."""
+        for k, v in self.params:
+            if k == personality and isinstance(v, tuple):
+                for k2, v2 in v:
+                    if k2 == name:
+                        return v2
+        return default
+
+    def cap(self, name: str, default: object = None) -> object:
+        for k, v in self.capacity:
+            if k == name:
+                return v
+        return default
+
+    def cost(self, name: str, field: str | None = None) -> int:
+        """Issue cost in dt: `field` if given, else the first of ns, hi_ns, lo_ns present."""
+        for ic in self.issue_cost:
+            if ic.name == name:
+                d = dict(ic.fields)
+                for f in ((field,) if field else ("ns", "hi_ns", "lo_ns")):
+                    if f in d:
+                        return d[f]
+        raise QtError("E-CT-MISSING", f"contract {self.name!r} has no issue_cost {name}")

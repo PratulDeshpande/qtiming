@@ -1,0 +1,63 @@
+{
+ "name": "q1-01_straight_line",
+ "personality": "q1",
+ "note": "",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "reset": 100
+  },
+  "issue_cost": {
+   "nop": 1
+  },
+  "capacity": {
+   "rt_queue_depth": 32
+  },
+  "latencies": [
+   {
+    "key": "trigger.network",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 212,
+    "hi": 239
+   }
+  ],
+  "branch": {
+   "allow_nested": true
+  },
+  "params": {
+   "else_time_dt": 1
+  }
+ },
+ "program": [
+  {
+   "op": "gate",
+   "id": "p0",
+   "name": "g",
+   "q": [
+    0
+   ],
+   "dur": 100
+  },
+  {
+   "op": "gate",
+   "id": "p1",
+   "name": "g",
+   "q": [
+    0
+   ],
+   "dur": 50
+  }
+ ],
+ "omega": {},
+ "theta": {},
+ "expect": {
+  "times": {
+   "p0.issue": 1,
+   "p0.exec": 1,
+   "p1.issue": 2,
+   "p1.exec": 101
+  },
+  "violations": []
+ }
+}

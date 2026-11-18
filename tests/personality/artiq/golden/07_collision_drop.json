@@ -1,0 +1,79 @@
+{
+ "name": "artiq-07_collision_drop",
+ "personality": "artiq",
+ "note": "two events on one channel in coarse cycle 125 with different fine parts: dropped",
+ "contract": {
+  "durations": {
+   "measure": 100,
+   "reset": 10
+  },
+  "issue_cost": {
+   "cpu_issue": 5
+  },
+  "capacity": {
+   "lanes": 8,
+   "coarse_mu": 8
+  },
+  "commit_lead": 50,
+  "latencies": [
+   {
+    "key": "in2cpu",
+    "src": "input",
+    "dst": "cpu",
+    "lo": 0
+   }
+  ],
+  "branch": {
+   "class": "exposed",
+   "default_policy": "exp",
+   "allow_nested": true
+  }
+ },
+ "program": [
+  {
+   "op": "delay",
+   "id": "d0",
+   "q": [
+    0
+   ],
+   "dur": 1000
+  },
+  {
+   "op": "gate",
+   "id": "p0",
+   "name": "g",
+   "q": [
+    0
+   ],
+   "dur": 3
+  },
+  {
+   "op": "gate",
+   "id": "p1",
+   "name": "g",
+   "q": [
+    0
+   ],
+   "dur": 3
+  }
+ ],
+ "omega": {},
+ "theta": {},
+ "expect": {
+  "times": {
+   "p0.emit": 1000,
+   "p1.commit": 1003
+  },
+  "absent": [
+   "p1.emit"
+  ],
+  "violations": [],
+  "drops": [
+   {
+    "kind": "collision",
+    "id": "p1",
+    "t": 1003
+   }
+  ]
+ }
+}

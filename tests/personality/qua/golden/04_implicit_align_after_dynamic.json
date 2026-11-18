@@ -1,0 +1,113 @@
+{
+ "name": "qua-04_implicit_align_after_dynamic",
+ "personality": "qua",
+ "note": "m1 ends at 2000 and is valid at 2100; q1 is dynamic after i0 so the implicit align adds 12",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "reset": 100
+  },
+  "latencies": [
+   {
+    "key": "active_reset",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 0,
+    "hi": 224
+   },
+   {
+    "key": "align.same_fem",
+    "src": "align",
+    "dst": "align",
+    "tier": "same_fem",
+    "lo": 0,
+    "hi": 12
+   },
+   {
+    "key": "align.cross_fem",
+    "src": "align",
+    "dst": "align",
+    "tier": "cross_fem",
+    "lo": 0,
+    "hi": 24
+   }
+  ],
+  "params": {},
+  "branch": {
+   "allow_nested": true
+  }
+ },
+ "program": [
+  {
+   "op": "measure",
+   "id": "m0",
+   "q": 0,
+   "bit": 0
+  },
+  {
+   "op": "if",
+   "id": "i0",
+   "cond": "m0",
+   "then": [
+    {
+     "op": "gate",
+     "id": "x",
+     "name": "g",
+     "q": [
+      1
+     ],
+     "dur": 160
+    }
+   ],
+   "else": [
+    {
+     "op": "delay",
+     "id": "dl",
+     "q": [
+      1
+     ],
+     "dur": 40
+    }
+   ]
+  },
+  {
+   "op": "measure",
+   "id": "m1",
+   "q": 0,
+   "bit": 1
+  },
+  {
+   "op": "if",
+   "id": "i1",
+   "cond": "m1",
+   "then": [
+    {
+     "op": "gate",
+     "id": "y",
+     "name": "g",
+     "q": [
+      1
+     ],
+     "dur": 100
+    }
+   ]
+  }
+ ],
+ "omega": {
+  "m0": 1,
+  "m1": 1
+ },
+ "theta": {
+  "active_reset@m0": 100,
+  "active_reset@m1": 100,
+  "align.same_fem@i1": 12
+ },
+ "expect": {
+  "times": {
+   "i1.ialign": 2100,
+   "i1.align": 2112,
+   "y.start": 2112,
+   "y.end": 2212
+  }
+ }
+}

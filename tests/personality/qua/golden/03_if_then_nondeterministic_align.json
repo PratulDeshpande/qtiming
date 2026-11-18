@@ -1,0 +1,98 @@
+{
+ "name": "qua-03_if_then_nondeterministic_align",
+ "personality": "qua",
+ "note": "arms differ so q1 is outcome dependent; the later align pays theta_align",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "reset": 100
+  },
+  "latencies": [
+   {
+    "key": "active_reset",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 0,
+    "hi": 224
+   },
+   {
+    "key": "align.same_fem",
+    "src": "align",
+    "dst": "align",
+    "tier": "same_fem",
+    "lo": 0,
+    "hi": 12
+   },
+   {
+    "key": "align.cross_fem",
+    "src": "align",
+    "dst": "align",
+    "tier": "cross_fem",
+    "lo": 0,
+    "hi": 24
+   }
+  ],
+  "params": {},
+  "branch": {
+   "allow_nested": true
+  }
+ },
+ "program": [
+  {
+   "op": "measure",
+   "id": "m0",
+   "q": 0,
+   "bit": 0
+  },
+  {
+   "op": "if",
+   "id": "i0",
+   "cond": "m0",
+   "then": [
+    {
+     "op": "gate",
+     "id": "x",
+     "name": "g",
+     "q": [
+      1
+     ],
+     "dur": 160
+    }
+   ],
+   "else": [
+    {
+     "op": "delay",
+     "id": "dl",
+     "q": [
+      1
+     ],
+     "dur": 40
+    }
+   ]
+  },
+  {
+   "op": "barrier",
+   "id": "a",
+   "q": [
+    0,
+    1
+   ]
+  }
+ ],
+ "omega": {
+  "m0": 1
+ },
+ "theta": {
+  "active_reset@m0": 100,
+  "align.same_fem@a": 8
+ },
+ "expect": {
+  "times": {
+   "i0.ialign": 1100,
+   "x.start": 1100,
+   "x.end": 1260,
+   "a.join": 1260,
+   "a.align": 1268
+  }
+ }
+}

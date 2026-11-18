@@ -1,0 +1,74 @@
+{
+ "name": "artiq-01_pulse_sequence",
+ "personality": "artiq",
+ "note": "cursor 1000 stamps p0; CPU only reaches it at 10: slack 990 >= lead 50",
+ "contract": {
+  "durations": {
+   "measure": 100,
+   "reset": 10
+  },
+  "issue_cost": {
+   "cpu_issue": 5
+  },
+  "capacity": {
+   "lanes": 8,
+   "coarse_mu": 8
+  },
+  "commit_lead": 50,
+  "latencies": [
+   {
+    "key": "in2cpu",
+    "src": "input",
+    "dst": "cpu",
+    "lo": 0
+   }
+  ],
+  "branch": {
+   "class": "exposed",
+   "default_policy": "exp",
+   "allow_nested": true
+  }
+ },
+ "program": [
+  {
+   "op": "delay",
+   "id": "d0",
+   "q": [
+    0
+   ],
+   "dur": 1000
+  },
+  {
+   "op": "gate",
+   "id": "p0",
+   "name": "g",
+   "q": [
+    0
+   ],
+   "dur": 100
+  },
+  {
+   "op": "gate",
+   "id": "p1",
+   "name": "g",
+   "q": [
+    0
+   ],
+   "dur": 100
+  }
+ ],
+ "omega": {},
+ "theta": {},
+ "expect": {
+  "times": {
+   "p0.issue": 10,
+   "p0.commit": 1000,
+   "p1.issue": 15,
+   "p1.commit": 1100,
+   "p0.emit": 1000,
+   "p1.emit": 1100
+  },
+  "violations": [],
+  "drops": []
+ }
+}

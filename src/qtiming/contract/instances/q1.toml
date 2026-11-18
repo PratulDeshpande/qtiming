@@ -77,6 +77,7 @@ max_cond_bits = 15   # trigger-network addresses [verify]
 
 [personality_params.q1]
 set_cond_else_time_per_instruction = true   # else_time ns are waited PER skipped RT instruction (plan Section 8.5)
+else_time_dt = 1   # RT wait per skipped conditional instruction, dt; vendor assumption (min else_duration), see Docs/personality-spec/q1.md
 ttl_input_speedup_ns = 35   # TTL input path is 35 ns faster than the standard input path (documented)
 
 [idle]

@@ -1,0 +1,52 @@
+{
+ "name": "ibm-01_gate_chain",
+ "personality": "ibm",
+ "note": "common rule: an op starts when the previous op on its resource ends",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "measure_2": 1000,
+   "reset": 100
+  },
+  "latencies": [
+   {
+    "key": "ff.default",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 0,
+    "hi": 600
+   }
+  ],
+  "params": {}
+ },
+ "program": [
+  {
+   "op": "gate",
+   "id": "x0",
+   "name": "x",
+   "q": [
+    0
+   ],
+   "dur": 160
+  },
+  {
+   "op": "gate",
+   "id": "sx",
+   "name": "sx",
+   "q": [
+    0
+   ],
+   "dur": 40
+  }
+ ],
+ "omega": {},
+ "theta": {},
+ "expect": {
+  "times": {
+   "x0.start": 0,
+   "x0.end": 160,
+   "sx.start": 160,
+   "sx.end": 200
+  }
+ }
+}

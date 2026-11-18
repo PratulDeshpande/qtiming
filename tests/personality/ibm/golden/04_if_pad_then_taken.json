@@ -1,0 +1,70 @@
+{
+ "name": "ibm-04_if_pad_then_taken",
+ "personality": "ibm",
+ "note": "block starts at max(valid, arm resources ready)=1150; padded end = bstart+max arm = 1310",
+ "contract": {
+  "durations": {
+   "measure": 1000,
+   "measure_2": 1000,
+   "reset": 100
+  },
+  "latencies": [
+   {
+    "key": "ff.default",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 0,
+    "hi": 600
+   }
+  ],
+  "params": {}
+ },
+ "program": [
+  {
+   "op": "measure",
+   "id": "m0",
+   "q": 0,
+   "bit": 0
+  },
+  {
+   "op": "if",
+   "id": "i0",
+   "cond": "m0",
+   "then": [
+    {
+     "op": "gate",
+     "id": "x1",
+     "name": "g",
+     "q": [
+      1
+     ],
+     "dur": 160
+    }
+   ],
+   "else": [
+    {
+     "op": "delay",
+     "id": "d1",
+     "q": [
+      1
+     ],
+     "dur": 40
+    }
+   ]
+  }
+ ],
+ "omega": {
+  "m0": 1
+ },
+ "theta": {
+  "ff.default@m0": 150
+ },
+ "expect": {
+  "times": {
+   "i0.bstart": 1150,
+   "x1.start": 1150,
+   "x1.end": 1310,
+   "i0.bend": 1310
+  }
+ }
+}

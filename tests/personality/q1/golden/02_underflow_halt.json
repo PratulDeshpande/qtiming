@@ -1,0 +1,78 @@
+{
+ "name": "q1-02_underflow_halt",
+ "personality": "q1",
+ "note": "set_cond costs Q1-core time but no RT time: exec(a)=2 < issue(a)=3, sequencer halts",
+ "contract": {
+  "durations": {
+   "measure": 1,
+   "reset": 1
+  },
+  "issue_cost": {
+   "nop": 1
+  },
+  "capacity": {
+   "rt_queue_depth": 32
+  },
+  "latencies": [
+   {
+    "key": "trigger.network",
+    "src": "measure",
+    "dst": "branch",
+    "lo": 0,
+    "hi": 239
+   }
+  ],
+  "branch": {
+   "allow_nested": true
+  },
+  "params": {
+   "else_time_dt": 1
+  }
+ },
+ "program": [
+  {
+   "op": "measure",
+   "id": "m0",
+   "q": 0,
+   "bit": 0
+  },
+  {
+   "op": "if",
+   "id": "i0",
+   "cond": "m0",
+   "then": [
+    {
+     "op": "gate",
+     "id": "a",
+     "name": "g",
+     "q": [
+      0
+     ],
+     "dur": 1
+    }
+   ]
+  }
+ ],
+ "omega": {
+  "m0": 1
+ },
+ "theta": {
+  "trigger.network@m0": 0
+ },
+ "expect": {
+  "times": {
+   "a.issue": 3
+  },
+  "absent": [
+   "a.exec"
+  ],
+  "violations": [
+   {
+    "kind": "underflow-halt",
+    "id": "a",
+    "shortfall": 1
+   }
+  ],
+  "halted": true
+ }
+}
