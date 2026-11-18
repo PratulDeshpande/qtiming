@@ -3365,6 +3365,16 @@ P5 (executor) is placed before P6 (builder) deliberately: the executor is writte
 | 41 | Mechanised proofs | optional | critical path | solo researcher | v1 decision, kept |
 | 42 | Loops | bounded `for`, capped `while` | unbounded `while` | finite verdicts | v1 decision, kept |
 | 43 | Contract format | TOML plus pydantic | YAML; extend `Target` | strict, human-editable; `Target` lacks latency | v1 decision, kept |
+| 44 | Layering of `graph` and `dispatch` (P6) | `dispatch` imports `graph`: `oblig > dispatch > graph > elab` | peers `graph \| dispatch` | the personality builders subclass the common frontier builder; peers would need a second IR for edge specs | P6 ruling |
+| 45 | Golden-case format (P4) | JSON with a small program DSL, hand-computed expected times | YAML | stdlib only, no new dependency, same review value | P4 ruling |
+| 46 | Q1 model scope (P4) | one sequencer, qubits not distinguished, `barrier` is a no-op, arms hold RT instructions only | multi-sequencer `wait_sync` | needs the topology contract; named limit in `docs/personality-spec/q1.md` | P4 ruling |
+| 47 | IBM `block_start = per_resource` (P4) | named parameter, refused by both stages | implementing it | no documented behaviour to pin it against | P4 ruling |
+| 48 | Q1 EQ elaboration (P6) | wait of `hi` plus a check that both outcome totals are equal, else `E-ELAB-Q1-NOT-EQUALISABLE` | automatic dummy-instruction rewriting search | the rewriting search is an open design problem (plan 8.5); refusing is sound | P6 ruling |
+| 49 | Obligation tier for O7 (P7) | Tier 1 proves the Appendix A.4 O7 (spread 0) | Tier 0 as in the A.4 table | the block start is `max(ready, valid)`, so theta is in the cone; same verdict | P7 ruling |
+| 50 | Tier 2 not yet built (P7) | what Tier 1 cannot prove is UNKNOWN with the reason `Tier 2 not built`; only Tier 0 refutes | guessing a verdict | keeps PROVED sound; REFUTED from Tier 2 lands in P8 | P7 ruling |
+| 51 | Unchecked obligation kinds (P7) | every verdict lists `not_checked`: O4a, O6, O8, O9, O7 for SYNC with a spread bound | silent omission | PROVED must never read as covering them | P7 ruling |
+| 52 | Gate durations for non-Target contracts (P7) | `--assume durations.NAME=ns`; illustrative values only in the unofficial IBM fixture | inventing vendor numbers in shipped contracts | unpublished numbers stay absent | P7 ruling |
+| 53 | q1simulator cross-check and advisor sign-off (P4, P5 gates) | not done: needs a separate Python 3.12+ venv and a person | claiming them | stated as open in the project status | P5 ruling |
 
 ---
 

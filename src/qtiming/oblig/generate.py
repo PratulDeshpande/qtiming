@@ -89,9 +89,7 @@ def generate(g: LTEG, el: ElabProgram, c: Contract) -> list[Obligation]:
     # O3: deadlines
     tags = ("start", "exec", "commit", "cpu")
     for wnid, (deadline, prop) in el.within.items():
-        valid = g.valid_node.get(prop) if hasattr(g, "valid_node") else None
-        if valid is None:
-            valid = next((n.id for n in g.nodes if n.obs == prop), None)
+        valid = next((n.id for n in g.nodes if n.obs == prop), None)
         if valid is None:
             continue
         for _q, nids in el.first_ops.get(wnid, {}).items():
@@ -101,7 +99,8 @@ def generate(g: LTEG, el: ElabProgram, c: Contract) -> list[Obligation]:
                     continue
                 out.append(make(g, "O3", wnid, _label(g, node, valid),
                                 Diff(node, valid, "<=", deadline),
-                                "first operation must start within the deadline after the result"))
+                                "first operation must start within the deadline after the result",
+                                hard=wnid in el.hard))
 
     # O4: no unplanned gap (a gap whose length varies breaks compile-time DD / phase tracking)
     if pers in ("ibm", "qua"):

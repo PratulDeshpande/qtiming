@@ -82,6 +82,9 @@ def _apply_assume(raw: dict[str, Any], assume: tuple[str, ...], errs: list[QtErr
         if key == "timeline.commit_lead":
             raw.setdefault("timeline", {})["commit_lead"] = val
             continue
+        if key.startswith("durations."):  # a fixed duration in ns the user vouches for
+            raw.setdefault("durations", {})[key.removeprefix("durations.")] = val
+            continue
         parts = val.split(":")
         cls = parts[2] if len(parts) > 2 else "vendor"
         if cls != "vendor":

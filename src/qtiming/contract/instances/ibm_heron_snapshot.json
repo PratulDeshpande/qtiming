@@ -1,8 +1,22 @@
 {
   "backend": "ibm_kingston",
   "unofficial": true,
-  "note": "UNOFFICIAL snapshot: values copied from the plan's Heron r2 notes; fixture only, not vendor-certified.",
+  "note": "UNOFFICIAL snapshot: values copied from the plan's Heron r2 notes; fixture only, not vendor-certified. Gate durations x, sx, h, z, cx, cz are ILLUSTRATIVE (plan Appendix A.1), not read from a Target.",
   "dt_ns": "4",
-  "alignments": {"acquire": 1, "pulse": 1, "granularity": 1},
-  "durations_ns": {"measure": "2180", "measure_2": "1380"}
+  "alignments": {
+    "acquire": 1,
+    "pulse": 1,
+    "granularity": 1
+  },
+  "durations_ns": {
+    "measure": "2180",
+    "measure_2": "1380",
+    "x": "32",
+    "sx": "32",
+    "h": "32",
+    "z": "32",
+    "cx": "80",
+    "cz": "68",
+    "reset": "1000"
+  }
 }

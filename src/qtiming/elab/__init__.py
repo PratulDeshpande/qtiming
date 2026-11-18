@@ -35,6 +35,7 @@ from qtiming.core.ast import (
 from qtiming.core.errors import QtError
 from qtiming.core.ids import bit_prop
 from qtiming.core.labels import Derived, EBin, EBit, EUn, Expr
+from qtiming.frontend.payload import parse_within, to_dt
 
 
 @dataclass(frozen=True, slots=True)
@@ -43,6 +44,7 @@ class ElabProgram:
     derived: tuple[Derived, ...]
     first_ops: dict[int, dict[int, tuple[int, ...]]]  # within nid -> qubit -> first-op nids
     within: dict[int, tuple[int, str]]  # within nid -> (deadline dt, anchor proposition)
+    hard: frozenset[int]  # within nids whose box carries timing.hard
     missing: frozenset[str]  # contract keys needed but unbounded (dependants are UNKNOWN)
     policy_map: dict[int, Policy]  # effective policy per branch nid
     contract_sha256: str
@@ -103,6 +105,7 @@ class Elaborator:
         self.policy_map: dict[int, Policy] = {}
         self.first_ops: dict[int, dict[int, tuple[int, ...]]] = {}
         self.within: dict[int, tuple[int, str]] = {}
+        self.hard: set[int] = set()
         self.last_write: dict[tuple[str, int], str] = {}
 
     def fresh(self) -> int:
@@ -176,18 +179,19 @@ class Elaborator:
         if isinstance(s, Seq):
             return replace(s, stmts=tuple(self.elab(x, m) for x in s.stmts))
         if isinstance(s, Box):
-            return replace(s, body=self.elab(s.body, m))
+            body = self.elab(s.body, m)
+            anns = dict(s.annotations)
+            if "within" in anns:  # the front end validated it; here it becomes a deadline
+                dur, anchor = parse_within(anns["within"])
+                w = Within(nid=s.nid, loc=s.loc, deadline=to_dt(dur, self.c.dt_ns, "deadline"),
+                           anchor=anchor, body=body)
+                self.record_within(w, body)
+                if "hard" in anns:
+                    self.hard.add(w.nid)
+            return replace(s, body=body)
         if isinstance(s, Within):
             body = self.elab(s.body, m)
-            anchor = self.last_write.get((s.anchor.reg, s.anchor.idx))
-            if anchor is None:
-                raise QtError("E-ELAB-WITHIN-ANCHOR",
-                              f"within anchor {s.anchor.reg}[{s.anchor.idx}] is never written",
-                              s.loc)
-            self.within[s.nid] = (s.deadline, anchor)
-            firsts: dict[int, list[int]] = {}
-            self._firsts(body, firsts, set(), False)
-            self.first_ops[s.nid] = {q: tuple(v) for q, v in firsts.items()}
+            self.record_within(s, body)
             return body
         if isinstance(s, For):
             if s.n > self.limit:
@@ -203,6 +207,16 @@ class Elaborator:
         if isinstance(s, (Assign, Switch, Call)):
             raise QtError("E-ELAB-UNSUPPORTED", f"{type(s).__name__} is not elaborated yet", s.loc)
         raise QtError("E-ELAB-UNSUPPORTED", type(s).__name__)  # pragma: no cover
+
+    def record_within(self, s: Within, body: Stmt) -> None:
+        anchor = self.last_write.get((s.anchor.reg, s.anchor.idx))
+        if anchor is None:
+            raise QtError("E-ELAB-WITHIN-ANCHOR",
+                          f"within anchor {s.anchor.reg}[{s.anchor.idx}] is never written", s.loc)
+        self.within[s.nid] = (s.deadline, anchor)
+        firsts: dict[int, list[int]] = {}
+        self._firsts(body, firsts, set(), False)
+        self.first_ops[s.nid] = {q: tuple(v) for q, v in firsts.items()}
 
     def _firsts(self, s: Stmt, out: dict[int, list[int]], seen: set[int], in_arm: bool) -> None:
         """First USER operation per qubit; both arms of a branch are alternatives. Synthesised
@@ -333,5 +347,5 @@ def elaborate(prog: Stmt, contract: Contract, *, unroll_limit: int = 64) -> Elab
     el = Elaborator(contract, unroll_limit)
     el.next = _max_nid(prog)
     body = el.elab(prog, {})
-    return ElabProgram(body, (), el.first_ops, el.within, frozenset(el.missing), el.policy_map,
-                       contract.sha256)
+    return ElabProgram(body, (), el.first_ops, el.within, frozenset(el.hard),
+                       frozenset(el.missing), el.policy_map, contract.sha256)
