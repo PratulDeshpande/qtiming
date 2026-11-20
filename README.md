@@ -1,11 +1,9 @@
 # qtiming
 
 [![test](https://github.com/PratulDeshpande/QTiming/actions/workflows/test.yml/badge.svg)](https://github.com/PratulDeshpande/QTiming/actions/workflows/test.yml)
-[![lint](https://github.com/PratulDeshpande/QTiming/actions/workflows/lint.yml/badge.svg)](https://github.com/PratulDeshpande/QTiming/actions/workflows/lint.yml)
-[![docs](https://github.com/PratulDeshpande/QTiming/actions/workflows/docs.yml/badge.svg)](https://github.com/PratulDeshpande/QTiming/actions/workflows/docs.yml)
+[![PyPI](https://img.shields.io/pypi/v/qtiming)](https://pypi.org/project/qtiming/)
+[![Python versions](https://img.shields.io/pypi/pyversions/qtiming)](https://pypi.org/project/qtiming/)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-![Python 3.10+](https://img.shields.io/badge/python-3.10%20%7C%203.12%20%7C%203.14-blue)
-![Status: alpha](https://img.shields.io/badge/status-alpha%200.1.0-orange)
 
 **A static timing checker for dynamic quantum circuits.** Give it a program (OpenQASM 3 or a
 Qiskit circuit) and a hardware timing contract. Before anything runs, it tells you whether the
@@ -52,10 +50,13 @@ Every run ends in exactly one of four verdicts:
 
 ## Install
 
-Not on PyPI yet. From a clone:
+From [PyPI](https://pypi.org/project/qtiming/):
 
     python -m venv .venv
-    .venv/Scripts/pip install -e ".[qiskit,z3]"        # Linux/macOS: .venv/bin/pip
+    .venv/Scripts/pip install "qtiming[qiskit,z3]"        # Linux/macOS: .venv/bin/pip
+
+To work on qtiming itself, clone the repository and use `pip install -e ".[dev,qiskit,z3]"` (see
+Contributing below).
 
 Requires Python 3.10 or newer. Extras:
 

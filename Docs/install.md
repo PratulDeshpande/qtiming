@@ -4,14 +4,23 @@
 
 Python 3.10 or later. `pyproject.toml` lists 3.10 to 3.14 as supported; the project's CI tests 3.10, 3.12 and 3.14.
 
-## From a clone
+## From PyPI
 
-The package is not on PyPI. `pip index versions qtiming` returns `ERROR: No matching distribution found for qtiming`. Install from a clone of the repository:
+qtiming is on [PyPI](https://pypi.org/project/qtiming/). Install it into a virtual environment, with the extras you need:
 
     python -m venv .venv
-    .venv/Scripts/pip install -e ".[qiskit,z3]"
+    .venv/Scripts/pip install "qtiming[qiskit,z3]"
 
-On Linux and macOS use `.venv/bin/pip`. Run the examples in this documentation from the repository root: the programs in `benchmarks/` are not part of the installed package.
+On Linux and macOS use `.venv/bin/pip`. The programs in `benchmarks/` are not part of the installed package. To run the examples in this documentation, clone the repository and run them from its root.
+
+## From a clone
+
+To work on qtiming itself, install it editable from a clone of the repository:
+
+    git clone https://github.com/PratulDeshpande/QTiming
+    cd QTiming
+    python -m venv .venv
+    .venv/Scripts/pip install -e ".[qiskit,z3]"
 
 ## Extras
 

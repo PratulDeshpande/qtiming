@@ -45,10 +45,10 @@ The checker needs numbers: gate durations, feed-forward latency, commit lead. Th
 
 ## Install
 
-The package is not on PyPI. From a clone:
+qtiming is on [PyPI](https://pypi.org/project/qtiming/):
 
     python -m venv .venv
-    .venv/Scripts/pip install -e ".[qiskit,z3]"
+    .venv/Scripts/pip install "qtiming[qiskit,z3]"
 
 On Linux and macOS the venv path is `.venv/bin/pip`. Details: [Install](install.md).
 

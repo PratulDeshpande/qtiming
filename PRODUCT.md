@@ -32,7 +32,7 @@ Command-line tool, Python 3.10 to 3.14, optional extras `qiskit` and `z3`. Input
 
 Built: front end, elaboration, per-personality timed event graph, obligations O1 to O7 (O4a, O6, O8, O9 and O7 for SYNC with a spread bound are not generated and every report says so), Tier 0 exact, Tier 1 interval and Tier 2 Z3 solvers, replayed counterexamples, reports, windowing for IBM loops, Qiskit passes, `repair` for O1 only, benchmark harness.
 Undecided or not true yet: the dynamic-controllability checker is flagged UNVERIFIED and is not used for verdicts; there is no real IBM hardware evidence (fixtures are synthetic); RUS formulas are not wired into `check`; there is no `qtiming synth` command; the benchmark expectations are a regression snapshot, not ground truth.
-Distribution: version 0.1.0 (alpha), intended for PyPI. Licence Apache-2.0. Repository: https://github.com/PratulDeshpande/QTiming.
+Distribution: version 0.1.0 (alpha), published on PyPI (https://pypi.org/project/qtiming/). Licence Apache-2.0. Repository: https://github.com/PratulDeshpande/QTiming.
 
 ## Brand Commitments
 

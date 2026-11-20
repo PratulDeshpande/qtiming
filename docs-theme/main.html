@@ -43,6 +43,9 @@
 <title>{{ ttl }}</title>
 {%- set desc = (page.meta.description if page and page.meta and page.meta.description else config.site_description) %}
 <meta name="description" content="{{ desc }}">
+{%- if config.site_author %}
+<meta name="author" content="{{ config.site_author }}">
+{%- endif %}
 <meta property="og:title" content="{{ ttl }}">
 <meta property="og:description" content="{{ desc }}">
 <meta property="og:type" content="website">
@@ -90,7 +93,7 @@
     <footer class="foot">
       <span>Page source: <code>{{ page.file.src_uri }}</code></span>
       {%- if page.edit_url %}<a href="{{ page.edit_url }}">Edit this page</a>{% endif %}
-      <span>qtiming {{ config.extra.version }}, Apache-2.0</span>
+      <span>qtiming {{ config.extra.version }}, Apache-2.0{% if config.site_author %} &middot; by {{ config.site_author }}{% endif %}</span>
     </footer>
   </main>
   <aside class="margin" aria-label="{% if is_home %}Figure{% else %}On this page{% endif %}">
