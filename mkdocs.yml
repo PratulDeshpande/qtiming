@@ -4,7 +4,7 @@ site_url: https://pratuldeshpande.github.io/qtiming/
 repo_url: https://github.com/PratulDeshpande/QTiming
 site_author: Pratul Deshpande
 copyright: Copyright 2026 Pratul Deshpande
-edit_uri: edit/main/Docs/
+edit_uri: ""
 docs_dir: Docs
 exclude_docs: |
   Timed semantics for dynamic quantum programs.md
