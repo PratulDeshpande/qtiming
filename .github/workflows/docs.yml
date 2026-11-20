@@ -25,7 +25,7 @@ jobs:
         with: { path: _site }
 
   # Runs only on main (not on pull requests). One-time owner setup: repository Settings, Pages,
-  # Source: "GitHub Actions". The site is then served at https://pratuldeshpande.github.io/QTiming/
+  # Source: "GitHub Actions". The site is then served at https://pratuldeshpande.github.io/qtiming/
   deploy:
     if: github.event_name != 'pull_request'
     needs: build

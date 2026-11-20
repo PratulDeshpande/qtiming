@@ -1,6 +1,6 @@
 site_name: qtiming
 site_description: Static timing checker for dynamic quantum circuits. Four verdicts, with counterexamples replayed in an independent executor.
-site_url: https://pratuldeshpande.github.io/QTiming/
+site_url: https://pratuldeshpande.github.io/qtiming/
 repo_url: https://github.com/PratulDeshpande/QTiming
 edit_uri: edit/main/Docs/
 docs_dir: Docs
