@@ -1,9 +1,8 @@
 # Changelog
 
 All notable changes are listed here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
-The version is still `0.1.0.dev0`; the release number is the owner's decision.
 
-## [Unreleased] - 0.1.0 (first public alpha, candidate)
+## [0.1.0] - 2026-11-20 (first public alpha)
 
 Phases P0 to P9 are committed (`git log`). P10 to P14 are present in the working tree but were not
 committed when this entry was written; check `git log` before quoting them as released.

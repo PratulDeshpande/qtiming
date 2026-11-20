@@ -10,7 +10,7 @@ circuit) and a hardware timing contract, it answers before the program runs:
 | `REFUTED` | a counterexample exists; it is minimised and replayed in an independent reference executor |
 | `UNKNOWN` | a contract number is missing or no solver tier could decide |
 
-**Status: pre-alpha (`0.1.0.dev0`).** Read "Status and limitations" below before trusting a verdict.
+**Status: alpha (`0.1.0`).** Read "Status and limitations" below before trusting a verdict.
 
 ## Install
 
@@ -68,7 +68,7 @@ produced by these exact commands.
 `repair` only patches O1 (commit lead) failures today and re-verifies every patch; for anything
 else it says so, as above. Other commands: `explain`, `lint`, `replay`, `evidence`, and
 `contract validate|show|diff`; formats `text`, `json`, `sarif` (GitHub code scanning) and `html`.
-Full reference: [`Docs/cli.md`](Docs/cli.md).
+Full reference: [`Docs/cli.md`](https://github.com/PratulDeshpande/QTiming/blob/HEAD/Docs/cli.md).
 
 Exit codes of `check`: `0` PROVED or PROVED-UNDER, `1` REFUTED, `2` usage or contract error,
 `3` UNKNOWN, `4` internal error (including `I-REPLAY-MISMATCH`, an executor/checker disagreement).

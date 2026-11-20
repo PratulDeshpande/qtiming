@@ -1,6 +1,6 @@
 # Status and limits
 
-qtiming is pre-alpha (version `0.1.0.dev0`). The same list is in the repository `README.md`.
+qtiming is alpha (version `0.1.0`). The same list is in the repository `README.md`.
 
 * A verdict is only as good as the contract numbers behind it. Numbers a vendor has not published
   are left absent, so the obligations that need them come out UNKNOWN, never guessed.

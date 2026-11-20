@@ -1,5 +1,6 @@
+repo_url: https://github.com/PratulDeshpande/QTiming
 site_name: qtiming
-site_description: Static timing checker for dynamic quantum circuits (pre-alpha)
+site_description: Static timing checker for dynamic quantum circuits (alpha)
 docs_dir: Docs
 theme:
   name: material

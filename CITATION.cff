@@ -3,7 +3,10 @@ message: "If you use qtiming, please cite it as below."
 title: "qtiming: a static timing checker for dynamic quantum circuits"
 type: software
 license: Apache-2.0
-version: 0.1.0.dev0
-date-released: 2026-11-17
+version: 0.1.0
+date-released: 2026-11-20
 authors:
-  - name: "The qtiming authors"
+  - family-names: "Deshpande"
+    given-names: "Pratul"
+repository-code: "https://github.com/PratulDeshpande/QTiming"
+url: "https://github.com/PratulDeshpande/QTiming"

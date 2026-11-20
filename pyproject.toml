@@ -1,19 +1,21 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling>=1.27"]  # PEP 639 license metadata needs >=1.27
 build-backend = "hatchling.build"
 
 [project]
 name = "qtiming"
-version = "0.1.0.dev0"
+version = "0.1.0"
 description = "A static timing checker for dynamic quantum circuits"
 readme = "README.md"
-license = { text = "Apache-2.0" }
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "Pratul Deshpande" }]
+maintainers = [{ name = "Pratul Deshpande" }]
 requires-python = ">=3.10"
 keywords = ["quantum", "dynamic circuits", "timing", "static analysis", "verification", "OpenQASM 3", "Qiskit"]
 classifiers = [
-    "Development Status :: 2 - Pre-Alpha",
+    "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
@@ -28,8 +30,11 @@ classifiers = [
 # tomli: contract/loader.py falls back to it on Python 3.10 (no tomllib).
 dependencies = ["pydantic>=2.5", "tomli>=2; python_version<'3.11'"]
 
-# [project.urls] is deliberately absent: the repository URL is not recorded anywhere yet
-# (no git remote, not in CITATION.cff). Add Homepage/Source/Issues once the owner picks it.
+[project.urls]
+Homepage = "https://github.com/PratulDeshpande/QTiming"
+Source = "https://github.com/PratulDeshpande/QTiming"
+Issues = "https://github.com/PratulDeshpande/QTiming/issues"
+Changelog = "https://github.com/PratulDeshpande/QTiming/blob/HEAD/CHANGELOG.md"
 
 [project.optional-dependencies]
 qiskit = ["qiskit>=2.3,<2.7", "openqasm3[parser]>=1.0,<2", "qiskit-qasm3-import>=0.5"]
@@ -57,7 +62,7 @@ include = [
 ]
 
 [tool.hatch.build.targets.sdist]
-include = ["src", "Docs", "README.md", "LICENSE", "NOTICE", "CHANGELOG.md", "CONTRIBUTING.md", "CITATION.cff", "pyproject.toml"]
+include = ["src", "tests", "Docs", "README.md", "LICENSE", "NOTICE", "CHANGELOG.md", "CONTRIBUTING.md", "CITATION.cff", "pyproject.toml"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

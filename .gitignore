@@ -12,4 +12,5 @@ build/
 results/
 .superpowers/
 graphify-out/
-CLAUDE.md
+.playwright-mcp/
+.import_linter_cache/
