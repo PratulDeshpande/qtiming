@@ -11,6 +11,8 @@ exclude_docs: |
 theme:
   name: null
   custom_dir: docs-theme
+  static_templates:
+    - 404.html
 extra:
   version: "0.1.0"
 plugins:

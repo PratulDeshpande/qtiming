@@ -81,6 +81,16 @@
     t.parentNode.insertBefore(w, t); w.appendChild(t);
   });
 
+  /* scrollable code blocks must be reachable by keyboard */
+  var pres = document.querySelectorAll(".prose pre");
+  function focusScrollers() {
+    pres.forEach(function (p) {
+      if (p.scrollWidth > p.clientWidth) { p.tabIndex = 0; p.setAttribute("role", "region"); p.setAttribute("aria-label", "Code, scrolls sideways"); }
+      else { p.removeAttribute("tabindex"); p.removeAttribute("role"); p.removeAttribute("aria-label"); }
+    });
+  }
+  focusScrollers(); window.addEventListener("resize", focusScrollers);
+
   /* copy buttons on code blocks */
   if (navigator.clipboard) {
     document.querySelectorAll(".prose pre").forEach(function (pre) {
