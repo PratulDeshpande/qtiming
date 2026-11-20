@@ -11,9 +11,9 @@
 Qiskit circuit) and a hardware timing contract. Before anything runs, it tells you whether the
 program's timing is correct, and if not, shows you a counterexample.
 
-[**CLI reference**](https://github.com/PratulDeshpande/QTiming/blob/HEAD/Docs/cli.md) |
-[**Quickstart**](https://github.com/PratulDeshpande/QTiming/blob/HEAD/Docs/quickstart.md) |
-[**Status**](https://github.com/PratulDeshpande/QTiming/blob/HEAD/Docs/status.md) |
+[**CLI reference**](https://pratuldeshpande.github.io/qtiming/cli/) |
+[**Quickstart**](https://pratuldeshpande.github.io/qtiming/quickstart/) |
+[**Status**](https://pratuldeshpande.github.io/qtiming/status/) |
 [**Changelog**](CHANGELOG.md) |
 [**Contributing**](CONTRIBUTING.md)
 
@@ -122,7 +122,7 @@ And `repair` patches what it can and says so when it cannot:
 
 `check`, `explain`, `lint`, `replay`, `repair`, `evidence`, and `contract validate|show|diff`.
 Report formats: `text`, `json`, `sarif`, `html`. Full reference:
-[`Docs/cli.md`](https://github.com/PratulDeshpande/QTiming/blob/HEAD/Docs/cli.md).
+[`Docs/cli.md`](https://pratuldeshpande.github.io/qtiming/cli/).
 
 | Exit | Meaning |
 | --- | --- |
@@ -147,7 +147,7 @@ Report formats: `text`, `json`, `sarif`, `html`. Full reference:
 The reference executor for the four personalities is written independently of the graph side, and
 differential tests (1000 random programs per personality and policy) check the two against each
 other. Import layering is enforced by `lint-imports`. The normative rules live in
-[`Docs/personality-spec/`](https://github.com/PratulDeshpande/QTiming/tree/HEAD/Docs/personality-spec).
+[`Docs/personality-spec/`](https://pratuldeshpande.github.io/qtiming/personality-spec/ibm/).
 
 ## Status and limitations
 
@@ -175,11 +175,11 @@ Be sceptical; this is what is and is not true today.
 
 | | |
 | --- | --- |
-| [Quickstart](https://github.com/PratulDeshpande/QTiming/blob/HEAD/Docs/quickstart.md) | longer walkthrough |
-| [CLI reference](https://github.com/PratulDeshpande/QTiming/blob/HEAD/Docs/cli.md) | every command, flag and exit code |
-| [Personality specs](https://github.com/PratulDeshpande/QTiming/tree/HEAD/Docs/personality-spec) | normative timing rules per hardware |
-| [Theory](https://github.com/PratulDeshpande/QTiming/tree/HEAD/Docs/theory) | the formal background |
-| [Status](https://github.com/PratulDeshpande/QTiming/blob/HEAD/Docs/status.md) | what is built, phase by phase |
+| [Quickstart](https://pratuldeshpande.github.io/qtiming/quickstart/) | longer walkthrough |
+| [CLI reference](https://pratuldeshpande.github.io/qtiming/cli/) | every command, flag and exit code |
+| [Personality specs](https://pratuldeshpande.github.io/qtiming/personality-spec/ibm/) | normative timing rules per hardware |
+| [Theory](https://pratuldeshpande.github.io/qtiming/theory/) | the formal background |
+| [Status](https://pratuldeshpande.github.io/qtiming/status/) | what is built, phase by phase |
 | [`artifact/README.md`](artifact/README.md) | how to reproduce the results |
 
 Build the docs locally with `pip install -e ".[docs]" && mkdocs build --strict`.
