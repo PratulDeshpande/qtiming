@@ -1,0 +1,111 @@
+{%- macro timing_fig(n, caption, note) -%}
+<figure class="fig">
+  <svg viewBox="0 0 264 188" role="img" aria-labelledby="fig{{ n }}t fig{{ n }}d">
+    <title id="fig{{ n }}t">Feedforward timing window</title>
+    <desc id="fig{{ n }}d">A measurement pulse, then a feedforward pulse that starts between 0 and 600 nanoseconds after the result is available.</desc>
+    <g class="lbl"><text x="0" y="30">MEASURE</text><text x="0" y="100">FF</text></g>
+    <g class="wave">
+      <path pathLength="1" d="M72 34H104V14H150V34H262"/>
+      <path pathLength="1" d="M72 104H150V84H232V104H262"/>
+    </g>
+    <path class="guide" d="M150 40V136M232 40V136"/>
+    <path class="dim" d="M150 128H232M150 122V134M232 122V134"/>
+    <g class="lbl dimt"><text x="191" y="148" text-anchor="middle">ff.default{{ note }}</text><text x="191" y="166" text-anchor="middle">[0, 600] ns</text></g>
+  </svg>
+  <figcaption><strong>Fig. {{ n }}.</strong> {{ caption }}</figcaption>
+</figure>
+{%- endmacro -%}
+{%- macro nav_list(items) -%}
+<ul>
+{%- for item in items %}
+  {%- if item.is_section %}
+  <li class="grp"><span class="grp-t">{{ item.title }}</span>{{ nav_list(item.children) }}</li>
+  {%- elif item.is_page %}
+  <li><a href="{{ item.url|url }}"{% if item.active %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+  {%- endif %}
+{%- endfor %}
+</ul>
+{%- endmacro -%}
+{%- macro toc_list(items) -%}
+<ul>
+{%- for t in items %}
+  <li><a href="{{ t.url }}">{{ t.title }}</a>{% if t.children %}{{ toc_list(t.children) }}{% endif %}</li>
+{%- endfor %}
+</ul>
+{%- endmacro -%}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{%- set is_home = page and page.file.src_uri == 'index.md' %}
+<title>{% if page and page.title and not is_home %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+{%- set desc = (page.meta.description if page and page.meta and page.meta.description else config.site_description) %}
+<meta name="description" content="{{ desc }}">
+<meta property="og:title" content="{{ page.title if page and page.title else config.site_name }}">
+<meta property="og:description" content="{{ desc }}">
+<meta property="og:type" content="website">
+{%- if page and page.canonical_url %}
+<link rel="canonical" href="{{ page.canonical_url }}">
+{%- endif %}
+<meta name="color-scheme" content="light">
+<link rel="icon" href="{{ 'img/favicon.svg'|url }}" type="image/svg+xml">
+<link rel="preload" href="{{ 'fonts/source-serif-4-400.woff2'|url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ 'fonts/b612-700.woff2'|url }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ 'css/qt.css'|url }}">
+</head>
+<body class="{% if is_home %}is-home{% endif %}">
+<a class="skip" href="#content">Skip to content</a>
+<header class="strip">
+  <a class="brand" href="{{ nav.homepage.url|url if nav.homepage else base_url + '/' }}">qtiming</a>
+  <span class="doc">Timing verifier for dynamic quantum circuits</span>
+  <form class="search" role="search" onsubmit="return false">
+    <label class="sr" for="qt-q">Search the documentation</label>
+    <input id="qt-q" type="search" placeholder="Search" autocomplete="off" spellcheck="false" aria-controls="qt-results" aria-expanded="false">
+    <div id="qt-results" role="listbox" hidden></div>
+  </form>
+  <span class="meta">QT-{{ config.extra.version }} &middot; alpha &middot; {{ build_date_utc.strftime("%Y-%m-%d") }}</span>
+  {%- if config.repo_url %}
+  <a class="src" href="{{ config.repo_url }}">Source</a>
+  {%- endif %}
+</header>
+<details class="mnav">
+  <summary>Menu</summary>
+  <nav aria-label="Documentation">{{ nav_list(nav) }}</nav>
+</details>
+<div class="shell">
+  <nav class="rail" aria-label="Documentation">{{ nav_list(nav) }}</nav>
+  <main id="content" class="main">
+    <article class="prose">
+      {%- if page.toc %}
+      <details class="mtoc"><summary>On this page</summary><nav aria-label="On this page">{{ toc_list(page.toc) }}</nav></details>
+      {%- endif %}
+      {{ page.content }}
+    </article>
+    <nav class="pager" aria-label="Previous and next page">
+      {%- if page.previous_page %}<a class="prev" href="{{ page.previous_page.url|url }}"><small>Previous</small>{{ page.previous_page.title }}</a>{% else %}<span></span>{% endif %}
+      {%- if page.next_page %}<a class="next" href="{{ page.next_page.url|url }}"><small>Next</small>{{ page.next_page.title }}</a>{% else %}<span></span>{% endif %}
+    </nav>
+    <footer class="foot">
+      <span>Page source: <code>{{ page.file.src_uri }}</code></span>
+      {%- if page.edit_url %}<a href="{{ page.edit_url }}">Edit this page</a>{% endif %}
+      <span>qtiming {{ config.extra.version }}, Apache-2.0</span>
+    </footer>
+  </main>
+  <aside class="margin" aria-label="{% if is_home %}Figure{% else %}On this page{% endif %}">
+    {%- if is_home %}
+    {{ timing_fig(1, 'The <code>ibm_heron</code> contract bounds the feedforward latency <code>ff.default</code> to [0 ns, 600 ns]. That bound is a vendor claim, not a certified one, so results that depend on it are PROVED-UNDER. Schematic, not to scale.', '') }}
+    {%- else %}
+    {%- if page.file.src_uri == 'verdicts.md' %}
+    {{ timing_fig(2, 'Where the PROVED-UNDER assumption enters. The proof assumes <code>ff.default</code> lies in [0 ns, 600 ns]. If the real latency can exceed that, the verdict does not hold.', ' (assumed)') }}
+    {%- endif %}
+    {%- if page.toc %}
+    <nav class="toc" aria-label="On this page"><h2>On this page</h2>{{ toc_list(page.toc) }}</nav>
+    {%- endif %}
+    {%- endif %}
+  </aside>
+</div>
+<script src="{{ 'js/qt.js'|url }}" defer></script>
+<script>window.QT={base:"{{ base_url }}"};</script>
+</body>
+</html>

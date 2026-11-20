@@ -1,26 +1,53 @@
-repo_url: https://github.com/PratulDeshpande/QTiming
 site_name: qtiming
-site_description: Static timing checker for dynamic quantum circuits (alpha)
+site_description: Static timing checker for dynamic quantum circuits. Four verdicts, with counterexamples replayed in an independent executor.
+site_url: https://pratuldeshpande.github.io/QTiming/
+repo_url: https://github.com/PratulDeshpande/QTiming
+edit_uri: edit/main/Docs/
 docs_dir: Docs
+exclude_docs: |
+  Timed semantics for dynamic quantum programs.md
+  Timing rulebook for quantum computers.md
+  _pages.txt
 theme:
-  name: material
+  name: null
+  custom_dir: docs-theme
+extra:
+  version: "0.1.0"
+plugins:
+  - search
+markdown_extensions:
+  - tables
+  - fenced_code
+  - admonition
+  - footnotes
+  - attr_list
+  - toc:
+      permalink: "#"
 nav:
-  - Home: index.md
-  - Quickstart: quickstart.md
-  - Command reference: cli.md
-  - Semantics:
-      - Timed semantics: Timed semantics for dynamic quantum programs.md
-      - Timing rulebook: Timing rulebook for quantum computers.md
-  - Personality specs:
-      - IBM: personality-spec/ibm.md
-      - Q1: personality-spec/q1.md
-      - ARTIQ: personality-spec/artiq.md
-      - QUA: personality-spec/qua.md
-  - Theory:
-      - Overview: theory/index.md
-      - Definitions: theory/definitions.md
-      - Theorems: theory/theorems.md
-      - SC derivation: theory/sc-derivation.md
-      - Windowing (T4): theory/T4-windowing.md
-      - DC rules (unverified): theory/dc-rules.md
-  - Status and limits: status.md
+  - Start:
+      - Overview: index.md
+      - Install: install.md
+      - Quickstart: quickstart.md
+  - Use:
+      - Reading a verdict: verdicts.md
+      - Obligations: obligations.md
+      - Contracts: contracts.md
+      - Policies and annotations: policies.md
+      - Qiskit passes: qiskit.md
+      - Errors: errors.md
+      - Command reference: cli.md
+  - Reference:
+      - Personalities:
+          - IBM: personality-spec/ibm.md
+          - Q1: personality-spec/q1.md
+          - ARTIQ: personality-spec/artiq.md
+          - QUA: personality-spec/qua.md
+      - Theory:
+          - Overview: theory/index.md
+          - Definitions: theory/definitions.md
+          - Theorems: theory/theorems.md
+          - SC derivation: theory/sc-derivation.md
+          - Windowing (T4): theory/T4-windowing.md
+          - DC rules (unverified): theory/dc-rules.md
+  - Project:
+      - Status and limits: status.md

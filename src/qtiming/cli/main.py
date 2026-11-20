@@ -75,7 +75,7 @@ def _load(args: argparse.Namespace):  # type: ignore[no-untyped-def]
 
 
 def _guard(fn):  # type: ignore[no-untyped-def]
-    """Map load/usage errors to exit code 2."""
+    """Map load/usage errors to exit code 2 and internal (I-*) errors to 4."""
 
     def run(args: argparse.Namespace) -> int:
         try:
@@ -86,7 +86,7 @@ def _guard(fn):  # type: ignore[no-untyped-def]
             return 2
         except QtError as e:
             print(f"error: {e}" + (f"\n  hint: {e.hint}" if e.hint else ""), file=sys.stderr)
-            return 2
+            return 4 if e.code.startswith("I-") else 2  # I-* are internal errors
 
     return run
 

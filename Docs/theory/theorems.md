@@ -25,9 +25,9 @@ every theta, and collapsing past `K` terms to a constant is an over- (resp. unde
 snapped node is bounded by `g*ceil(.)` of the constant bounds (ceil is monotone). `diff_upper` and
 `diff_lower` bound `t_x - t_y` termwise, so a proved `Diff` or `Variation` holds.
 
-What is not yet a proof, and two defects found while checking it against the code:
+What is not yet a proof, one defect that is now fixed, and one hypothesis, found while checking it against the code:
 
-1. **False proof (confirmed by running it).** In `forms`, a snapped node whose upper form contains
+1. **False proof (fixed in 0.1.0; regression test `tests/unit/solve/test_tier1_snap.py`).** Before the fix, in `forms`, a snapped node whose upper form contains
    an unbounded latency (`hi = None`) is skipped (`continue`), so it is absent from `fmax`. Every
    later node then silently ignores that in-edge (`e.src not in fmax`), and `tier1` returns
    `proved` with reason "vacuous: a node cannot exist under the guard" when the obligation's own node
@@ -35,7 +35,7 @@ What is not yet a proof, and two defects found while checking it against the cod
    obligation `t(s) - t(a) <= 0`: `verify` returns `proved` (tier 1). This contradicts the
    statement above, so the status cannot be `proved`. It is unreachable from the pipeline today
    only because no builder emits snap nodes (definitions.md section 2); it is a latent soundness bug.
-   "Node absent from `fmax`" conflates "cannot exist" with "bound not computable".
+   "Node absent from `fmax`" conflated "cannot exist" with "bound not computable". The fix keeps the unsnapped forms for such a node; they stay unbounded, so nothing can be proved from them.
 2. `Fmin` defaults to the constant 0 when no in-edge is guaranteed active ("times are
    non-negative"). That is valid only if every constant weight is non-negative, which no invariant
    enforces (I6 checks only that weights are integers). True of all current builders (durations and

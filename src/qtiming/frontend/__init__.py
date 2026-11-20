@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from qtiming.core.errors import QtError
+
 from .program import ContractView, Program
 
 if TYPE_CHECKING:
@@ -15,7 +17,11 @@ __all__ = ["ContractView", "Program", "from_circuit", "from_qasm3", "from_qpy"]
 def from_qasm3(text: str, *, filename: str = "<string>",
                contract: ContractView | None = None) -> Program:
     """OpenQASM 3 text through the `openqasm3` parser (no Qiskit needed)."""
-    from .qasm3_fe import from_qasm3 as _from_qasm3
+    try:
+        from .qasm3_fe import from_qasm3 as _from_qasm3
+    except ImportError as e:  # the OpenQASM 3 parser ships with the `qiskit` extra
+        raise QtError("E-FE-MISSING-EXTRA", "reading OpenQASM 3 needs the openqasm3 parser",
+                      hint="pip install 'qtiming[qiskit]'") from e
 
     return _from_qasm3(text, filename=filename, contract=contract)
 

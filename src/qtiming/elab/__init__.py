@@ -198,7 +198,7 @@ class Elaborator:
             if s.n > self.limit:
                 raise QtError("E-ELAB-LOOP-LIMIT",
                               f"for loop of {s.n} > unroll limit {self.limit}", s.loc,
-                              hint="loop summarisation (windowing) is not implemented yet")
+                              hint="raise the unroll limit, or omit --no-window (IBM windowing)")
             out = tuple(self.elab(self.clone(s.body, m), m) for _ in range(s.n))
             return Seq(nid=self.fresh(), loc=s.loc, stmts=out, origin_nid=s.nid)
         if isinstance(s, While):

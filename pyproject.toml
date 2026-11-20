@@ -41,7 +41,7 @@ qiskit = ["qiskit>=2.3,<2.7", "openqasm3[parser]>=1.0,<2", "qiskit-qasm3-import>
 z3 = ["z3-solver>=4.13"]
 synth = []  # no optional import is used by solve/synth today; the extra is kept for the documented name
 bench = ["pyarrow", "matplotlib"]
-docs = ["mkdocs-material"]
+docs = ["mkdocs>=1.6,<2"]
 dev = ["pytest", "pytest-cov", "pytest-xdist", "hypothesis", "ruff", "mypy", "import-linter", "jsonschema"]
 
 [project.scripts]

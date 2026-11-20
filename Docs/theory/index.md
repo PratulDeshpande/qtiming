@@ -9,7 +9,7 @@ Other write-ups: [sc-derivation.md](sc-derivation.md), [T4-windowing.md](T4-wind
 
 | ID | File | Status | Backing tests | Cited in code |
 | --- | --- | --- | --- | --- |
-| T1 | theorems.md | proof-sketch | `tests/property/test_soundness.py`, `tests/property/test_tier_properties.py`, `tests/unit/solve/test_appendix_a.py`; known false-proof defect, see section | not cited |
+| T1 | theorems.md | proof-sketch | `tests/property/test_soundness.py`, `tests/property/test_tier_properties.py`, `tests/unit/solve/test_appendix_a.py`; false-proof defect found and fixed in 0.1.0, see section | not cited |
 | T2 | theorems.md | proof-sketch | `tests/unit/solve/test_smt.py`, `tests/property/test_vertex_lemma.py` | `src/qtiming/solve/smt.py` |
 | T3 | theorems.md | proof-sketch | none direct; false for QUA as written | not cited |
 | T4 | theorems.md (argument in T4-windowing.md) | proof-sketch | `tests/differential/test_window_vs_whole.py`, `tests/unit/graph/test_window.py` | `src/qtiming/graph/window.py` |
