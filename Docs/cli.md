@@ -51,4 +51,16 @@ differences (exit 1 if any).
 
 ## Not implemented yet
 
-`qtiming synth`, `qtiming repair`, `qtiming evidence`, `qtiming-bench` (phases P11, P14, P13).
+`qtiming synth` (the Tier 3 algorithms exist as library code and back `repair`; there is no
+command). Hardware collection for `qtiming evidence` needs an IBM account (see `experiments/ibm_dryrun`).
+- `--no-window`: never summarise a loop over the unroll limit by one iteration window (IBM only, plan 9.7); the loop then unrolls or fails with E-ELAB-LOOP-LIMIT.
+
+## `qtiming repair`
+
+`qtiming repair PROGRAM --contract C [--policy P] [--out FILE] [--verbose]` suggests declared
+`delay` insertions that fix a REFUTED program. Only O1 (commit lead / RT-core underflow) is
+repaired automatically; the delay is grown until the re-verified program stops failing, because
+the delay itself costs issue time on ARTIQ. O3 (a deadline) is refused: a delay makes it worse.
+Every candidate is re-verified by the normal pipeline before it is shown. Exit 0 when the program
+was already fine or the patch re-verifies, 1 when no automatic patch exists, 3 when the patched
+program is still UNKNOWN.

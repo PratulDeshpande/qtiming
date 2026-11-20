@@ -26,6 +26,11 @@ class QuaBuilder(GraphBuilder):
         self.skip_implicit = bool(contract.param("qua", "skip_implicit_align", False))
 
     def _align(self, qubits: list[int], nid: int, join_tag: str, extra: int | None = None) -> None:
+        if not qubits:  # empty arms (e.g. an unrolled loop's last): no resource to wait on, so the
+            # nodes sit at time 0 like the executor's (max over nothing); none would have an in-edge
+            for tag in (["bready"] if extra is not None else []) + [join_tag]:
+                self.g.add_edge(self.g.origin, self.node("join", nid, tag), 0, TOP, "qua.align")
+            return
         res = [f"q{q}" for q in qubits]
         ready: int | None = None
         if extra is not None:

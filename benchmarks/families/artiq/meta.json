@@ -1,0 +1,74 @@
+{
+ "artiq_burst": {
+  "family": "artiq",
+  "why": "back-to-back gates on one channel before a measurement (sequence-error / collision candidate)",
+  "main_obligations": [
+   "O1",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Synthetic, written by the qtiming authors, NOT external code. The shipped ARTIQ contract publishes no gate or measure durations and no commit lead, so ARTIQ cells are `unsupported` until durations are assumed; on IBM the `exp` policy is rejected (policy-incompatible).",
+  "needs_windowing": false
+ },
+ "artiq_ramsey_fb": {
+  "family": "artiq",
+  "why": "Ramsey sequence with a feedback correction after a free-evolution delay",
+  "main_obligations": [
+   "O1",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Synthetic, written by the qtiming authors, NOT external code. The shipped ARTIQ contract publishes no gate or measure durations and no commit lead, so ARTIQ cells are `unsupported` until durations are assumed; on IBM the `exp` policy is rejected (policy-incompatible).",
+  "needs_windowing": false
+ },
+ "artiq_reset_fb": {
+  "family": "artiq",
+  "why": "measure, wait out the result latency, conditionally flip",
+  "main_obligations": [
+   "O1",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Synthetic, written by the qtiming authors, NOT external code. The shipped ARTIQ contract publishes no gate or measure durations and no commit lead, so ARTIQ cells are `unsupported` until durations are assumed; on IBM the `exp` policy is rejected (policy-incompatible).",
+  "needs_windowing": false
+ },
+ "artiq_slack_neg": {
+  "family": "artiq",
+  "why": "feedback issued with NO slack after the measurement: negative slack, the result is not ready (RTIO underflow candidate)",
+  "main_obligations": [
+   "O1",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Synthetic, written by the qtiming authors, NOT external code. The shipped ARTIQ contract publishes no gate or measure durations and no commit lead, so ARTIQ cells are `unsupported` until durations are assumed; on IBM the `exp` policy is rejected (policy-incompatible).",
+  "needs_windowing": false
+ },
+ "artiq_two_ions": {
+  "family": "artiq",
+  "why": "two channels measured and corrected independently with explicit slack",
+  "main_obligations": [
+   "O1",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Synthetic, written by the qtiming authors, NOT external code. The shipped ARTIQ contract publishes no gate or measure durations and no commit lead, so ARTIQ cells are `unsupported` until durations are assumed; on IBM the `exp` policy is rejected (policy-incompatible).",
+  "needs_windowing": false
+ },
+ "artiq_wide_lanes": {
+  "family": "artiq",
+  "why": "ten channels pulsed together, then one measured and fed back (more events than the 8 SED lanes)",
+  "main_obligations": [
+   "O1",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Synthetic, written by the qtiming authors, NOT external code. The shipped ARTIQ contract publishes no gate or measure durations and no commit lead, so ARTIQ cells are `unsupported` until durations are assumed; on IBM the `exp` policy is rejected (policy-incompatible).",
+  "needs_windowing": false
+ }
+}

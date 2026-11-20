@@ -1,0 +1,70 @@
+{
+ "msi_eq_hard": {
+  "family": "magic_state",
+  "why": "injection under an explicit EQ policy and a hard deadline",
+  "main_obligations": [
+   "O3",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "The IBM snapshot has no S duration; sx (same cost) stands in for the S correction.",
+  "needs_windowing": false
+ },
+ "msi_hard_1000": {
+  "family": "magic_state",
+  "why": "same, with a 1000 ns hard deadline (above the 600 ns vendor claim)",
+  "main_obligations": [
+   "O3"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "The IBM snapshot has no S duration; sx (same cost) stands in for the S correction.",
+  "needs_windowing": false
+ },
+ "msi_hard_3000": {
+  "family": "magic_state",
+  "why": "injection with a conditional S-like fix-up inside a hard 3000 ns reaction deadline",
+  "main_obligations": [
+   "O3"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "The IBM snapshot has no S duration; sx (same cost) stands in for the S correction.",
+  "needs_windowing": false
+ },
+ "msi_hard_tight": {
+  "family": "magic_state",
+  "why": "same, with a 200 ns hard deadline (below the 600 ns vendor claim)",
+  "main_obligations": [
+   "O3"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Intended UNSAFE on IBM (hi = 600 ns > 200 ns). The IBM snapshot has no S duration; sx (same cost) stands in for the S correction.",
+  "needs_windowing": false
+ },
+ "msi_soft_within": {
+  "family": "magic_state",
+  "why": "same fix-up with a soft (non-hard) deadline of 3000 ns",
+  "main_obligations": [
+   "O3"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Non-hard within. The IBM snapshot has no S duration; sx (same cost) stands in for the S correction.",
+  "needs_windowing": false
+ },
+ "msi_two_stage": {
+  "family": "magic_state",
+  "why": "two-stage injection: S fix-up then a Z fix-up from a second result, both under hard deadlines",
+  "main_obligations": [
+   "O3",
+   "O2a"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "The IBM snapshot has no S duration; sx (same cost) stands in for the S correction.",
+  "needs_windowing": false
+ }
+}

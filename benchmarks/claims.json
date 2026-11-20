@@ -1,0 +1,45 @@
+{
+  "_note": "Maps each paper claim to the qtiming-bench command that produces it (plan 17.5). Commands read or write under results/<run-id>/. Status says what can be produced today; nothing here is a result.",
+  "H1": {
+    "claim": "Soundness: zero executor violations on PROVED / PROVED-UNDER programs, per personality",
+    "command": "qtiming-bench diff --runs 1000 --seed 1 --programs 3000 --out results/<run-id>/diff/",
+    "output": "results/<run-id>/diff/diff.json; table h1_differential via `qtiming-bench report`",
+    "status": "runnable now. The prereg run (runs_per_program 1000, random_programs 10000, seeds 1,2,3) is repeated per seed. Executor-visible kinds only (O1, O2a, O5 drops); O3/O4/O7 are covered by tests/property/test_soundness.py"
+  },
+  "H2": {
+    "claim": "Precision: false-alarm rate against exhaustive enumeration on small programs",
+    "command": "qtiming-bench truth --suite benchmarks/families --out benchmarks/families/ && qtiming-bench report results/<run-id>/ --tables paper/tables/",
+    "output": "benchmarks/families/ground_truth.json; table h2_precision",
+    "status": "partial. Ground truth is per-run executor violations only and the IBM contract produces none, so the table is trivial until non-IBM contracts have gate durations (use --assume) or the truth is extended to O3/O4"
+  },
+  "H3": {
+    "claim": "Scalability: check time and fraction certified within the limit, windowing on and off, tier mix",
+    "command": "qtiming-bench run --suite benchmarks/families --contracts all --policies eq,sync,exp --repeat 5 --timeout 60 --unroll-limit 16 --out results/<run-id>/   (and again with --unroll-limit 1000000 for windowing off)",
+    "output": "results/<run-id>/results.jsonl (ms, tiers); table tier_mix",
+    "status": "needs the full sweep: the suite has no size-parameterised programs beyond the 1/3/20/100-round QEC series, and the scaling plot script (paper/figs) is not written"
+  },
+  "H4": {
+    "claim": "Portability: share of dynamic programs whose verdict differs across the four contracts",
+    "command": "qtiming-bench report results/<run-id>/ --tables paper/tables/",
+    "output": "table portability (last column), verdicts_per_contract",
+    "status": "runnable, but on the shipped contracts only IBM publishes gate durations, so 3 of 4 columns read `unsupported`; rerun with --assume durations.*=... to compare verdicts"
+  },
+  "H5": {
+    "claim": "Policy cost: added idle of EQ versus SYNC on QEC and RUS families",
+    "command": "qtiming check <program> --contract ibm_heron --policy eq|sync --format json",
+    "output": "policy_cost (plan 13.2) in the JSON report",
+    "status": "not wired into qtiming-bench: the verdict does not yet report policy_cost"
+  },
+  "H6": {
+    "claim": "Hardware: inferred feedforward window and join behaviour versus the vendor 600 ns",
+    "command": "qtiming evidence ingest experiments/ibm_dryrun/jobs/*.json --out evidence.patch.toml",
+    "output": "evidence.patch.toml",
+    "status": "needs hardware evidence (IBM dry runs / QPU data, plan 18); not producible offline and not part of qtiming-bench"
+  },
+  "headline": {
+    "claim": "Provenance dependence: number of verdicts resting on non-certified numbers, and the placeholder count",
+    "command": "qtiming-bench report results/<run-id>/ --tables paper/tables/",
+    "output": "table headline_provenance (cells resting on a non-certified number; assumptions; placeholders)",
+    "status": "runnable now"
+  }
+}

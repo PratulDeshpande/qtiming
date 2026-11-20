@@ -1,0 +1,98 @@
+{
+ "ghz_fan_5": {
+  "family": "long_range_cnot",
+  "why": "5-qubit GHZ built with CNOTs, odd qubits measured, many parallel conditionals",
+  "main_obligations": [
+   "O4",
+   "O7"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Measurement-based GHZ clean-up, simplified: not a validated physical protocol; it exists to produce wide joins and many parallel branches.",
+  "needs_windowing": false
+ },
+ "ghz_fan_7": {
+  "family": "long_range_cnot",
+  "why": "7-qubit GHZ built with CNOTs, odd qubits measured, many parallel conditionals",
+  "main_obligations": [
+   "O4",
+   "O7"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Measurement-based GHZ clean-up, simplified: not a validated physical protocol; it exists to produce wide joins and many parallel branches.",
+  "needs_windowing": false
+ },
+ "ghz_parity_4": {
+  "family": "long_range_cnot",
+  "why": "4-qubit GHZ built with CNOTs, odd qubits measured, one wide parity conditional",
+  "main_obligations": [
+   "O4",
+   "O7"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Measurement-based GHZ clean-up, simplified: not a validated physical protocol; it exists to produce wide joins and many parallel branches.",
+  "needs_windowing": false
+ },
+ "ghz_parity_6": {
+  "family": "long_range_cnot",
+  "why": "6-qubit GHZ built with CNOTs, odd qubits measured, one wide parity conditional",
+  "main_obligations": [
+   "O4",
+   "O7"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Measurement-based GHZ clean-up, simplified: not a validated physical protocol; it exists to produce wide joins and many parallel branches.",
+  "needs_windowing": false
+ },
+ "lrcnot_h1": {
+  "family": "long_range_cnot",
+  "why": "long-range CNOT over 1 Bell-pair hop(s): parity corrections over 2 bits",
+  "main_obligations": [
+   "O4",
+   "O7"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Wide join: each correction depends on the xor of several outcomes. Toy circuit.",
+  "needs_windowing": false
+ },
+ "lrcnot_h2": {
+  "family": "long_range_cnot",
+  "why": "long-range CNOT over 2 Bell-pair hop(s): parity corrections over 4 bits",
+  "main_obligations": [
+   "O4",
+   "O7"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Wide join: each correction depends on the xor of several outcomes. Toy circuit.",
+  "needs_windowing": false
+ },
+ "lrcnot_h3": {
+  "family": "long_range_cnot",
+  "why": "long-range CNOT over 3 Bell-pair hop(s): parity corrections over 6 bits",
+  "main_obligations": [
+   "O4",
+   "O7"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Wide join: each correction depends on the xor of several outcomes. Toy circuit.",
+  "needs_windowing": false
+ },
+ "lrcnot_h4": {
+  "family": "long_range_cnot",
+  "why": "long-range CNOT over 4 Bell-pair hop(s): parity corrections over 8 bits",
+  "main_obligations": [
+   "O4",
+   "O7"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Wide join: each correction depends on the xor of several outcomes. Toy circuit.",
+  "needs_windowing": false
+ }
+}

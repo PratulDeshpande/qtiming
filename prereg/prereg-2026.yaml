@@ -1,0 +1,37 @@
+# Pre-registration file (plan 17.3).  STATUS: DRAFT.  Nothing in this file is registered.
+#
+# EVERY NUMBER BELOW IS AN ILLUSTRATIVE PLACEHOLDER copied from the plan (17.3). The researcher
+# and the advisor fix the values before the tag is made. The plan fixes the procedure (this
+# file, an annotated git tag, the hash of the code and of the contracts), not the values.
+# See prereg/README.md. The tag `prereg-1` is a human step and has NOT been created.
+version: 1
+registered: null                  # <date>: set when the tag is made, never before
+git_commit: null                  # <hash of the code the evaluation will run>, set at tagging
+contracts:
+  sha256:                         # fill with: sha256sum src/qtiming/contract/instances/*.toml
+    artiq: null
+    ibm_heron: null
+    q1: null
+    qua: null
+  fixtures_sha256:
+    ibm_heron_snapshot.json: null
+suite:
+  directory: benchmarks/families
+  generator: benchmarks/gen_families.py
+  unroll_limit: 16                # placeholder: loops over this are windowed (IBM only)
+hypotheses:                       # ALL VALUES: illustrative placeholders
+  H1: {runs_per_program: 1000, random_programs: 10000, seeds: [1, 2, 3], threshold_violations: 0}
+  H2: {max_props: 10, max_latencies: 6, false_alarm_rate_max: 0.10}
+  H3: {time_limit_s: 60, coverage_min: 0.90, max_props_per_window: 12}
+  H4: {min_differing_fraction: 0.30}
+  H5: {max_extra_idle_fraction: 0.25}
+  H6: {tolerance_ns: 100, spread_max_ns: 200}
+analysis:
+  tests: TODO researcher and advisor
+  figures: TODO researcher and advisor
+  exclusions: none
+commands:                         # what the evaluation will run, see benchmarks/claims.json
+  run: qtiming-bench run --suite benchmarks/families --contracts all --policies eq,sync,exp --repeat 5 --timeout 60 --out results/<run-id>/
+  diff: qtiming-bench diff --runs 1000 --seed <1|2|3> --programs 10000 --out results/<run-id>/diff/
+  truth: qtiming-bench truth --suite benchmarks/families --out benchmarks/families/
+  report: qtiming-bench report results/<run-id>/ --tables paper/tables/

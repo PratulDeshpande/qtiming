@@ -1,0 +1,80 @@
+{
+ "tp_basic": {
+  "family": "teleportation",
+  "why": "teleportation with one correction in a within box (plan A.1)",
+  "main_obligations": [
+   "O2a",
+   "O3",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "written in phase P7; not regenerated",
+  "needs_windowing": false
+ },
+ "tp_exp": {
+  "family": "teleportation",
+  "why": "teleportation for an exposed-timeline backend (plan A.7)",
+  "main_obligations": [
+   "O2a",
+   "O3",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "written in phase P7; not regenerated",
+  "needs_windowing": false
+ },
+ "tp_gate_parity": {
+  "family": "teleportation",
+  "why": "gate teleportation with a parity-controlled correction (c[0] xor c[1]) inside a within box",
+  "main_obligations": [
+   "O2a",
+   "O3",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Derived condition (xor) exercises the label algebra; the 3000 ns deadline is generous.",
+  "needs_windowing": false
+ },
+ "tp_gate_xz": {
+  "family": "teleportation",
+  "why": "gate teleportation: both Pauli corrections (X on c[1], Z on c[0]) as two conditionals",
+  "main_obligations": [
+   "O2a",
+   "O3",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Unannotated: the policy comes from `--policies`; EQ pads each arm, SYNC leaves an outcome-dependent gap.",
+  "needs_windowing": false
+ },
+ "tp_q1": {
+  "family": "teleportation",
+  "why": "teleportation for a predicated backend (plan 8.5)",
+  "main_obligations": [
+   "O2a",
+   "O3",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "written in phase P7; not regenerated",
+  "needs_windowing": false
+ },
+ "tp_sync": {
+  "family": "teleportation",
+  "why": "teleportation under SYNC with no padding (expected REFUTED on O4)",
+  "main_obligations": [
+   "O2a",
+   "O3",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "written in phase P7; not regenerated",
+  "needs_windowing": false
+ }
+}

@@ -15,11 +15,12 @@ from qtiming.elab import elaborate
 from qtiming.exec.engine import ExecResult, execute
 from qtiming.exec.oracle import Fixed
 from qtiming.graph.invariants import check_invariants
+from qtiming.graph.window import split_loops
 from qtiming.oblig.generate import NOT_GENERATED, generate
 from qtiming.solve.dispatcher import SolveCfg, verify
 
 from .minimise import minimise
-from .model import REFUTED, ObResult, Verdict, combine
+from .model import PROVED, PROVED_UNDER, REFUTED, UNKNOWN, ObResult, Verdict, combine
 from .replay import require_replay
 
 _CHILDREN = ("stmts", "body", "then_", "else_", "default", "exhaust")
@@ -48,15 +49,54 @@ def collect_locs(s: Any, out: dict[int, SourceLoc]) -> dict[int, SourceLoc]:
     return out
 
 
+_RANK = {REFUTED: 0, UNKNOWN: 1, PROVED_UNDER: 2, PROVED: 3}
+
+
+def _merge(vs: list[Verdict], notes: tuple[str, ...]) -> Verdict:
+    """Conjunction of window verdicts (plan 9.7): the minimum, assumptions and results unioned."""
+    worst = min(vs, key=lambda v: _RANK[v.verdict])
+    ass = {a for v in vs for a in v.assumptions}
+    wk = weakest(ass)
+    locs: dict[int, SourceLoc] = {}
+    for v in vs:
+        locs |= v.locs
+    return replace(
+        worst, assumptions=tuple(sorted(ass, key=lambda a: a.key)),
+        weakest_class=None if wk is None else wk.name.lower(),
+        results=tuple(r for v in vs for r in v.results),
+        reasons=tuple(dict.fromkeys(r for v in vs for r in v.reasons)),
+        notes=tuple(dict.fromkeys((*notes, *(n for v in vs for n in v.notes)))), locs=locs,
+        traces=next((v.traces for v in vs if v.verdict == REFUTED), vs[0].traces))
+
+
 def check_program(
     prog: Stmt, contract: Contract, *, policy: str | None = None, cfg: SolveCfg | None = None,
-    first_failure: bool = False,
+    first_failure: bool = False, window: bool = True, unroll_limit: int = 64,
 ) -> Verdict:
+    """Check `prog`; loops over `unroll_limit` are windowed (plan 9.7) unless `window=False`."""
+    if window:
+        try:
+            w = split_loops(prog, contract, unroll_limit)
+        except QtError as e:
+            if e.code != "E-GRAPH-CUT":
+                raise
+            return Verdict(UNKNOWN, contract.name, contract.sha256,
+                           policy or contract.branch.default_policy, (), None, (),
+                           (f"{e.code}: {e.message}",), NOT_GENERATED)
+        if w.bodies:
+            parts = [_check_whole(p, contract, policy, cfg, first_failure, unroll_limit)
+                     for p in (w.rest, *w.bodies)]
+            return _merge(parts, w.notes)
+    return _check_whole(prog, contract, policy, cfg, first_failure, unroll_limit)
+
+
+def _check_whole(prog: Stmt, contract: Contract, policy: str | None, cfg: SolveCfg | None,
+                 first_failure: bool, unroll_limit: int) -> Verdict:
     if policy:
         prog = with_policy(prog, Policy(policy))  # type: ignore[arg-type]
     eff = policy or contract.branch.default_policy
     try:
-        el = elaborate(prog, contract)
+        el = elaborate(prog, contract, unroll_limit=unroll_limit)
     except QtError as e:
         if e.code == "E-ELAB-POLICY-REJECTED":  # lint L2: a policy-incompatible request
             return Verdict(REFUTED, contract.name, contract.sha256, eff, (), None, (),

@@ -10,5 +10,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "${{ matrix.python-version }}" }
-      - run: pip install -e ".[dev,z3]"
+      - run: pip install -e ".[dev,qiskit,z3]"
       - run: pytest -q

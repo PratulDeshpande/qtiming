@@ -1,0 +1,73 @@
+{
+ "ls_merge_basic": {
+  "family": "lattice_surgery",
+  "why": "merge two patches by a joint-parity measurement; correct both patches on the outcome",
+  "main_obligations": [
+   "O7",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Patches reduced to one data qubit each: the timing shape only.",
+  "needs_windowing": false
+ },
+ "ls_merge_eq": {
+  "family": "lattice_surgery",
+  "why": "merge with an explicit EQ policy (arms padded equal)",
+  "main_obligations": [
+   "O7",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Patches reduced to one data qubit each: the timing shape only.",
+  "needs_windowing": false
+ },
+ "ls_merge_slack": {
+  "family": "lattice_surgery",
+  "why": "patch B is busy longer than patch A before the merge; a barrier restores the join (patch-sync slack)",
+  "main_obligations": [
+   "O7"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "The slack (400 ns) is paid by the barrier before the parity measurement. Patches reduced to one data qubit each: the timing shape only.",
+  "needs_windowing": false
+ },
+ "ls_merge_split_seq": {
+  "family": "lattice_surgery",
+  "why": "merge, then split, in sequence under one policy",
+  "main_obligations": [
+   "O7",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Patches reduced to one data qubit each: the timing shape only.",
+  "needs_windowing": false
+ },
+ "ls_merge_sync_delta": {
+  "family": "lattice_surgery",
+  "why": "merge with an explicit sync(delta=100ns) policy",
+  "main_obligations": [
+   "O7",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Patches reduced to one data qubit each: the timing shape only.",
+  "needs_windowing": false
+ },
+ "ls_split_correction": {
+  "family": "lattice_surgery",
+  "why": "split after a merge: two results, one correction per patch",
+  "main_obligations": [
+   "O7",
+   "O2a"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Reads c[1] right after its measurement: stale-read risk (O2a). Patches reduced to one data qubit each: the timing shape only.",
+  "needs_windowing": false
+ }
+}

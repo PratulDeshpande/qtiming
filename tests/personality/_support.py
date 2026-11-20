@@ -14,7 +14,7 @@ from typing import Any
 
 from qtiming.contract.loader import load_contract_dict
 from qtiming.contract.model import Contract
-from qtiming.core.ast import Barrier, BitRef, Delay, Gate, If, Measure, Seq, SourceLoc, Stmt
+from qtiming.core.ast import Barrier, BitRef, Delay, For, Gate, If, Measure, Seq, SourceLoc, Stmt
 from qtiming.core.ids import bit_prop, lat_occurrence
 from qtiming.core.labels import EBin, EBit, EUn, Expr
 
@@ -87,6 +87,8 @@ class _Builder:
                         dur=op["dur"])
         if kind == "delay":
             return Delay(nid=nid, loc=LOC, qubits=tuple(op["q"]), dur=op["dur"])
+        if kind == "for":
+            return For(nid=nid, loc=LOC, var="i", n=op["n"], body=self.seq(op["body"]))
         if kind == "barrier":
             return Barrier(nid=nid, loc=LOC, qubits=tuple(op["q"]))
         if kind == "measure":

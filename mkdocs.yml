@@ -1,0 +1,25 @@
+site_name: qtiming
+site_description: Static timing checker for dynamic quantum circuits (pre-alpha)
+docs_dir: Docs
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - Command reference: cli.md
+  - Semantics:
+      - Timed semantics: Timed semantics for dynamic quantum programs.md
+      - Timing rulebook: Timing rulebook for quantum computers.md
+  - Personality specs:
+      - IBM: personality-spec/ibm.md
+      - Q1: personality-spec/q1.md
+      - ARTIQ: personality-spec/artiq.md
+      - QUA: personality-spec/qua.md
+  - Theory:
+      - Overview: theory/index.md
+      - Definitions: theory/definitions.md
+      - Theorems: theory/theorems.md
+      - SC derivation: theory/sc-derivation.md
+      - Windowing (T4): theory/T4-windowing.md
+      - DC rules (unverified): theory/dc-rules.md
+  - Status and limits: status.md

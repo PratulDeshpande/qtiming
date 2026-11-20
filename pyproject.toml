@@ -9,21 +9,55 @@ description = "A static timing checker for dynamic quantum circuits"
 readme = "README.md"
 license = { text = "Apache-2.0" }
 requires-python = ">=3.10"
-dependencies = ["pydantic>=2.5"]
+keywords = ["quantum", "dynamic circuits", "timing", "static analysis", "verification", "OpenQASM 3", "Qiskit"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Software Development :: Quality Assurance",
+    "Typing :: Typed",
+]
+# tomli: contract/loader.py falls back to it on Python 3.10 (no tomllib).
+dependencies = ["pydantic>=2.5", "tomli>=2; python_version<'3.11'"]
+
+# [project.urls] is deliberately absent: the repository URL is not recorded anywhere yet
+# (no git remote, not in CITATION.cff). Add Homepage/Source/Issues once the owner picks it.
 
 [project.optional-dependencies]
-qiskit = ["qiskit>=2.3,<2.7", "openqasm3>=1.0,<2"]
+qiskit = ["qiskit>=2.3,<2.7", "openqasm3[parser]>=1.0,<2", "qiskit-qasm3-import>=0.5"]
 z3 = ["z3-solver>=4.13"]
-synth = ["networkx>=3"]
-bench = ["pyarrow", "pandas", "matplotlib", "pyyaml"]
+synth = []  # no optional import is used by solve/synth today; the extra is kept for the documented name
+bench = ["pyarrow", "matplotlib"]
 docs = ["mkdocs-material"]
 dev = ["pytest", "pytest-cov", "pytest-xdist", "hypothesis", "ruff", "mypy", "import-linter", "jsonschema"]
 
 [project.scripts]
 qtiming = "qtiming.cli.main:main"
+qtiming-bench = "qtiming.bench:main"
+
+[project.entry-points."qiskit.transpiler.scheduling"]
+qtiming = "qtiming.qiskit_pass.plugin:QtimingSchedulingPlugin"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/qtiming"]
+# TOML, JSON and py.typed under src/ are packaged by `packages`; listed so tests/release can pin them.
+include = [
+    "src/qtiming/**/*.py",
+    "src/qtiming/py.typed",
+    "src/qtiming/contract/instances/*.toml",
+    "src/qtiming/contract/instances/*.json",
+]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "Docs", "README.md", "LICENSE", "NOTICE", "CHANGELOG.md", "CONTRIBUTING.md", "CITATION.cff", "pyproject.toml"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

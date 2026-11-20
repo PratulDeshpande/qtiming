@@ -113,7 +113,7 @@ def _check(args: argparse.Namespace) -> int:
     cfg = SolveCfg(use_tier1=not args.no_tier1, use_tier2=not args.no_tier2,
                    timeout_ms=int(args.timeout * 1000))
     verdict = check_program(prog.body, contract, policy=args.policy, cfg=cfg,
-                            first_failure=args.first_failure)
+                            first_failure=args.first_failure, window=not args.no_window)
     if args.max_safe:
         h = max_safe(prog.body, contract, args.max_safe, policy=args.policy)
         found = ("not safe at the current bound" if h is None
@@ -280,6 +280,31 @@ def _contract_cmd(args: argparse.Namespace) -> int:
     return 1 if diffs else 0
 
 
+@_guard
+def _repair(args: argparse.Namespace) -> int:
+    from qtiming.repair.suggest import _find, repair
+    from qtiming.verdict.render import render_text
+
+    contract, prog = _load(args)
+    r = repair(prog.body, contract, policy=args.policy)
+    dt = contract.dt_ns
+    lines = [f"repair: {r.status}: {r.message}", f"before: {r.before.verdict}  "
+             f"after: {r.after.verdict}"]
+    for h in r.hunks:
+        node = _find(r.program, h.nid)
+        where = f"line {node.loc.line}" if node is not None and node.loc.line else f"node {h.nid}"
+        qs = ", ".join(f"${q}" for q in getattr(node, "qubits", ()))
+        lines.append(f"  {h.code}: insert before {where}:  delay[{float(h.dur * dt):g}ns] {qs};"
+                     f"  ({h.dur} dt)")
+    if r.hunks:
+        lines.append(f"added idle time: {float(r.idle_dt * dt):g} ns; the patched program was "
+                     "re-verified by the full pipeline")
+    _emit("\n".join(lines), args.out)
+    if args.verbose:
+        _emit(render_text(r.after, dt), None)
+    return {"ok": 0, "fixed": 0, "unknown": 3}.get(r.status, 1)
+
+
 def _common(p: argparse.ArgumentParser) -> None:
     p.add_argument("program", help="OpenQASM 3 file (.qasm) or QPY file (.qpy)")
     p.add_argument("--contract", required=True, help="contract file or shipped instance name")
@@ -310,6 +335,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     c.add_argument("--no-tier2", action="store_true", help="skip exact SMT (no z3 needed)")
     c.add_argument("--timeout", type=float, default=10.0, help="seconds per SMT query")
     c.add_argument("--first-failure", action="store_true", help="stop at the first REFUTED")
+    c.add_argument("--no-window", action="store_true",
+                   help="never summarise long loops by a window; unroll or fail")
     c.add_argument("--strict-proved", action="store_true",
                    help="treat PROVED-UNDER as failure (exit 1)")
 
@@ -333,8 +360,22 @@ def main(argv: Sequence[str] | None = None) -> int:
     r.add_argument("--index", type=int, default=0, help="which counterexample of the report")
     r.add_argument("--trace", action="store_true")
 
+    rp = sub.add_parser("repair", help="suggest delays that fix a REFUTED program (re-verified)")
+    _common(rp)
+    rp.add_argument("--policy", choices=["eq", "sync", "exp"])
+    rp.add_argument("--out", metavar="FILE")
+    rp.add_argument("--verbose", action="store_true", help="also print the patched verdict")
+
+    from qtiming.cli import cmd_evidence
+
+    cmd_evidence.add_parser(sub)
+
     args = ap.parse_args(argv)
     try:
+        if args.cmd == "evidence":
+            return cmd_evidence.run(args)
+        if args.cmd == "repair":
+            return _repair(args)
         if args.cmd == "check":
             return _check(args)
         if args.cmd == "explain":

@@ -1,0 +1,50 @@
+{
+ "reset_basic": {
+  "family": "active_reset",
+  "why": "simplest conditional: measure, flip if 1",
+  "main_obligations": [
+   "O2a",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "",
+  "needs_windowing": false
+ },
+ "reset_parallel": {
+  "family": "active_reset",
+  "why": "two qubits reset in parallel from independent results",
+  "main_obligations": [
+   "O2a",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "",
+  "needs_windowing": false
+ },
+ "reset_twice": {
+  "family": "active_reset",
+  "why": "two rounds of active reset on one qubit (the second result reads a fresh bit)",
+  "main_obligations": [
+   "O2a",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "",
+  "needs_windowing": false
+ },
+ "reset_within_tight": {
+  "family": "active_reset",
+  "why": "reset with a 300 ns deadline: tighter than the vendor 600 ns feedforward claim",
+  "main_obligations": [
+   "O3",
+   "O2a"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Intended UNSAFE on IBM: the vendor upper bound (600 ns) exceeds the deadline.",
+  "needs_windowing": false
+ }
+}

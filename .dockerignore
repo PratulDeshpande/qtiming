@@ -1,0 +1,12 @@
+.venv
+.git
+__pycache__
+.hypothesis
+.pytest_cache
+.mypy_cache
+.ruff_cache
+graphify-out
+.playwright-mcp
+dist
+build
+site

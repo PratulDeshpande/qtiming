@@ -1,0 +1,98 @@
+{
+ "rus_unrolled_3": {
+  "family": "rus",
+  "why": "IBM-expressible approximation: 3 fixed attempts as a `for` loop with a conditional retry (no `while`)",
+  "main_obligations": [
+   "O2a",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "LIMITATION: not a true RUS loop. The retry gate runs once per attempt whether or not an earlier attempt succeeded, so the success path is over-approximated. Recorded because IBM forbids loops with a data-dependent exit.",
+  "needs_windowing": false
+ },
+ "rus_unrolled_5": {
+  "family": "rus",
+  "why": "IBM-expressible approximation: 5 fixed attempts as a `for` loop with a conditional retry (no `while`)",
+  "main_obligations": [
+   "O2a",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "LIMITATION: not a true RUS loop. The retry gate runs once per attempt whether or not an earlier attempt succeeded, so the success path is over-approximated. Recorded because IBM forbids loops with a data-dependent exit.",
+  "needs_windowing": false
+ },
+ "rus_while_cap16": {
+  "family": "rus",
+  "why": "repeat-until-success loop, capped at 16 attempts",
+  "main_obligations": [
+   "O9",
+   "O3"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "`while` needs a timing.cap box. The IBM contract has allow_loops = false, so the `while` forms come out `unsupported` there (E-GRAPH-UNSUPPORTED); exhaust handlers (`timing.cap` labels) are not implemented in the front end, so the exhaust is empty.",
+  "needs_windowing": false
+ },
+ "rus_while_cap2": {
+  "family": "rus",
+  "why": "repeat-until-success loop, capped at 2 attempts",
+  "main_obligations": [
+   "O9",
+   "O3"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "`while` needs a timing.cap box. The IBM contract has allow_loops = false, so the `while` forms come out `unsupported` there (E-GRAPH-UNSUPPORTED); exhaust handlers (`timing.cap` labels) are not implemented in the front end, so the exhaust is empty.",
+  "needs_windowing": false
+ },
+ "rus_while_cap4": {
+  "family": "rus",
+  "why": "repeat-until-success loop, capped at 4 attempts",
+  "main_obligations": [
+   "O9",
+   "O3"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "`while` needs a timing.cap box. The IBM contract has allow_loops = false, so the `while` forms come out `unsupported` there (E-GRAPH-UNSUPPORTED); exhaust handlers (`timing.cap` labels) are not implemented in the front end, so the exhaust is empty.",
+  "needs_windowing": false
+ },
+ "rus_while_cap8": {
+  "family": "rus",
+  "why": "repeat-until-success loop, capped at 8 attempts",
+  "main_obligations": [
+   "O9",
+   "O3"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "`while` needs a timing.cap box. The IBM contract has allow_loops = false, so the `while` forms come out `unsupported` there (E-GRAPH-UNSUPPORTED); exhaust handlers (`timing.cap` labels) are not implemented in the front end, so the exhaust is empty.",
+  "needs_windowing": false
+ },
+ "rus_while_policy_eq": {
+  "family": "rus",
+  "why": "RUS loop with an explicit EQ policy on the loop",
+  "main_obligations": [
+   "O9",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "`while` needs a timing.cap box. The IBM contract has allow_loops = false, so the `while` forms come out `unsupported` there (E-GRAPH-UNSUPPORTED); exhaust handlers (`timing.cap` labels) are not implemented in the front end, so the exhaust is empty.",
+  "needs_windowing": false
+ },
+ "rus_while_policy_sync": {
+  "family": "rus",
+  "why": "RUS loop with an explicit SYNC policy on the loop",
+  "main_obligations": [
+   "O9",
+   "O4"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "`while` needs a timing.cap box. The IBM contract has allow_loops = false, so the `while` forms come out `unsupported` there (E-GRAPH-UNSUPPORTED); exhaust handlers (`timing.cap` labels) are not implemented in the front end, so the exhaust is empty.",
+  "needs_windowing": false
+ }
+}

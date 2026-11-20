@@ -124,6 +124,7 @@ class Elaborator:
         if isinstance(s, (Box, Within, For)):
             return replace(s, body=self.clone(s.body, m), **kw)
         if isinstance(s, If):
+            kw["origin_nid"] = None  # set only on ELABORATED Ifs: elab_if skips those
             return replace(s, cond=_subst(s.cond, m), then_=self.clone(s.then_, m),
                            else_=self.clone(s.else_, m) if s.else_ else None, **kw)
         if isinstance(s, While):
@@ -246,9 +247,17 @@ class Elaborator:
             raise QtError("E-ELAB-LOOP-LIMIT", f"while cap {s.cap} > unroll limit {self.limit}",
                           s.loc)
         cur = dict(m)
+        # The condition names the bit's measurement BEFORE the loop. A body that re-measures the
+        # bit writes a new proposition each iteration, which `clone` only remaps under the body
+        # measurement's own id; so iteration j+1 must read the bit's latest write, or every
+        # unrolled iteration tests the stale pre-loop outcome (contradictory nested arms).
+        locs = {p: (self.meas[p].cbit.reg, self.meas[p].cbit.idx)
+                for p in _props(s.cond) if p in self.meas}
 
         def rec(j: int) -> Stmt:
-            cond = _subst(s.cond, cur)
+            latest = {p: self.last_write[loc] for p, loc in locs.items()
+                      if j > 0 and loc in self.last_write}
+            cond = _subst(s.cond, {**cur, **latest})
             if j == s.cap:
                 then: Stmt = self.elab(self.clone(s.exhaust, cur), cur)
             else:

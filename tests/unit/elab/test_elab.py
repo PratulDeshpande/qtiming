@@ -93,6 +93,26 @@ def test_for_unrolls_with_fresh_propositions() -> None:
     assert all(m.origin_nid is not None for m in ms)
 
 
+def test_if_inside_an_unrolled_loop_is_elaborated_like_one_outside() -> None:
+    """Regression: clones used to carry origin_nid, which elab_if reads as 'already elaborated'."""
+    ops = [{"op": "measure", "id": "m", "q": 0},
+           {"op": "if", "id": "i", "cond": "m",
+            "then": [{**G, "dur": 160}], "else": [{"op": "delay", "q": [1], "dur": 40}]}]
+    c = make_contract("ibm", IBM)
+    outside, _ = build(ops)
+    inside, _ = build([{"op": "for", "n": 2, "body": ops}])
+    def waits(p: Any) -> int:  # the EQ wait of 600 dt (the feedforward bound) before each branch
+        return sum(isinstance(x, Delay) and x.dur == 600 for x in flat(p))
+
+    one = waits(elaborate(force(outside, "eq"), c).body)
+    assert one == 1 and waits(elaborate(force_deep(inside), c).body) == 2  # one per unrolled copy
+
+
+def force_deep(prog: Any) -> Any:
+    loop = prog.stmts[0]
+    return replace(prog, stmts=(replace(loop, body=force(loop.body, "eq")),))
+
+
 def test_for_over_limit_is_refused() -> None:
     loc = SourceLoc("t")
     loop = For(nid=1, loc=loc, var="i", n=100, body=Seq(nid=2, loc=loc, stmts=()))

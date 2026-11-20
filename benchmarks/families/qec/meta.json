@@ -1,0 +1,158 @@
+{
+ "rep_d3_r1": {
+  "family": "qec",
+  "why": "distance-3 repetition code, 1 syndrome round(s), toy lookup decoder",
+  "main_obligations": [
+   "O2",
+   "O3",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Within the unroll limit: unrolled in full. Simplified decoder: not a full majority vote.",
+  "needs_windowing": false
+ },
+ "rep_d3_r100": {
+  "family": "qec",
+  "why": "distance-3 repetition code, 100 syndrome round(s), toy lookup decoder",
+  "main_obligations": [
+   "O2",
+   "O3",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "100 rounds exceeds the default unroll limit (64): the checker windows the loop (one iteration summarised, plan 9.7); only IBM qualifies. Simplified decoder: not a full majority vote.",
+  "needs_windowing": true
+ },
+ "rep_d3_r20": {
+  "family": "qec",
+  "why": "distance-3 repetition code, 20 syndrome round(s), toy lookup decoder",
+  "main_obligations": [
+   "O2",
+   "O3",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Within the unroll limit: unrolled in full. Simplified decoder: not a full majority vote.",
+  "needs_windowing": false
+ },
+ "rep_d3_r3": {
+  "family": "qec",
+  "why": "distance-3 repetition code, 3 syndrome round(s), toy lookup decoder",
+  "main_obligations": [
+   "O2",
+   "O3",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Within the unroll limit: unrolled in full. Simplified decoder: not a full majority vote.",
+  "needs_windowing": false
+ },
+ "rep_d5_r1": {
+  "family": "qec",
+  "why": "distance-5 repetition code, 1 syndrome round(s), toy lookup decoder",
+  "main_obligations": [
+   "O2",
+   "O3",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Within the unroll limit: unrolled in full. Simplified decoder: not a full majority vote.",
+  "needs_windowing": false
+ },
+ "rep_d5_r100": {
+  "family": "qec",
+  "why": "distance-5 repetition code, 100 syndrome round(s), toy lookup decoder",
+  "main_obligations": [
+   "O2",
+   "O3",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "100 rounds exceeds the default unroll limit (64): the checker windows the loop (one iteration summarised, plan 9.7); only IBM qualifies. Simplified decoder: not a full majority vote.",
+  "needs_windowing": true
+ },
+ "rep_d5_r20": {
+  "family": "qec",
+  "why": "distance-5 repetition code, 20 syndrome round(s), toy lookup decoder",
+  "main_obligations": [
+   "O2",
+   "O3",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Within the unroll limit: unrolled in full. Simplified decoder: not a full majority vote.",
+  "needs_windowing": false
+ },
+ "rep_d5_r3": {
+  "family": "qec",
+  "why": "distance-5 repetition code, 3 syndrome round(s), toy lookup decoder",
+  "main_obligations": [
+   "O2",
+   "O3",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Within the unroll limit: unrolled in full. Simplified decoder: not a full majority vote.",
+  "needs_windowing": false
+ },
+ "surf_d3_r1": {
+  "family": "qec",
+  "why": "distance-3 surface-code patch (Z checks only), 1 round(s), toy corrections",
+  "main_obligations": [
+   "O2",
+   "O3",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Z stabilisers only and a toy lookup decoder: the shape of a surface-code round, not a decoder-validated one.",
+  "needs_windowing": false
+ },
+ "surf_d3_r100": {
+  "family": "qec",
+  "why": "distance-3 surface-code patch (Z checks only), 100 round(s), toy corrections",
+  "main_obligations": [
+   "O2",
+   "O3",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Z stabilisers only and a toy lookup decoder: the shape of a surface-code round, not a decoder-validated one.",
+  "needs_windowing": true
+ },
+ "surf_d3_r20": {
+  "family": "qec",
+  "why": "distance-3 surface-code patch (Z checks only), 20 round(s), toy corrections",
+  "main_obligations": [
+   "O2",
+   "O3",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Z stabilisers only and a toy lookup decoder: the shape of a surface-code round, not a decoder-validated one.",
+  "needs_windowing": false
+ },
+ "surf_d3_r3": {
+  "family": "qec",
+  "why": "distance-3 surface-code patch (Z checks only), 3 round(s), toy corrections",
+  "main_obligations": [
+   "O2",
+   "O3",
+   "O5"
+  ],
+  "provenance": "written by qtiming authors",
+  "licence": "Apache-2.0",
+  "notes": "Z stabilisers only and a toy lookup decoder: the shape of a surface-code round, not a decoder-validated one.",
+  "needs_windowing": false
+ }
+}

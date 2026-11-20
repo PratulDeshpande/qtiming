@@ -124,6 +124,9 @@ def forms(
         if n.snap:  # ceil to grid is monotone: bound each side by constants
             ub = [ubound(t, box) for t in mx]
             if any(u is None for u in ub):
+                # Unbounded input: keep the UNSNAPPED forms (still unbounded, so nothing can be
+                # proved from them). Dropping the node would read as "cannot exist": a false PROVED.
+                fmax[n.id], fmin[n.id] = mx, mn
                 continue
             grid = n.snap
             top = max(u for u in ub if u is not None)

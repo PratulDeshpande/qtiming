@@ -1,0 +1,52 @@
+{
+ "arms": {
+  "else_dt": 40,
+  "taken": "else",
+  "then_dt": 100
+ },
+ "backend": "synthetic_backend",
+ "circuit_qpy_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+ "dry_run": true,
+ "dt_ns": "1",
+ "family": "arms_unequal",
+ "job_id": "syn-pad1",
+ "qiskit_version": "0.0.0-synthetic",
+ "runtime_version": "0.0.0-synthetic",
+ "scheduler_timing": {
+  "instructions": [
+   {
+    "block_id": null,
+    "name": "measure",
+    "qubits": [
+     0
+    ],
+    "start_dt": 0,
+    "stop_dt": 2000
+   },
+   {
+    "block_id": 0,
+    "name": "delay",
+    "qubits": [
+     1
+    ],
+    "start_dt": 2480,
+    "stop_dt": 2520
+   },
+   {
+    "block_id": 0,
+    "name": "delay",
+    "qubits": [
+     1
+    ],
+    "start_dt": 2520,
+    "stop_dt": 2580
+   }
+  ]
+ },
+ "schema": "qtiming-evidence-job/1",
+ "submitted_date": "2000-01-01",
+ "synthetic": true,
+ "synthetic_note": "SYNTHETIC test fixture; not hardware data",
+ "tier": "default",
+ "transpiler_options": {}
+}
