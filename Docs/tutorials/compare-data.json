@@ -1,0 +1,1121 @@
+{
+ "programs": {
+  "msi_hard_3000": {
+   "cells": {
+    "artiq": [
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O1": {
+        "proved": 2,
+        "unknown": 1
+       },
+       "O3": {
+        "proved": 1
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q0_1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>event (node 1) at 0 ns</title><rect x=\"80.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 2) at 32 ns</title><rect x=\"830.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">32 ns</text></svg>",
+      "verdict": "UNKNOWN"
+     },
+     {
+      "min_margin_ns": -100,
+      "obligations": {
+       "O1": {
+        "refuted": 2,
+        "unknown": 1
+       },
+       "O3": {
+        "proved": 1
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": -1000,
+      "obligations": {
+       "O1": {
+        "refuted": 2,
+        "unknown": 1
+       },
+       "O3": {
+        "proved": 1
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": -3000,
+      "obligations": {
+       "O1": {
+        "refuted": 2,
+        "unknown": 1
+       },
+       "O3": {
+        "proved": 1
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": -10000,
+      "obligations": {
+       "O1": {
+        "refuted": 2,
+        "unknown": 1
+       },
+       "O3": {
+        "proved": 1
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     }
+    ],
+    "ibm_heron": [
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O3": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 5
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"90.5\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.6\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 2292 ns</title><rect x=\"830.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">2292 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O3": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 4,
+        "refuted": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"90.3\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 2292 ns</title><rect x=\"819.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 2326 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">2326 ns</text></svg>\n<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"90.3\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 2292 ns</title><rect x=\"819.7\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 2324 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">2324 ns</text></svg>",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O3": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 4,
+        "refuted": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"90.3\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 2292 ns</title><rect x=\"819.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 2326 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">2326 ns</text></svg>\n<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"90.3\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 2292 ns</title><rect x=\"819.7\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 2324 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">2324 ns</text></svg>",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O3": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 4,
+        "refuted": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"90.3\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 2292 ns</title><rect x=\"819.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 2326 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">2326 ns</text></svg>\n<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"90.3\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 2292 ns</title><rect x=\"819.7\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 2324 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">2324 ns</text></svg>",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O3": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 4,
+        "refuted": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"90.3\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 2292 ns</title><rect x=\"819.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 2326 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">2326 ns</text></svg>\n<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"90.3\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"116.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 2292 ns</title><rect x=\"819.7\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 2324 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">2324 ns</text></svg>",
+      "verdict": "REFUTED"
+     }
+    ],
+    "q1": [
+     {
+      "error": "error: E-ELAB-Q1-NOT-EQUALISABLE: arm totals differ: 8 dt when true, 1 dt when false",
+      "verdict": "ERROR"
+     },
+     {
+      "error": "error: E-ELAB-Q1-NOT-EQUALISABLE: arm totals differ: 8 dt when true, 1 dt when false",
+      "verdict": "ERROR"
+     },
+     {
+      "error": "error: E-ELAB-Q1-NOT-EQUALISABLE: arm totals differ: 8 dt when true, 1 dt when false",
+      "verdict": "ERROR"
+     },
+     {
+      "error": "error: E-ELAB-Q1-NOT-EQUALISABLE: arm totals differ: 8 dt when true, 1 dt when false",
+      "verdict": "ERROR"
+     },
+     {
+      "error": "error: E-ELAB-Q1-NOT-EQUALISABLE: arm totals differ: 8 dt when true, 1 dt when false",
+      "verdict": "ERROR"
+     }
+    ],
+    "qua": [
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O3": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 6
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"101.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"167.5\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"167.5\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 1132 ns</title><rect x=\"830.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">1132 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O3": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 4,
+        "refuted": 2
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"100.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"164.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"164.9\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 1132 ns</title><rect x=\"808.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 1166 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">1166 ns</text></svg>\n<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"100.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"165.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"165.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 1132 ns</title><rect x=\"809.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 1164 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">1164 ns</text></svg>",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O3": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 4,
+        "refuted": 2
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"100.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"164.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"164.9\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 1132 ns</title><rect x=\"808.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 1166 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">1166 ns</text></svg>\n<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"100.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"165.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"165.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 1132 ns</title><rect x=\"809.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 1164 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">1164 ns</text></svg>",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O3": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 4,
+        "refuted": 2
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"100.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"164.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"164.9\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 1132 ns</title><rect x=\"808.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 1166 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">1166 ns</text></svg>\n<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"100.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"165.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"165.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 1132 ns</title><rect x=\"809.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 1164 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">1164 ns</text></svg>",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O3": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 4,
+        "refuted": 2
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"100.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"164.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"164.9\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 1132 ns</title><rect x=\"808.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 1166 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">1166 ns</text></svg>\n<svg viewBox=\"0 0 840 78\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"100.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"165.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"165.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 3) at 1132 ns</title><rect x=\"809.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>sx (node 8) at 1164 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"76\" font-size=\"10\">0</text><text x=\"780\" y=\"76\" font-size=\"10\">1164 ns</text></svg>",
+      "verdict": "REFUTED"
+     }
+    ]
+   },
+   "source": "OPENQASM 3.0;\n// msi_hard_3000: injection with a conditional S-like fix-up inside a hard 3000 ns reaction deadline\nqubit[2] q;\nbit[1] c;\n\nh q[0];\ncx q[0], q[1];\nc[0] = measure q[1];\n@timing.within 3000ns c[0]\n@timing.hard\nbox {\n    if (c[0]) {\n        sx q[0];\n    }\n}\n"
+  },
+  "rep_d3_r3": {
+   "cells": {
+    "artiq": [
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O1": {
+        "proved": 4,
+        "unknown": 23
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 182\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0_3</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1_3</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q1_4</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">q2_4</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"171\" font-size=\"11\">q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"174\" y2=\"174\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>event (node 24) at 0 ns</title><rect x=\"80.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 25) at 100 ns</title><rect x=\"86.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 26) at 200 ns</title><rect x=\"92.3\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 27) at 300 ns</title><rect x=\"98.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 39) at 2400 ns</title><rect x=\"227.5\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 40) at 3400 ns</title><rect x=\"289.0\" y=\"162\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 44) at 4400 ns</title><rect x=\"350.5\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 45) at 4500 ns</title><rect x=\"356.6\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 46) at 4600 ns</title><rect x=\"362.8\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 47) at 4700 ns</title><rect x=\"368.9\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 59) at 6800 ns</title><rect x=\"498.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 60) at 7800 ns</title><rect x=\"559.5\" y=\"162\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 64) at 8800 ns</title><rect x=\"621.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 65) at 8900 ns</title><rect x=\"627.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 66) at 9000 ns</title><rect x=\"633.3\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 67) at 9100 ns</title><rect x=\"639.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 79) at 11200 ns</title><rect x=\"768.5\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 80) at 12200 ns</title><rect x=\"830.0\" y=\"162\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"180\" font-size=\"10\">0</text><text x=\"780\" y=\"180\" font-size=\"10\">12200 ns</text></svg>",
+      "verdict": "UNKNOWN"
+     },
+     {
+      "min_margin_ns": -100,
+      "obligations": {
+       "O1": {
+        "proved": 3,
+        "refuted": 1,
+        "unknown": 23
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": -1000,
+      "obligations": {
+       "O1": {
+        "refuted": 4,
+        "unknown": 23
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": -3000,
+      "obligations": {
+       "O1": {
+        "refuted": 4,
+        "unknown": 23
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": -10000,
+      "obligations": {
+       "O1": {
+        "refuted": 4,
+        "unknown": 23
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     }
+    ],
+    "ibm_heron": [
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O4": {
+        "proved": 44
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 2340 ns</title><rect x=\"247.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 2500 ns</title><rect x=\"258.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 3340 ns</title><rect x=\"318.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 3500 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 48) at 5840 ns</title><rect x=\"497.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 49) at 6000 ns</title><rect x=\"508.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 59) at 6840 ns</title><rect x=\"568.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 60) at 7000 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 68) at 9340 ns</title><rect x=\"747.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 69) at 9500 ns</title><rect x=\"758.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 79) at 10340 ns</title><rect x=\"818.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 80) at 10500 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">10500 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O4": {
+        "proved": 29,
+        "refuted": 15
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 2340 ns</title><rect x=\"247.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 2500 ns</title><rect x=\"258.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 2534 ns</title><rect x=\"261.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 3340 ns</title><rect x=\"318.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 3500 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 48) at 5840 ns</title><rect x=\"497.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 49) at 6000 ns</title><rect x=\"508.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 59) at 6840 ns</title><rect x=\"568.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 60) at 7000 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 68) at 9340 ns</title><rect x=\"747.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 69) at 9500 ns</title><rect x=\"758.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 79) at 10340 ns</title><rect x=\"818.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 80) at 10500 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">10500 ns</text></svg>\n<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 2340 ns</title><rect x=\"247.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 2500 ns</title><rect x=\"258.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 2532 ns</title><rect x=\"260.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 3340 ns</title><rect x=\"318.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 3500 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 48) at 5840 ns</title><rect x=\"497.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 49) at 6000 ns</title><rect x=\"508.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 59) at 6840 ns</title><rect x=\"568.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 60) at 7000 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 68) at 9340 ns</title><rect x=\"747.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 69) at 9500 ns</title><rect x=\"758.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 79) at 10340 ns</title><rect x=\"818.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 80) at 10500 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">10500 ns</text></svg>",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O4": {
+        "proved": 25,
+        "refuted": 19
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 2340 ns</title><rect x=\"247.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 2500 ns</title><rect x=\"258.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 2534 ns</title><rect x=\"261.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 3340 ns</title><rect x=\"318.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 3500 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 48) at 5840 ns</title><rect x=\"497.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 49) at 6000 ns</title><rect x=\"508.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 59) at 6840 ns</title><rect x=\"568.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 60) at 7000 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 68) at 9340 ns</title><rect x=\"747.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 69) at 9500 ns</title><rect x=\"758.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 79) at 10340 ns</title><rect x=\"818.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 80) at 10500 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">10500 ns</text></svg>\n<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 2340 ns</title><rect x=\"247.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 2500 ns</title><rect x=\"258.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 2532 ns</title><rect x=\"260.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 3340 ns</title><rect x=\"318.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 3500 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 48) at 5840 ns</title><rect x=\"497.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 49) at 6000 ns</title><rect x=\"508.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 59) at 6840 ns</title><rect x=\"568.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 60) at 7000 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 68) at 9340 ns</title><rect x=\"747.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 69) at 9500 ns</title><rect x=\"758.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 79) at 10340 ns</title><rect x=\"818.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 80) at 10500 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">10500 ns</text></svg>",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O4": {
+        "proved": 25,
+        "refuted": 19
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 2340 ns</title><rect x=\"247.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 2500 ns</title><rect x=\"258.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 2534 ns</title><rect x=\"261.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 3340 ns</title><rect x=\"318.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 3500 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 48) at 5840 ns</title><rect x=\"497.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 49) at 6000 ns</title><rect x=\"508.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 59) at 6840 ns</title><rect x=\"568.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 60) at 7000 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 68) at 9340 ns</title><rect x=\"747.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 69) at 9500 ns</title><rect x=\"758.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 79) at 10340 ns</title><rect x=\"818.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 80) at 10500 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">10500 ns</text></svg>\n<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 2340 ns</title><rect x=\"247.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 2500 ns</title><rect x=\"258.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 2532 ns</title><rect x=\"260.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 3340 ns</title><rect x=\"318.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 3500 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 48) at 5840 ns</title><rect x=\"497.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 49) at 6000 ns</title><rect x=\"508.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 59) at 6840 ns</title><rect x=\"568.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 60) at 7000 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 68) at 9340 ns</title><rect x=\"747.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 69) at 9500 ns</title><rect x=\"758.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 79) at 10340 ns</title><rect x=\"818.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 80) at 10500 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">10500 ns</text></svg>",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O4": {
+        "proved": 25,
+        "refuted": 19
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 2340 ns</title><rect x=\"247.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 2500 ns</title><rect x=\"258.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 2534 ns</title><rect x=\"261.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 3340 ns</title><rect x=\"318.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 3500 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 48) at 5840 ns</title><rect x=\"497.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 49) at 6000 ns</title><rect x=\"508.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 59) at 6840 ns</title><rect x=\"568.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 60) at 7000 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 68) at 9340 ns</title><rect x=\"747.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 69) at 9500 ns</title><rect x=\"758.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 79) at 10340 ns</title><rect x=\"818.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 80) at 10500 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">10500 ns</text></svg>\n<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 80 ns</title><rect x=\"85.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 160 ns</title><rect x=\"91.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 240 ns</title><rect x=\"97.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 320 ns</title><rect x=\"102.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 2340 ns</title><rect x=\"247.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 2500 ns</title><rect x=\"258.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 2532 ns</title><rect x=\"260.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 3340 ns</title><rect x=\"318.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 3500 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 44) at 3580 ns</title><rect x=\"335.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 45) at 3660 ns</title><rect x=\"341.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 46) at 3740 ns</title><rect x=\"347.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 47) at 3820 ns</title><rect x=\"352.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 48) at 5840 ns</title><rect x=\"497.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 49) at 6000 ns</title><rect x=\"508.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 59) at 6840 ns</title><rect x=\"568.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 60) at 7000 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 64) at 7080 ns</title><rect x=\"585.7\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 65) at 7160 ns</title><rect x=\"591.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 66) at 7240 ns</title><rect x=\"597.1\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 67) at 7320 ns</title><rect x=\"602.9\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 68) at 9340 ns</title><rect x=\"747.1\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 69) at 9500 ns</title><rect x=\"758.6\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 79) at 10340 ns</title><rect x=\"818.6\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 80) at 10500 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">10500 ns</text></svg>",
+      "verdict": "REFUTED"
+     }
+    ],
+    "q1": [
+     {
+      "error": "error: E-ELAB-Q1-NOT-EQUALISABLE: arm totals differ: 8 dt when true, 1 dt when false",
+      "verdict": "ERROR"
+     },
+     {
+      "error": "error: E-ELAB-Q1-NOT-EQUALISABLE: arm totals differ: 8 dt when true, 1 dt when false",
+      "verdict": "ERROR"
+     },
+     {
+      "error": "error: E-ELAB-Q1-NOT-EQUALISABLE: arm totals differ: 8 dt when true, 1 dt when false",
+      "verdict": "ERROR"
+     },
+     {
+      "error": "error: E-ELAB-Q1-NOT-EQUALISABLE: arm totals differ: 8 dt when true, 1 dt when false",
+      "verdict": "ERROR"
+     },
+     {
+      "error": "error: E-ELAB-Q1-NOT-EQUALISABLE: arm totals differ: 8 dt when true, 1 dt when false",
+      "verdict": "ERROR"
+     }
+    ],
+    "qua": [
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O4": {
+        "proved": 59
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">elem:q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">elem:q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 1200 ns</title><rect x=\"205.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 1400 ns</title><rect x=\"225.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 2200 ns</title><rect x=\"309.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 2400 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 54) at 3600 ns</title><rect x=\"455.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 55) at 3800 ns</title><rect x=\"475.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 65) at 4600 ns</title><rect x=\"559.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 66) at 4800 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 80) at 6000 ns</title><rect x=\"705.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 81) at 6200 ns</title><rect x=\"725.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 91) at 7000 ns</title><rect x=\"809.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 92) at 7200 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">7200 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O4": {
+        "proved": 29,
+        "refuted": 30
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">elem:q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">elem:q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 1200 ns</title><rect x=\"205.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 1400 ns</title><rect x=\"225.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 1434 ns</title><rect x=\"229.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 2200 ns</title><rect x=\"309.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 2400 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 54) at 3600 ns</title><rect x=\"455.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 55) at 3800 ns</title><rect x=\"475.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 65) at 4600 ns</title><rect x=\"559.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 66) at 4800 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 80) at 6000 ns</title><rect x=\"705.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 81) at 6200 ns</title><rect x=\"725.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 91) at 7000 ns</title><rect x=\"809.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 92) at 7200 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">7200 ns</text></svg>\n<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">elem:q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">elem:q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 1200 ns</title><rect x=\"205.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 1400 ns</title><rect x=\"225.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 1432 ns</title><rect x=\"229.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 2200 ns</title><rect x=\"309.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 2400 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 54) at 3600 ns</title><rect x=\"455.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 55) at 3800 ns</title><rect x=\"475.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 65) at 4600 ns</title><rect x=\"559.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 66) at 4800 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 80) at 6000 ns</title><rect x=\"705.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 81) at 6200 ns</title><rect x=\"725.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 91) at 7000 ns</title><rect x=\"809.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 92) at 7200 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">7200 ns</text></svg>",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O4": {
+        "proved": 25,
+        "refuted": 34
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">elem:q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">elem:q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 1200 ns</title><rect x=\"205.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 1400 ns</title><rect x=\"225.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 1434 ns</title><rect x=\"229.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 2200 ns</title><rect x=\"309.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 2400 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 54) at 3600 ns</title><rect x=\"455.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 55) at 3800 ns</title><rect x=\"475.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 65) at 4600 ns</title><rect x=\"559.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 66) at 4800 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 80) at 6000 ns</title><rect x=\"705.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 81) at 6200 ns</title><rect x=\"725.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 91) at 7000 ns</title><rect x=\"809.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 92) at 7200 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">7200 ns</text></svg>\n<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">elem:q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">elem:q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 1200 ns</title><rect x=\"205.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 1400 ns</title><rect x=\"225.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 1432 ns</title><rect x=\"229.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 2200 ns</title><rect x=\"309.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 2400 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 54) at 3600 ns</title><rect x=\"455.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 55) at 3800 ns</title><rect x=\"475.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 65) at 4600 ns</title><rect x=\"559.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 66) at 4800 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 80) at 6000 ns</title><rect x=\"705.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 81) at 6200 ns</title><rect x=\"725.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 91) at 7000 ns</title><rect x=\"809.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 92) at 7200 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">7200 ns</text></svg>",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O4": {
+        "proved": 25,
+        "refuted": 34
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">elem:q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">elem:q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 1200 ns</title><rect x=\"205.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 1400 ns</title><rect x=\"225.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 1434 ns</title><rect x=\"229.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 2200 ns</title><rect x=\"309.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 2400 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 54) at 3600 ns</title><rect x=\"455.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 55) at 3800 ns</title><rect x=\"475.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 65) at 4600 ns</title><rect x=\"559.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 66) at 4800 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 80) at 6000 ns</title><rect x=\"705.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 81) at 6200 ns</title><rect x=\"725.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 91) at 7000 ns</title><rect x=\"809.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 92) at 7200 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">7200 ns</text></svg>\n<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">elem:q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">elem:q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 1200 ns</title><rect x=\"205.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 1400 ns</title><rect x=\"225.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 1432 ns</title><rect x=\"229.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 2200 ns</title><rect x=\"309.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 2400 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 54) at 3600 ns</title><rect x=\"455.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 55) at 3800 ns</title><rect x=\"475.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 65) at 4600 ns</title><rect x=\"559.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 66) at 4800 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 80) at 6000 ns</title><rect x=\"705.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 81) at 6200 ns</title><rect x=\"725.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 91) at 7000 ns</title><rect x=\"809.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 92) at 7200 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">7200 ns</text></svg>",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O4": {
+        "proved": 25,
+        "refuted": 34
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">elem:q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">elem:q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 1200 ns</title><rect x=\"205.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 1400 ns</title><rect x=\"225.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 1434 ns</title><rect x=\"229.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 2200 ns</title><rect x=\"309.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 2400 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 54) at 3600 ns</title><rect x=\"455.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 55) at 3800 ns</title><rect x=\"475.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 65) at 4600 ns</title><rect x=\"559.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 66) at 4800 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 80) at 6000 ns</title><rect x=\"705.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 81) at 6200 ns</title><rect x=\"725.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 91) at 7000 ns</title><rect x=\"809.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 92) at 7200 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">7200 ns</text></svg>\n<svg viewBox=\"0 0 840 156\" role=\"img\" aria-label=\"second execution\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">second execution</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">elem:q3</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"145\" font-size=\"11\">elem:q4</text>\n<line x1=\"80\" x2=\"840\" y1=\"148\" y2=\"148\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 24) at 100 ns</title><rect x=\"90.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 25) at 200 ns</title><rect x=\"100.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 26) at 300 ns</title><rect x=\"111.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 27) at 400 ns</title><rect x=\"121.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 28) at 1200 ns</title><rect x=\"205.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 29) at 1400 ns</title><rect x=\"225.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 32) at 1432 ns</title><rect x=\"229.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 39) at 2200 ns</title><rect x=\"309.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 40) at 2400 ns</title><rect x=\"330.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 50) at 2500 ns</title><rect x=\"340.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 51) at 2600 ns</title><rect x=\"350.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 52) at 2700 ns</title><rect x=\"361.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 53) at 2800 ns</title><rect x=\"371.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 54) at 3600 ns</title><rect x=\"455.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 55) at 3800 ns</title><rect x=\"475.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 65) at 4600 ns</title><rect x=\"559.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 66) at 4800 ns</title><rect x=\"580.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 76) at 4900 ns</title><rect x=\"590.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 77) at 5000 ns</title><rect x=\"600.8\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 78) at 5100 ns</title><rect x=\"611.2\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 79) at 5200 ns</title><rect x=\"621.7\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 80) at 6000 ns</title><rect x=\"705.0\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 81) at 6200 ns</title><rect x=\"725.8\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 91) at 7000 ns</title><rect x=\"809.2\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>reset (node 92) at 7200 ns</title><rect x=\"830.0\" y=\"136\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"154\" font-size=\"10\">0</text><text x=\"780\" y=\"154\" font-size=\"10\">7200 ns</text></svg>",
+      "verdict": "REFUTED"
+     }
+    ]
+   },
+   "source": "OPENQASM 3.0;\n// rep_d3_r3: distance-3 repetition code, 3 syndrome round(s), toy lookup decoder\nqubit[5] q;\nbit[2] c;\n\nfor int i in [0:2] {\nbarrier q;\ncx q[0], q[3];\ncx q[1], q[3];\ncx q[1], q[4];\ncx q[2], q[4];\nc[0] = measure q[3];\nc[1] = measure q[4];\nif (c[0] && !c[1]) {\n    x q[0];\n}\nif (c[0] && c[1]) {\n    x q[1];\n}\nif (!c[0] && c[1]) {\n    x q[2];\n}\nreset q[3];\nreset q[4];\nbarrier q;\n}\n"
+  },
+  "tp_basic": {
+   "cells": {
+    "artiq": [
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O1": {
+        "proved": 4,
+        "unknown": 1
+       },
+       "O3": {
+        "proved": 1
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 130\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q0_1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">q1_2</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>event (node 1) at 0 ns</title><rect x=\"80.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 2) at 32 ns</title><rect x=\"183.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 3) at 132 ns</title><rect x=\"506.7\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 4) at 232 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"128\" font-size=\"10\">0</text><text x=\"780\" y=\"128\" font-size=\"10\">232 ns</text></svg>",
+      "verdict": "UNKNOWN"
+     },
+     {
+      "min_margin_ns": -100,
+      "obligations": {
+       "O1": {
+        "proved": 2,
+        "refuted": 2,
+        "unknown": 1
+       },
+       "O3": {
+        "proved": 1
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": -1000,
+      "obligations": {
+       "O1": {
+        "refuted": 4,
+        "unknown": 1
+       },
+       "O3": {
+        "proved": 1
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": -3000,
+      "obligations": {
+       "O1": {
+        "refuted": 4,
+        "unknown": 1
+       },
+       "O3": {
+        "proved": 1
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": -10000,
+      "obligations": {
+       "O1": {
+        "refuted": 4,
+        "unknown": 1
+       },
+       "O3": {
+        "proved": 1
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     }
+    ],
+    "ibm_heron": [
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O3": {
+        "proved": 2
+       },
+       "O4": {
+        "proved": 10
+       },
+       "O7": {
+        "proved": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"90.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"114.9\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"114.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"139.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"139.9\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 224 ns</title><rect x=\"149.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 2404 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 2372 ns</title><rect x=\"820.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 13) at 2404 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">2404 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O3": {
+        "proved": 2
+       },
+       "O4": {
+        "proved": 11
+       },
+       "O7": {
+        "proved": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"88.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"108.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"108.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"127.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"127.9\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 224 ns</title><rect x=\"135.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 2404 ns</title><rect x=\"680.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 2372 ns</title><rect x=\"672.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 16) at 2972 ns</title><rect x=\"822.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 13) at 3004 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">3004 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O3": {
+        "proved": 2
+       },
+       "O4": {
+        "proved": 11
+       },
+       "O7": {
+        "proved": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"84.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"95.5\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"95.5\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"106.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"106.6\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 224 ns</title><rect x=\"111.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 2404 ns</title><rect x=\"413.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 2372 ns</title><rect x=\"409.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 16) at 5372 ns</title><rect x=\"825.6\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 13) at 5404 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">5404 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O3": {
+        "refuted": 2
+       },
+       "O4": {
+        "proved": 11
+       },
+       "O7": {
+        "proved": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"84.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"95.5\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"95.5\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"106.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"106.6\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 224 ns</title><rect x=\"111.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 2404 ns</title><rect x=\"413.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 2372 ns</title><rect x=\"409.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 16) at 5376 ns</title><rect x=\"825.6\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 11) at 5408 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">5408 ns</text></svg>",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O3": {
+        "refuted": 2
+       },
+       "O4": {
+        "proved": 11
+       },
+       "O7": {
+        "proved": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"83.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"91.3\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"91.3\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"99.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"99.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 224 ns</title><rect x=\"102.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 2404 ns</title><rect x=\"323.5\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 2372 ns</title><rect x=\"320.3\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 16) at 7372 ns</title><rect x=\"826.8\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 11) at 7404 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">7404 ns</text></svg>",
+      "verdict": "REFUTED"
+     }
+    ],
+    "q1": [
+     {
+      "error": "error: E-ELAB-Q1-NOT-EQUALISABLE: arm totals differ: 8 dt when true, 1 dt when false",
+      "verdict": "ERROR"
+     },
+     {
+      "error": "error: E-ELAB-Q1-NOT-EQUALISABLE: arm totals differ: 8 dt when true, 1 dt when false",
+      "verdict": "ERROR"
+     },
+     {
+      "error": "error: E-ELAB-Q1-NOT-EQUALISABLE: arm totals differ: 8 dt when true, 1 dt when false",
+      "verdict": "ERROR"
+     },
+     {
+      "error": "error: E-ELAB-Q1-NOT-EQUALISABLE: arm totals differ: 8 dt when true, 1 dt when false",
+      "verdict": "ERROR"
+     },
+     {
+      "error": "error: E-ELAB-Q1-NOT-EQUALISABLE: arm totals differ: 8 dt when true, 1 dt when false",
+      "verdict": "ERROR"
+     }
+    ],
+    "qua": [
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O3": {
+        "proved": 2
+       },
+       "O4": {
+        "proved": 10
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"99.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"158.3\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"158.3\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"217.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"217.7\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 264 ns</title><rect x=\"236.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 1264 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 1232 ns</title><rect x=\"811.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 13) at 1264 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">1264 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O3": {
+        "proved": 2
+       },
+       "O4": {
+        "proved": 11
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"96.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"146.5\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"146.5\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"196.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"196.9\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 264 ns</title><rect x=\"213.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 1264 ns</title><rect x=\"717.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 1232 ns</title><rect x=\"701.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 16) at 1456 ns</title><rect x=\"813.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 13) at 1488 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">1488 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O3": {
+        "proved": 2
+       },
+       "O4": {
+        "proved": 11
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"90.6\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"123.7\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"123.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"156.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"156.9\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 264 ns</title><rect x=\"167.5\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 1264 ns</title><rect x=\"498.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 1232 ns</title><rect x=\"488.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 16) at 2232 ns</title><rect x=\"819.4\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 13) at 2264 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">2264 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O3": {
+        "proved": 2
+       },
+       "O4": {
+        "proved": 11
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"85.6\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"103.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"103.2\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"120.8\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"120.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 264 ns</title><rect x=\"126.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 1264 ns</title><rect x=\"302.3\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 1232 ns</title><rect x=\"296.7\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 16) at 4232 ns</title><rect x=\"824.4\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 13) at 4264 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">4264 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O3": {
+        "refuted": 2
+       },
+       "O4": {
+        "proved": 11
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"counterexample\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">counterexample</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"82.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"88.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"88.8\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"95.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"95.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 264 ns</title><rect x=\"97.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 1264 ns</title><rect x=\"164.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 1232 ns</title><rect x=\"162.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 16) at 11232 ns</title><rect x=\"827.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 11) at 11264 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">11264 ns</text></svg>",
+      "verdict": "REFUTED"
+     }
+    ]
+   },
+   "source": "OPENQASM 3.0;\n// Teleportation with one classical correction (plan Appendix A.1).\n// Policy EQ with a 3000 ns deadline from the arrival of the measurement result.\nqubit[3] q;\nbit[2] c;\n\nh q[1];\ncx q[1], q[2];\ncx q[0], q[1];\nh q[0];\nc[0] = measure q[0];\nc[1] = measure q[1];\n\n@timing.policy eq\n@timing.within 3000ns c[1]\nbox {\n    if (c[1]) {\n        x q[2];\n    }\n}\n"
+  },
+  "tp_q1": {
+   "cells": {
+    "artiq": [
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O1": {
+        "proved": 4,
+        "unknown": 1
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 130\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q0_1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"119\" font-size=\"11\">q1_2</text>\n<line x1=\"80\" x2=\"840\" y1=\"122\" y2=\"122\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>event (node 1) at 0 ns</title><rect x=\"80.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 2) at 32 ns</title><rect x=\"183.4\" y=\"110\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 3) at 132 ns</title><rect x=\"506.7\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>event (node 4) at 232 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"128\" font-size=\"10\">0</text><text x=\"780\" y=\"128\" font-size=\"10\">232 ns</text></svg>",
+      "verdict": "UNKNOWN"
+     },
+     {
+      "min_margin_ns": -100,
+      "obligations": {
+       "O1": {
+        "proved": 2,
+        "refuted": 2,
+        "unknown": 1
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": -1000,
+      "obligations": {
+       "O1": {
+        "refuted": 4,
+        "unknown": 1
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": -3000,
+      "obligations": {
+       "O1": {
+        "refuted": 4,
+        "unknown": 1
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     },
+     {
+      "min_margin_ns": -10000,
+      "obligations": {
+       "O1": {
+        "refuted": 4,
+        "unknown": 1
+       },
+       "O5": {
+        "unknown": 1
+       }
+      },
+      "svg": "",
+      "verdict": "REFUTED"
+     }
+    ],
+    "ibm_heron": [
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 11
+       },
+       "O7": {
+        "proved": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"90.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"114.9\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"114.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"139.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"139.9\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 224 ns</title><rect x=\"149.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 2404 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 2372 ns</title><rect x=\"820.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 7) at 512 ns</title><rect x=\"239.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 14) at 2404 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">2404 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 12
+       },
+       "O7": {
+        "proved": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"88.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"108.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"108.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"127.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"127.9\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 224 ns</title><rect x=\"135.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 2404 ns</title><rect x=\"680.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 2372 ns</title><rect x=\"672.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 7) at 512 ns</title><rect x=\"207.8\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 18) at 2972 ns</title><rect x=\"822.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 14) at 3004 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">3004 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 12
+       },
+       "O7": {
+        "proved": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"84.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"95.5\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"95.5\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"106.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"106.6\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 224 ns</title><rect x=\"111.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 2404 ns</title><rect x=\"413.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 2372 ns</title><rect x=\"409.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 7) at 512 ns</title><rect x=\"151.1\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 18) at 5372 ns</title><rect x=\"825.6\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 14) at 5404 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">5404 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 12
+       },
+       "O7": {
+        "proved": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"84.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"95.5\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"95.5\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"106.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"106.6\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 224 ns</title><rect x=\"111.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 2404 ns</title><rect x=\"413.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 2372 ns</title><rect x=\"409.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 7) at 512 ns</title><rect x=\"151.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 18) at 5376 ns</title><rect x=\"825.6\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 14) at 5408 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">5408 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 12
+       },
+       "O7": {
+        "proved": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"83.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"91.3\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 112 ns</title><rect x=\"91.3\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"99.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 192 ns</title><rect x=\"99.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 224 ns</title><rect x=\"102.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 2404 ns</title><rect x=\"323.5\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 2372 ns</title><rect x=\"320.3\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 7) at 512 ns</title><rect x=\"131.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 18) at 7372 ns</title><rect x=\"826.8\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 14) at 7404 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">7404 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     }
+    ],
+    "q1": [
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O1": {
+        "proved": 10
+       },
+       "O2a": {
+        "proved": 2
+       },
+       "O5": {
+        "proved": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 52\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">rt</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 4 ns</title><rect x=\"81.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 36 ns</title><rect x=\"89.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 136 ns</title><rect x=\"115.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 236 ns</title><rect x=\"141.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>acquire (node 5) at 268 ns</title><rect x=\"149.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>acquire (node 6) at 1268 ns</title><rect x=\"409.8\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>wait (node 7) at 2268 ns</title><rect x=\"669.8\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>wait (node 16) at 2668 ns</title><rect x=\"773.8\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 12) at 2880 ns</title><rect x=\"829.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>wait (node 14) at 2884 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"50\" font-size=\"10\">0</text><text x=\"780\" y=\"50\" font-size=\"10\">2884 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O1": {
+        "proved": 10
+       },
+       "O2a": {
+        "proved": 2
+       },
+       "O5": {
+        "proved": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 52\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">rt</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 4 ns</title><rect x=\"81.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 36 ns</title><rect x=\"89.3\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 136 ns</title><rect x=\"115.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 236 ns</title><rect x=\"140.8\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>acquire (node 5) at 268 ns</title><rect x=\"149.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>acquire (node 6) at 1268 ns</title><rect x=\"406.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>wait (node 7) at 2268 ns</title><rect x=\"664.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>wait (node 16) at 2668 ns</title><rect x=\"767.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 12) at 2908 ns</title><rect x=\"829.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>wait (node 14) at 2912 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"50\" font-size=\"10\">0</text><text x=\"780\" y=\"50\" font-size=\"10\">2912 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O1": {
+        "proved": 10
+       },
+       "O2a": {
+        "proved": 2
+       },
+       "O5": {
+        "proved": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 52\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">rt</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 4 ns</title><rect x=\"80.8\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 36 ns</title><rect x=\"87.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 136 ns</title><rect x=\"107.8\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 236 ns</title><rect x=\"128.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>acquire (node 5) at 268 ns</title><rect x=\"134.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>acquire (node 6) at 1268 ns</title><rect x=\"339.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>wait (node 7) at 2268 ns</title><rect x=\"543.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>wait (node 16) at 2668 ns</title><rect x=\"624.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 12) at 3668 ns</title><rect x=\"829.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>wait (node 14) at 3672 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"50\" font-size=\"10\">0</text><text x=\"780\" y=\"50\" font-size=\"10\">3672 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O1": {
+        "proved": 10
+       },
+       "O2a": {
+        "proved": 2
+       },
+       "O5": {
+        "proved": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 52\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">rt</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 4 ns</title><rect x=\"80.5\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 36 ns</title><rect x=\"84.8\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 136 ns</title><rect x=\"98.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 236 ns</title><rect x=\"111.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>acquire (node 5) at 268 ns</title><rect x=\"115.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>acquire (node 6) at 1268 ns</title><rect x=\"247.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>wait (node 7) at 2268 ns</title><rect x=\"379.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>wait (node 16) at 2668 ns</title><rect x=\"432.8\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 12) at 5668 ns</title><rect x=\"829.5\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>wait (node 14) at 5672 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"50\" font-size=\"10\">0</text><text x=\"780\" y=\"50\" font-size=\"10\">5672 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O1": {
+        "proved": 10
+       },
+       "O2a": {
+        "proved": 2
+       },
+       "O5": {
+        "proved": 1
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 52\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">rt</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 4 ns</title><rect x=\"80.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 36 ns</title><rect x=\"82.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 136 ns</title><rect x=\"88.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 236 ns</title><rect x=\"94.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>acquire (node 5) at 268 ns</title><rect x=\"95.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>acquire (node 6) at 1268 ns</title><rect x=\"155.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>wait (node 7) at 2268 ns</title><rect x=\"214.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>wait (node 16) at 2668 ns</title><rect x=\"237.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>x (node 12) at 12668 ns</title><rect x=\"829.8\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>wait (node 14) at 12672 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"50\" font-size=\"10\">0</text><text x=\"780\" y=\"50\" font-size=\"10\">12672 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     }
+    ],
+    "qua": [
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 11
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"99.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"158.3\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"158.3\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"217.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"217.7\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 264 ns</title><rect x=\"236.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 1264 ns</title><rect x=\"830.0\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 1232 ns</title><rect x=\"811.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 7) at 532 ns</title><rect x=\"395.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 14) at 1264 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">1264 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 12
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"96.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"146.5\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"146.5\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"196.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"196.9\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 264 ns</title><rect x=\"213.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 1264 ns</title><rect x=\"717.1\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 1232 ns</title><rect x=\"701.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 7) at 532 ns</title><rect x=\"348.1\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 18) at 1456 ns</title><rect x=\"813.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 14) at 1488 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">1488 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 12
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"90.6\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"123.7\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"123.7\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"156.9\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"156.9\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 264 ns</title><rect x=\"167.5\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 1264 ns</title><rect x=\"498.7\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 1232 ns</title><rect x=\"488.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 7) at 532 ns</title><rect x=\"256.2\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 18) at 2232 ns</title><rect x=\"819.4\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 14) at 2264 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">2264 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 12
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"85.6\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"103.2\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"103.2\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"120.8\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"120.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 264 ns</title><rect x=\"126.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 1264 ns</title><rect x=\"302.3\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 1232 ns</title><rect x=\"296.7\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 7) at 532 ns</title><rect x=\"173.6\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 18) at 4232 ns</title><rect x=\"824.4\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 14) at 4264 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">4264 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     },
+     {
+      "min_margin_ns": 0,
+      "obligations": {
+       "O2b": {
+        "proved": 1
+       },
+       "O4": {
+        "proved": 12
+       }
+      },
+      "svg": "<svg viewBox=\"0 0 840 104\" role=\"img\" aria-label=\"typical run\" width=\"100%\">\n<text x=\"2\" y=\"14\" font-size=\"11\">typical run</text>\n<text x=\"2\" y=\"41\" font-size=\"11\">elem:q0</text>\n<line x1=\"80\" x2=\"840\" y1=\"44\" y2=\"44\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"67\" font-size=\"11\">elem:q1</text>\n<line x1=\"80\" x2=\"840\" y1=\"70\" y2=\"70\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<text x=\"2\" y=\"93\" font-size=\"11\">elem:q2</text>\n<line x1=\"80\" x2=\"840\" y1=\"96\" y2=\"96\" stroke=\"#bbb\" stroke-width=\"1\"/>\n<g><title>h (node 1) at 32 ns</title><rect x=\"82.1\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"88.8\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 2) at 132 ns</title><rect x=\"88.8\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"95.4\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>cx (node 3) at 232 ns</title><rect x=\"95.4\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>h (node 4) at 264 ns</title><rect x=\"97.6\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 5) at 1264 ns</title><rect x=\"164.2\" y=\"32\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>measure (node 6) at 1232 ns</title><rect x=\"162.0\" y=\"58\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 7) at 532 ns</title><rect x=\"115.4\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 18) at 11232 ns</title><rect x=\"827.9\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<g><title>delay (node 14) at 11264 ns</title><rect x=\"830.0\" y=\"84\" width=\"6\" height=\"14\" fill=\"#2c6fbb\"/></g>\n<text x=\"80\" y=\"102\" font-size=\"10\">0</text><text x=\"780\" y=\"102\" font-size=\"10\">11264 ns</text></svg>",
+      "verdict": "PROVED-UNDER"
+     }
+    ]
+   },
+   "source": "OPENQASM 3.0;\n// Teleportation for a predicated backend (Q1): the two arms hold one RT instruction of the same\n// duration, so the EQ policy is satisfiable (equal counts and durations; see plan 8.5).\nqubit[3] q;\nbit[2] c;\n\nh q[1];\ncx q[1], q[2];\ncx q[0], q[1];\nh q[0];\nc[0] = measure q[0];\nc[1] = measure q[1];\ndelay[400ns] q[2];\n\n@timing.policy eq\nbox {\n    if (c[1]) {\n        x q[2];\n    } else {\n        delay[32ns] q[2];\n    }\n}\n"
+  }
+ },
+ "stacks": {
+  "artiq": {
+   "key": "timeline.commit_lead",
+   "label": "timeline.commit_lead (ns)",
+   "values": [
+    0,
+    100,
+    1000,
+    3000,
+    10000
+   ]
+  },
+  "ibm_heron": {
+   "key": "ff.default",
+   "label": "ff.default upper bound (ns)",
+   "values": [
+    0,
+    600,
+    3000,
+    3001,
+    5000
+   ]
+  },
+  "q1": {
+   "key": "trigger.network",
+   "label": "trigger.network upper bound (ns)",
+   "values": [
+    212,
+    240,
+    1000,
+    3000,
+    10000
+   ]
+  },
+  "qua": {
+   "key": "active_reset",
+   "label": "active_reset upper bound (ns)",
+   "values": [
+    0,
+    224,
+    1000,
+    3000,
+    10000
+   ]
+  }
+ }
+}

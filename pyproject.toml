@@ -42,6 +42,7 @@ z3 = ["z3-solver>=4.13"]
 synth = []  # no optional import is used by solve/synth today; the extra is kept for the documented name
 bench = ["pyarrow", "matplotlib"]
 docs = ["mkdocs>=1.6,<2"]
+tutorials = ["jupyter", "nbconvert", "nbclient", "nbformat", "ipykernel"]
 dev = ["pytest", "pytest-cov", "pytest-xdist", "hypothesis", "ruff", "mypy", "import-linter", "jsonschema"]
 
 [project.scripts]
@@ -73,9 +74,14 @@ pythonpath = ["src"]
 line-length = 100
 target-version = "py310"
 src = ["src", "tests"]
+# notebook sources (percent-format scripts) are prose-shaped, not library code
+extend-exclude = ["tutorials/*/src.py", "tutorials/*/*.ipynb"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+"tutorials/*.py" = ["E501"]  # helper scripts embed long table/HTML lines
 
 [tool.mypy]
 python_version = "3.10"

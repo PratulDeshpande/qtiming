@@ -2,6 +2,14 @@
 
 All notable changes are listed here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Added
+- `tutorials/`: 14 executable Jupyter notebooks (00 to 13) rendered to `Docs/tutorials/` and an
+  interactive four-stack comparison page (`compare.md`, data from real `check` runs). Every key result is
+  asserted in a cell; `tests/tutorials` executes them. New `tutorials` extra; build with
+  `python tutorials/build.py` and `python tutorials/compare.py`.
+
 ## [0.1.0] - 2026-11-20 (first public alpha)
 
 Phases P0 to P9 are committed (`git log`). P10 to P14 are present in the working tree but were not

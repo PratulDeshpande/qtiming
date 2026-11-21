@@ -40,6 +40,23 @@ nav:
       - Qiskit passes: qiskit.md
       - Errors: errors.md
       - Command reference: cli.md
+  - Tutorials:
+      - Overview: tutorials/index.md
+      - Why timing breaks dynamic circuits: tutorials/00-why-timing.md
+      - Your first verdict: tutorials/01-first-verdict.md
+      - The four verdicts: tutorials/02-four-verdicts.md
+      - Policies and annotations: tutorials/03-policies.md
+      - Obligation tour: tutorials/04-obligations.md
+      - Contracts are claims: tutorials/05-contracts.md
+      - Same circuit, four stacks: tutorials/06-four-stacks.md
+      - Counterexamples you can trust: tutorials/07-counterexamples.md
+      - Automatic repair: tutorials/08-repair.md
+      - From Qiskit: tutorials/09-qiskit.md
+      - qtiming in CI: tutorials/10-ci.md
+      - Under the hood: tutorials/11-under-the-hood.md
+      - Real workloads: tutorials/12-workloads.md
+      - Evidence from hardware jobs: tutorials/13-evidence.md
+      - Interactive comparison: tutorials/compare.md
   - Reference:
       - Personalities:
           - IBM: personality-spec/ibm.md
