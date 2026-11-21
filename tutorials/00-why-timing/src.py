@@ -8,11 +8,15 @@
 # records what each controller stack promises.
 
 # %%
+# hide
+#!pip install qtiming
+
+# %%
+# hide
 import json, sys
 from pathlib import Path
 sys.path.insert(0, str(Path.cwd().parent))
 import _show
-from IPython.display import HTML, display
 
 # %% [markdown]
 # ## The problem in one picture
@@ -21,15 +25,16 @@ from IPython.display import HTML, display
 # on every shot. The bar is a sketch (not to scale, not a measurement).
 
 # %%
-display(HTML('''<svg viewBox="0 0 560 150" role="img" aria-label="Sketch: measurement, uncertain feed-forward latency, correction" style="max-width:100%;height:auto;font:12px sans-serif">
-<line x1="40" y1="40" x2="520" y2="40" stroke="#111418"/><text x="4" y="44">q0</text>
-<line x1="40" y1="100" x2="520" y2="100" stroke="#111418"/><text x="4" y="104">q2</text>
-<rect x="60" y="28" width="50" height="24" fill="#EAF2FA" stroke="#0B5FA5"/><text x="68" y="44">measure</text>
-<rect x="110" y="62" width="240" height="14" fill="#F4F6F9" stroke="#4A5563" stroke-dasharray="4 3"/><text x="150" y="73">feed-forward latency: a to b ns</text>
-<rect x="350" y="88" width="60" height="24" fill="#111418"/><text x="362" y="104" fill="#fff">x if c</text>
-<rect x="110" y="120" width="90" height="10" fill="#0B5FA5"/><text x="205" y="129">best case: q2 idles this long</text>
-<text x="40" y="146">worst case: q2 idles until the correction lands, so idle time varies with the latency</text>
-</svg>'''))
+# hide-input
+_show.figure('''<svg viewBox="0 0 600 160" width="600" role="img" aria-label="Sketch: qubit q0 is measured; the result reaches the controller after a feed-forward latency of a to b ns; the correction x on q2 starts when it arrives, so q2 idles anywhere from the best-case to the worst-case length" font-size="12">
+<line x1="40" y1="40" x2="580" y2="40" stroke="#111418"/><text x="4" y="44">q0</text>
+<line x1="40" y1="100" x2="580" y2="100" stroke="#111418"/><text x="4" y="104">q2</text>
+<rect x="56" y="28" width="74" height="24" fill="#EAF2FA" stroke="#0B5FA5"/><text x="93" y="44" text-anchor="middle">measure</text>
+<rect x="130" y="62" width="220" height="16" fill="#F4F6F9" stroke="#4A5563" stroke-dasharray="4 3"/><text x="240" y="74" text-anchor="middle">feed-forward latency: a to b ns</text>
+<rect x="350" y="88" width="64" height="24" fill="#111418"/><text x="382" y="104" text-anchor="middle" fill="#fff">x if c</text>
+<rect x="130" y="124" width="90" height="10" fill="#0B5FA5"/><text x="228" y="133">best case: q2 idles this long</text>
+<rect x="130" y="142" width="220" height="10" fill="#EAF2FA" stroke="#0B5FA5"/><text x="358" y="151">worst case: until the correction lands</text>
+</svg>''')
 
 # %% [markdown]
 # ## What the tool answers

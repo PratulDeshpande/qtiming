@@ -5,15 +5,6 @@
 This tutorial builds teleportation in Python and uses `from_circuit`, the annotation classes, the three transpiler passes, the `scheduling_method="qtiming"` plug-in, and the OpenQASM 3 / QPY round trip. Reference: [Qiskit](../qiskit.md), [Policies](../policies.md). Needs the `qiskit` extra; supported Qiskit is 2.3 to 2.6.
 
 ```python
-import os, sys, tempfile
-from pathlib import Path
-sys.path.insert(0, str(Path.cwd().parent))
-import _show
-
-def P(*a):  # one display message per call: split stdout chunks made the rendered page differ run to run
-    from IPython.display import display
-    display({"text/plain": " ".join(map(str, a))}, raw=True)
-
 from qiskit import QuantumCircuit
 from qiskit.transpiler import PassManager
 from qiskit.transpiler.exceptions import TranspilerError

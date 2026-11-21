@@ -6,11 +6,13 @@
 # A *contract* is a TOML file of hardware timing numbers. qtiming uses only what it states. Every latency carries an evidence class and a source string; a number the contract leaves out is *absent*, never guessed. Reference: [Contracts](../contracts.md), [Reading a verdict](../verdicts.md), [Errors](../errors.md).
 
 # %%
+# hide
 import json, re, sys
 from pathlib import Path
 sys.path.insert(0, str(Path.cwd().parent))
 import _show
 
+# %%
 TP = _show.FAMILIES / "teleportation/tp_basic.qasm"
 
 # %% [markdown]
@@ -120,38 +122,46 @@ assert all(v == "PROVED-UNDER" for n, v, _ in rows if n <= 3000)
 assert min(flip) == 3004 and dict((n, g) for n, _, g in rows)[3000] == 0
 
 # %% [markdown]
-# Hand-made SVG of the same data: green dots are PROVED-UNDER, red are REFUTED. The line is the O3 margin, which falls one nanosecond per nanosecond until it hits zero at the deadline.
+# The same data drawn: blue dots are PROVED-UNDER and sit on the O3 margin line, which falls one nanosecond per nanosecond until it hits zero at the deadline. Crosses on the bottom row are REFUTED.
 
 # %%
-from IPython.display import HTML, display
-
-W, H, L, R, T, B = 640, 220, 60, 20, 20, 50
+# hide-input
+W, H, L, R, T, B = 620, 220, 60, 24, 20, 50  # fits the 622px reading column
 xs = lambda n: L + (W - L - R) * n / 4000
 ys = lambda g: T + (H - T - B) * (1 - g / 3000)
 pts = [(n, g) for n, _, g in rows if g is not None]
 line = " ".join(f"{xs(n):.1f},{ys(g):.1f}" for n, g in pts)
-dots = "".join(
-    f'<circle cx="{xs(n):.1f}" cy="{(ys(g) if g is not None else H - B + 14):.1f}" r="5" '
-    f'fill="{"#1a7f37" if v != "REFUTED" else "#cf222e"}"><title>{n} ns: {v}</title></circle>'
-    for n, v, g in rows)
+INK, BLUE, MUTED = "#111418", "#0B5FA5", "#4A5563"  # docs theme tokens
+
+
+def mark(n, v, g):
+    x = xs(n)
+    if v == "REFUTED":  # a cross, not just a colour, on its own labelled row
+        y = H - B + 14
+        return (f'<path d="M{x-4:.1f},{y-4} l8,8 m0,-8 l-8,8" stroke="{INK}" stroke-width="2">'
+                f'<title>{n} ns: {v}</title></path>')
+    return f'<circle cx="{x:.1f}" cy="{ys(g):.1f}" r="4.5" fill="{BLUE}"><title>{n} ns: {v}</title></circle>'
+
+
+dots = "".join(mark(n, v, g) for n, v, g in rows)
 ticks = "".join(
-    f'<text x="{xs(n):.1f}" y="{H - B + 36}" font-size="11" text-anchor="middle" fill="currentColor">{n}</text>'
+    f'<text x="{xs(n):.1f}" y="{H - B + 36}" font-size="11" text-anchor="middle">{n}</text>'
     for n in (0, 1000, 2000, 3000, 4000))
 svg = (
-    f'<svg viewBox="0 0 {W} {H}" width="100%" role="img" aria-label="Verdict versus feed-forward upper bound" '
-    f'style="max-width:640px;color:#57606a">'
-    f'<line x1="{L}" y1="{H - B}" x2="{W - R}" y2="{H - B}" stroke="currentColor"/>'
-    f'<line x1="{xs(3000):.1f}" y1="{T}" x2="{xs(3000):.1f}" y2="{H - B}" stroke="#cf222e" stroke-dasharray="4"/>'
-    f'<text x="{xs(3000) + 4:.1f}" y="{T + 10}" font-size="11" fill="#cf222e">deadline 3000 ns</text>'
-    f'<line x1="{xs(600):.1f}" y1="{T}" x2="{xs(600):.1f}" y2="{H - B}" stroke="currentColor" stroke-dasharray="2"/>'
-    f'<text x="{xs(600) + 4:.1f}" y="{T + 10}" font-size="11" fill="currentColor">vendor claim 600 ns</text>'
-    f'<polyline points="{line}" fill="none" stroke="#1a7f37" stroke-width="1.5"/>{dots}{ticks}'
-    f'<text x="{L - 8}" y="{ys(3000) + 4:.1f}" font-size="11" text-anchor="end" fill="currentColor">3000</text>'
-    f'<text x="{L - 8}" y="{ys(0) + 4:.1f}" font-size="11" text-anchor="end" fill="currentColor">0</text>'
-    f'<text x="{L - 8}" y="{H - B + 18}" font-size="11" text-anchor="end" fill="currentColor">refuted</text>'
-    f'<text x="{(L + W - R) / 2}" y="{H - 4}" font-size="12" text-anchor="middle" fill="currentColor">'
+    f'<svg viewBox="0 0 {W} {H}" width="{W}" role="img" aria-label="O3 margin against the assumed feed-forward '
+    f'upper bound: PROVED-UNDER up to 3000 ns with the margin falling to 0, REFUTED from 3004 ns">'
+    f'<line x1="{L}" y1="{H - B}" x2="{W - R}" y2="{H - B}" stroke="{INK}"/>'
+    f'<line x1="{xs(3000):.1f}" y1="{T}" x2="{xs(3000):.1f}" y2="{H - B}" stroke="{INK}" stroke-dasharray="4"/>'
+    f'<text x="{xs(3000) + 4:.1f}" y="{T + 10}" font-size="11">deadline 3000 ns</text>'
+    f'<line x1="{xs(600):.1f}" y1="{T}" x2="{xs(600):.1f}" y2="{H - B}" stroke="{MUTED}" stroke-dasharray="2"/>'
+    f'<text x="{xs(600) + 4:.1f}" y="{T + 10}" font-size="11" fill="{MUTED}">vendor claim 600 ns</text>'
+    f'<polyline points="{line}" fill="none" stroke="{BLUE}" stroke-width="1.5"/>{dots}{ticks}'
+    f'<text x="{L - 8}" y="{ys(3000) + 4:.1f}" font-size="11" text-anchor="end">3000</text>'
+    f'<text x="{L - 8}" y="{ys(0) + 4:.1f}" font-size="11" text-anchor="end">0</text>'
+    f'<text x="{L - 8}" y="{H - B + 18}" font-size="11" text-anchor="end">refuted</text>'
+    f'<text x="{(L + W - R) / 2}" y="{H - 4}" font-size="12" text-anchor="middle">'
     f'assumed ff.default upper bound (ns); line = O3 margin (ns)</text></svg>')
-display(HTML(svg))
+_show.figure(svg)
 
 # %% [markdown]
 # ## 8. `--max-safe`: ask for the flip point directly

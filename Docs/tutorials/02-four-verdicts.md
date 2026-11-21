@@ -4,31 +4,6 @@
 
 Every `check` ends in exactly one of four verdicts. This tutorial produces each one from a real program, on IBM Heron and on ARTIQ, and shows how `--strict-proved` and `--assume` change what you get. Reference: [Reading a verdict](../verdicts.md), [Contracts](../contracts.md), [Command reference](../cli.md).
 
-```python
-import sys
-from pathlib import Path
-sys.path.insert(0, str(Path.cwd().parent))
-import _show
-from IPython.display import HTML, display
-
-TUT = Path.cwd().relative_to(_show.ROOT)  # tutorials/02-four-verdicts, repo-relative
-FAM = _show.FAMILIES
-
-def card(rows):
-    """Verdict cards, one per (title, exit code, report text). The label is text, not just colour."""
-    import html
-    css = ("<style>.qv{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.6rem}"
-           ".qv div{border:1px solid #8886;border-left:6px solid var(--c);border-radius:6px;padding:.5rem .7rem}"
-           ".qv b{font-size:1.05em}.qv small{display:block;opacity:.8}</style>")
-    colour = {"PROVED": "#1a7f37", "PROVED-UNDER": "#9a6700", "REFUTED": "#cf222e", "UNKNOWN": "#6e7781"}
-    out = []
-    for title, code, text in rows:
-        v = text.split()[0]
-        out.append(f'<div style="--c:{colour[v]}"><b>{html.escape(v)}</b> (exit {code})'
-                   f'<small>{html.escape(title)}</small></div>')
-    display(HTML(css + '<div class="qv">' + "".join(out) + "</div>"))
-```
-
 ## How a program gets its verdict
 `check` generates timing obligations and the result is the **weakest** of them, in the order `REFUTED`, `UNKNOWN`, `PROVED-UNDER`, `PROVED`. One failing obligation refutes the whole program; one undecided obligation makes it unknown even if the rest passed.
 
@@ -62,7 +37,7 @@ proved = (code, out)
     [exit 0]
     
 
-No `assumptions:` block: the result was decided by exact evaluation (tier 0). This is the only way a program reaches `PROVED` with the shipped contracts: every shipped contract states its latencies at the `vendor` class, and only `cyc` or `cert` evidence can discharge a latency-dependent obligation (see [assumption classes](../verdicts.md#assumptions-and-evidence-classes)). I found no family program with a branch that is PROVED, and `--assume` cannot raise a number above `vendor`.
+No `assumptions:` block: the result was decided by exact evaluation (tier 0). This is the only way a program reaches `PROVED` with the shipped contracts: every shipped contract states its latencies at the `vendor` class, and only `cyc` or `cert` evidence can discharge a latency-dependent obligation (see [assumption classes](../verdicts.md#assumptions-and-evidence-classes)). No program in the benchmark families that has a branch comes out PROVED, and `--assume` cannot raise a number above `vendor`.
 
 ## 2. PROVED-UNDER: true if the vendor number is
 Teleportation with a correction branch. It holds if the feed-forward latency stays within IBM's public claim.
@@ -178,7 +153,7 @@ refuted = (code, out)
 _show.report_svg(FAM / "teleportation/tp_sync.qasm", "ibm_heron")
 ```
 
-<svg viewBox="0 0 840 104" role="img" aria-label="counterexample" width="100%">
+<div class="qt-fig qt-tl"><svg viewBox="0 0 840 104" role="img" aria-label="counterexample" width="100%">
 <text x="2" y="14" font-size="11">counterexample</text>
 <text x="2" y="41" font-size="11">q0</text>
 <line x1="80" x2="840" y1="44" y2="44" stroke="#bbb" stroke-width="1"/>
@@ -213,7 +188,7 @@ _show.report_svg(FAM / "teleportation/tp_sync.qasm", "ibm_heron")
 <g><title>measure (node 5) at 2404 ns</title><rect x="830.0" y="32" width="6" height="14" fill="#2c6fbb"/></g>
 <g><title>measure (node 6) at 2372 ns</title><rect x="820.0" y="58" width="6" height="14" fill="#2c6fbb"/></g>
 <g><title>x (node 11) at 2404 ns</title><rect x="830.0" y="84" width="6" height="14" fill="#2c6fbb"/></g>
-<text x="80" y="102" font-size="10">0</text><text x="780" y="102" font-size="10">2404 ns</text></svg>
+<text x="80" y="102" font-size="10">0</text><text x="780" y="102" font-size="10">2404 ns</text></svg></div>
 
 The two timelines are the counterexample (the report text above prints both). Every REFUTED is replayed in an independent executor before it is reported; see [tutorial 01](01-first-verdict.md).
 
@@ -367,21 +342,7 @@ a4 = (code, out)
 
 ## All results side by side
 
-```python
-card([
-    ("plain.qasm, ibm_heron", *proved),
-    ("tp_basic, ibm_heron", *under),
-    ("tp_basic, ibm_heron, --strict-proved", *strict),
-    ("tp_sync, ibm_heron", *refuted),
-    ("tp_sync, ibm_heron, --no-tier2", *unknown),
-    ("artiq_reset_fb, no commit_lead", *a1),
-    ("artiq_reset_fb, in2cpu unbounded", *a2),
-    ("artiq_reset_fb, in2cpu 0:300", *a3),
-    ("artiq_reset_fb, in2cpu 0:2000", *a4),
-])
-```
-
-<style>.qv{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.6rem}.qv div{border:1px solid #8886;border-left:6px solid var(--c);border-radius:6px;padding:.5rem .7rem}.qv b{font-size:1.05em}.qv small{display:block;opacity:.8}</style><div class="qv"><div style="--c:#1a7f37"><b>PROVED</b> (exit 0)<small>plain.qasm, ibm_heron</small></div><div style="--c:#9a6700"><b>PROVED-UNDER</b> (exit 0)<small>tp_basic, ibm_heron</small></div><div style="--c:#9a6700"><b>PROVED-UNDER</b> (exit 1)<small>tp_basic, ibm_heron, --strict-proved</small></div><div style="--c:#cf222e"><b>REFUTED</b> (exit 1)<small>tp_sync, ibm_heron</small></div><div style="--c:#6e7781"><b>UNKNOWN</b> (exit 3)<small>tp_sync, ibm_heron, --no-tier2</small></div><div style="--c:#6e7781"><b>UNKNOWN</b> (exit 3)<small>artiq_reset_fb, no commit_lead</small></div><div style="--c:#6e7781"><b>UNKNOWN</b> (exit 3)<small>artiq_reset_fb, in2cpu unbounded</small></div><div style="--c:#6e7781"><b>UNKNOWN</b> (exit 3)<small>artiq_reset_fb, in2cpu 0:300</small></div><div style="--c:#cf222e"><b>REFUTED</b> (exit 1)<small>artiq_reset_fb, in2cpu 0:2000</small></div></div>
+<div class="qv-list"><div><span class="qv qv-PROVED">PROVED</span> exit 0<small>plain.qasm, ibm_heron</small></div><div><span class="qv qv-PROVED-UNDER">PROVED-UNDER</span> exit 0<small>tp_basic, ibm_heron</small></div><div><span class="qv qv-PROVED-UNDER">PROVED-UNDER</span> exit 1<small>tp_basic, ibm_heron, --strict-proved</small></div><div><span class="qv qv-REFUTED">REFUTED</span> exit 1<small>tp_sync, ibm_heron</small></div><div><span class="qv qv-UNKNOWN">UNKNOWN</span> exit 3<small>tp_sync, ibm_heron, --no-tier2</small></div><div><span class="qv qv-UNKNOWN">UNKNOWN</span> exit 3<small>artiq_reset_fb, no commit_lead</small></div><div><span class="qv qv-UNKNOWN">UNKNOWN</span> exit 3<small>artiq_reset_fb, in2cpu unbounded</small></div><div><span class="qv qv-UNKNOWN">UNKNOWN</span> exit 3<small>artiq_reset_fb, in2cpu 0:300</small></div><div><span class="qv qv-REFUTED">REFUTED</span> exit 1<small>artiq_reset_fb, in2cpu 0:2000</small></div></div>
 
 ## What just happened
 - The verdict is the weakest obligation result: `REFUTED` > `UNKNOWN` > `PROVED-UNDER` > `PROVED`.

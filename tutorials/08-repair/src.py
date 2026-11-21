@@ -6,13 +6,14 @@
 # `qtiming repair` proposes a patch for one kind of failure only: **O1**, the commit-lead (RTIO underflow) obligation. It inserts a declared `delay`, then **re-verifies** the patched program with the normal pipeline before showing it. It refuses O3 (deadlines). Reference: [Command reference](../cli.md), [Obligations](../obligations.md).
 
 # %%
+# hide
 import difflib, json, sys, tempfile
 from pathlib import Path
 sys.path.insert(0, str(Path.cwd().parent))
 import _show
 
 # %% [markdown]
-# ## The program and the numbers we have to supply
+# ## The program and the numbers you have to supply
 # `artiq_burst` fires four `x` gates back to back, then measures. It is a synthetic kernel written for this repo, not ARTIQ project code.
 
 # %%
@@ -28,7 +29,7 @@ code, out = _show.run("check", BURST, "--contract", "artiq")
 assert code == 2 and "E-CT-MISSING" in out
 
 # %% [markdown]
-# So we supply them with `--assume`. **These values are illustrative, not ARTIQ numbers**: 32 ns per `x`, 1000 ns measurement, `commit_lead` 100 ns, `in2cpu` 0 to 300 ns. Every one is recorded as an assumption in the report.
+# So they are supplied with `--assume`. **These values are illustrative, not ARTIQ numbers**: 32 ns per `x`, 1000 ns measurement, `commit_lead` 100 ns, `in2cpu` 0 to 300 ns. Every one is recorded as an assumption in the report.
 
 # %%
 A = ["durations.x=32", "durations.measure=1000", "timeline.commit_lead=100", "in2cpu=0:300"]
@@ -100,7 +101,7 @@ code, out = _show.run("repair", SLACK, "--contract", "artiq", *ASSUME)
 assert code == 1 and "unsupported: no automatic patch for O1" in out
 
 # %% [markdown]
-# `repair` gives up. Its search only pads shortfalls it can compute exactly (Tier 0 counterexamples with a fixed `short by N ns`); this one comes from the solver and depends on the `in2cpu` range, so there is no exact number to pad. **This differs from what the project plan expected** (an automatic O1 patch here); the shipped build reports "no automatic patch" and we show it as it is. Without the `in2cpu` bound the verdict is not even REFUTED:
+# `repair` gives up. Its search only pads shortfalls it can compute exactly (Tier 0 counterexamples with a fixed `short by N ns`); this one comes from the solver and depends on the `in2cpu` range, so there is no exact number to pad. This build reports "no automatic patch" for this case, and the page shows that as it is. Without the `in2cpu` bound the verdict is not even REFUTED:
 
 # %%
 NOIN = ["--assume", "durations.x=32", "--assume", "durations.measure=1000",

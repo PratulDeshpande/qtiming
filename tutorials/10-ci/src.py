@@ -6,6 +6,7 @@
 # Yes: `check` has stable exit codes and four report formats, one of which is SARIF, the format GitHub code scanning reads. Reference: [Command reference](../cli.md), [Reading a verdict](../verdicts.md).
 
 # %%
+# hide
 import json, sys, tempfile
 from html import escape
 from pathlib import Path
@@ -76,25 +77,24 @@ assert sarif["version"] == "2.1.0" and run["properties"]["verdict"] == "REFUTED"
 assert len(errors) == 1 and errors[0]["ruleId"] == "V-O4"
 
 # %% [markdown]
-# The error finding as GitHub would show it, a hand-made rendering of the real SARIF above (not a GitHub screenshot):
+# The same finding drawn as a code-scanning annotation, built from the real SARIF above (not a screenshot of GitHub):
 
 # %%
-from IPython.display import HTML, display
-
+# hide-input
 e = errors[0]
 p = e["locations"][0]["physicalLocation"]
 path = p["artifactLocation"]["uri"].replace("\\", "/")
 path = path[path.find("benchmarks/"):] if "benchmarks/" in path else path
 cex = e["properties"]["counterexample"]
-card = f"""<div style="font:14px/1.5 system-ui,sans-serif;border:1px solid #d0d7de;border-radius:6px;max-width:640px;overflow:hidden">
-<div style="background:#ffebe9;padding:8px 12px;border-bottom:1px solid #d0d7de;color:#82071e"><b>{escape(e['level'])}</b> &middot; {escape(e['ruleId'])}</div>
-<div style="padding:12px;color:#1f2328">
-<div style="margin-bottom:6px"><b>{escape(e['message']['text'])}</b></div>
+card = f"""<div style="border:1px solid #111418;font:400 .88rem/1.5 var(--sans,sans-serif);min-width:18rem">
+<div style="background:#111418;color:#fff;padding:.4rem .8rem"><b>{escape(e['level'])}</b> &middot; {escape(e['ruleId'])}</div>
+<div style="padding:.7rem .8rem">
+<div style="margin-bottom:.4rem"><b>{escape(e['message']['text'])}</b></div>
 <div><code>{escape(path)}:{p['region']['startLine']}:{p['region']['startColumn']}</code></div>
-<div style="margin-top:8px;color:#59636e">Counterexample: outcomes <code>{escape(json.dumps(cex['omega']))}</code>, latencies <code>{escape(json.dumps(cex['theta']))}</code> (dt)</div>
-<div style="margin-top:4px;color:#59636e">Tier {e['properties']['tier']}, policy {escape(e['properties']['policy'])}, fingerprint <code>{escape(e['partialFingerprints']['qtiming/v1'][:12])}</code></div>
+<div style="margin-top:.5rem;color:#4A5563">Counterexample: outcomes <code>{escape(json.dumps(cex['omega']))}</code>, latencies <code>{escape(json.dumps(cex['theta']))}</code> (dt)</div>
+<div style="margin-top:.2rem;color:#4A5563">Tier {e['properties']['tier']}, policy {escape(e['properties']['policy'])}, fingerprint <code>{escape(e['partialFingerprints']['qtiming/v1'][:12])}</code></div>
 </div></div>"""
-display(HTML(card))
+_show.figure(card)
 
 # %% [markdown]
 # ## Example workflow

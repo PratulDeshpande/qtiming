@@ -6,11 +6,13 @@
 # Three policies (`eq`, `sync`, `exp`) and three annotations that matter here (`within`, `hard`, `cap`). Reference: [Policies and annotations](../policies.md), [Command reference](../cli.md).
 
 # %%
+# hide
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path.cwd().parent))
 import _show
 
+# %%
 TP = _show.FAMILIES / "teleportation"
 MS = _show.FAMILIES / "magic_state"
 QUA = ["--contract", "qua", "--assume", "durations.h=32", "--assume", "durations.cx=64",

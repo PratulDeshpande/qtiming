@@ -8,11 +8,13 @@
 # **Read this first.** Only the IBM contract publishes gate durations (from an unofficial snapshot). On the other three stacks the durations below are **illustrative `--assume` values chosen for this tutorial**, not vendor numbers. The verdicts show how qtiming behaves, not how fast any real controller is.
 
 # %%
+# hide
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path.cwd().parent))
 import _show
 
+# %%
 TP = _show.FAMILIES / "teleportation/tp_basic.qasm"
 TP_Q1 = _show.FAMILIES / "teleportation/tp_q1.qasm"
 # Illustrative gate durations (ns) for the three contracts that publish none.
@@ -102,8 +104,7 @@ assert code == 1 and art50.startswith("REFUTED") and "short by 50 ns" in art50
 # The table is computed from real runs of both programs on all four contracts. Nothing is typed in by hand. IBM runs with no `--assume`; the other three use the illustrative durations above, and ARTIQ has no commit lead.
 
 # %%
-from IPython.display import HTML, display
-
+# hide-input
 STACKS = [("ibm_heron", []), ("qua", DUR), ("q1", DUR), ("artiq", DUR)]
 ROWS = [("tp_basic", TP), ("tp_q1", TP_Q1)]
 
@@ -117,20 +118,19 @@ def outcome(prog, contract, assume):
 
 
 grid = {(p, c): outcome(path, c, a) for p, path in ROWS for c, a in STACKS}
-COLOUR = {"PROVED-UNDER": "#1b7f3b", "PROVED": "#1b7f3b", "REFUTED": "#b3261e", "UNKNOWN": "#8a6d00"}
-CELL = "padding:6px 10px;border:1px solid #8884"
 
 
-def td(v):
-    return f'<td style="{CELL}"><b style="color:{COLOUR.get(v[0], "#555")}">{v[0]}</b><br><small>{v[1]}, exit {v[2]}</small></td>'
+def td(v):  # styled by the docs theme's `.qv` classes; the verdict or error code is always written out
+    kind = v[0] if v[1] == "verdict" else "ERROR"
+    return f'<td><span class="qv qv-{kind}">{v[0]}</span><br><small>{v[1]}, exit {v[2]}</small></td>'
 
 
-head = "".join(f'<th style="{CELL}">{c}</th>' for c, _ in STACKS)
+head = "".join(f"<th><code>{c}</code></th>" for c, _ in STACKS)
 body = "".join(
-    f'<tr><th style="{CELL};text-align:left">{p}</th>' + "".join(td(grid[p, c]) for c, _ in STACKS) + "</tr>"
+    f"<tr><th><code>{p}</code></th>" + "".join(td(grid[p, c]) for c, _ in STACKS) + "</tr>"
     for p, _ in ROWS
 )
-display(HTML(f'<table style="border-collapse:collapse"><tr><th></th>{head}</tr>{body}</table>'))
+_show.figure(f"<table><tr><th>program</th>{head}</tr>{body}</table>")
 
 # %%
 assert grid["tp_basic", "ibm_heron"] == ("PROVED-UNDER", "verdict", 0)

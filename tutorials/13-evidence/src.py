@@ -8,10 +8,13 @@
 # What works: `evidence report`, `evidence ingest` (to a patch), the synthetic guard. What does **not** exist as a command: applying the patch to a contract. `apply_patch` is a Python library function only, and `check` never reads a patch.
 
 # %%
+# hide
 import difflib, json, sys, tomllib
 from pathlib import Path
 sys.path.insert(0, str(Path.cwd().parent))
 import _show
+
+# %%
 FX = "tests/fixtures/evidence"
 
 # %% [markdown]
@@ -66,18 +69,18 @@ assert any(l.startswith('-  "hi_ns": 600') or '"hi_ns": 600' in l and l.startswi
 assert any('"hi_ns": "520"' in l and l.startswith("+") for l in diff)
 
 # %%
-from IPython.display import HTML, display
-def bar(y, lo, hi, color, label):
+# hide-input
+def bar(y, lo, hi, fill, stroke, label, dash=""):  # docs theme tokens; synthetic data is drawn dashed
     x0, x1 = 120 + lo * 0.7, 120 + hi * 0.7
-    return (f'<rect x="{x0:.0f}" y="{y}" width="{x1 - x0:.0f}" height="26" fill="{color}"/>'
-            f'<text x="8" y="{y + 18}" font-size="12" fill="currentColor">{label}</text>'
-            f'<text x="{x1 + 6:.0f}" y="{y + 18}" font-size="12" fill="currentColor">{lo}-{hi} ns</text>')
-svg = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 110" width="100%" role="img" '
+    return (f'<rect x="{x0:.0f}" y="{y}" width="{x1 - x0:.0f}" height="26" fill="{fill}" stroke="{stroke}"{dash}/>'
+            f'<text x="8" y="{y + 18}" font-size="12">{label}</text>'
+            f'<text x="{x1 + 6:.0f}" y="{y + 18}" font-size="12">{lo}-{hi} ns</text>')
+svg = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 110" width="620" role="img" '
        'aria-label="Vendor claimed feed-forward range 0 to 600 ns versus synthetic observed range 450 to 520 ns">'
-       + bar(10, 0, 600, "#8a8f98", "vendor claim")
-       + bar(50, 450, 520, "#d9822b", "SYNTHETIC obs.")
-       + '<text x="120" y="102" font-size="11" fill="currentColor">feed-forward latency, ns (synthetic data is test-only)</text></svg>')
-display(HTML(svg))
+       + bar(10, 0, 600, "#F4F6F9", "#111418", "vendor claim")
+       + bar(50, 450, 520, "#EAF2FA", "#0B5FA5", "SYNTHETIC obs.", ' stroke-dasharray="4 3"')
+       + '<text x="120" y="102" font-size="11">feed-forward latency, ns (synthetic data is test-only)</text></svg>')
+_show.figure(svg)
 
 # %% [markdown]
 # The observed range sits inside the vendor claim, as it should if the claim were sound. The patch records *what was seen* (min and max over n jobs), not a guaranteed bound.

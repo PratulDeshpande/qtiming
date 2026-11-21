@@ -4,13 +4,6 @@
 
 Because qtiming does not ask you to trust the solver. Every counterexample is a small JSON object that an independent executor re-runs. Reference: [Command reference](../cli.md), [Verdicts](../verdicts.md), [Policies](../policies.md).
 
-```python
-import json, sys, tempfile
-from pathlib import Path
-sys.path.insert(0, str(Path.cwd().parent))
-import _show
-```
-
 ## The program
 `tp_sync` is teleportation with the correction in a `sync` box: no padding, so the arm starts the moment the result arrives. The idle gap on `q2` then depends on how long feed-forward took, which obligation O4 forbids.
 
@@ -138,18 +131,7 @@ assert code == 0 and replayed.startswith("REPRODUCED: O4")
 ## 4. Executed vs predicted
 The solver predicted the first timeline; the executor produced its own. They must agree line for line.
 
-```python
-executed = [l.strip() for l in replayed.splitlines()[1:5]]
-rows = "".join(
-    f"<tr><td><b>{n}</b></td><td><pre>{a}</pre></td><td><pre>{b}</pre></td></tr>"
-    for n, (a, b) in zip(["", "q0", "q1", "q2"], zip(first, executed))
-)
-from IPython.display import HTML, display
-display(HTML(f"<table><tr><th></th><th>predicted (solver)</th><th>executed (replay)</th></tr>{rows}</table>"))
-assert executed == first
-```
-
-<table><tr><th></th><th>predicted (solver)</th><th>executed (replay)</th></tr><tr><td><b></b></td><td><pre>t(ns)     0                                                2406</pre></td><td><pre>t(ns)     0                                                2406</pre></td></tr><tr><td><b>q0</b></td><td><pre>q0        ....ch.....................................................m.</pre></td><td><pre>q0        ....ch.....................................................m.</pre></td></tr><tr><td><b>q1</b></td><td><pre>q1        h.c.c......................................................m.</pre></td><td><pre>q1        h.c.c......................................................m.</pre></td></tr><tr><td><b>q2</b></td><td><pre>q2        ..c.........................................................x</pre></td><td><pre>q2        ..c.........................................................x</pre></td></tr></table>
+<div class="qt-fig"><table><tr><th></th><th>predicted (solver)</th><th>executed (replay)</th></tr><tr><th><code></code></th><td><pre>t(ns)     0                                                2406</pre></td><td><pre>t(ns)     0                                                2406</pre></td></tr><tr><th><code>q0</code></th><td><pre>q0        ....ch.....................................................m.</pre></td><td><pre>q0        ....ch.....................................................m.</pre></td></tr><tr><th><code>q1</code></th><td><pre>q1        h.c.c......................................................m.</pre></td><td><pre>q1        h.c.c......................................................m.</pre></td></tr><tr><th><code>q2</code></th><td><pre>q2        ..c.........................................................x</pre></td><td><pre>q2        ..c.........................................................x</pre></td></tr></table></div>
 
 ## 5. A wrong counterexample is rejected
 Edit the JSON so the second execution uses the same latency as the first, and nothing differs any more. The executor says so rather than agreeing.

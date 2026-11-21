@@ -6,6 +6,7 @@
 # Because qtiming does not ask you to trust the solver. Every counterexample is a small JSON object that an independent executor re-runs. Reference: [Command reference](../cli.md), [Verdicts](../verdicts.md), [Policies](../policies.md).
 
 # %%
+# hide
 import json, sys, tempfile
 from pathlib import Path
 sys.path.insert(0, str(Path.cwd().parent))
@@ -67,13 +68,13 @@ assert code == 0 and replayed.startswith("REPRODUCED: O4")
 # The solver predicted the first timeline; the executor produced its own. They must agree line for line.
 
 # %%
+# hide-input
 executed = [l.strip() for l in replayed.splitlines()[1:5]]
 rows = "".join(
-    f"<tr><td><b>{n}</b></td><td><pre>{a}</pre></td><td><pre>{b}</pre></td></tr>"
+    f"<tr><th><code>{n}</code></th><td><pre>{a}</pre></td><td><pre>{b}</pre></td></tr>"
     for n, (a, b) in zip(["", "q0", "q1", "q2"], zip(first, executed))
 )
-from IPython.display import HTML, display
-display(HTML(f"<table><tr><th></th><th>predicted (solver)</th><th>executed (replay)</th></tr>{rows}</table>"))
+_show.figure(f"<table><tr><th></th><th>predicted (solver)</th><th>executed (replay)</th></tr>{rows}</table>")
 assert executed == first
 
 # %% [markdown]

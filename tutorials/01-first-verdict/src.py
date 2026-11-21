@@ -6,6 +6,7 @@
 # This tutorial walks the four everyday commands: `lint`, `explain`, `check`, `replay`. Reference: [Quickstart](../quickstart.md), [Command reference](../cli.md).
 
 # %%
+# hide
 import json, sys, tempfile
 from pathlib import Path
 sys.path.insert(0, str(Path.cwd().parent))
