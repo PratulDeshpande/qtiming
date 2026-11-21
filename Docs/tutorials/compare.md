@@ -1,38 +1,25 @@
 # Same circuit, four stacks: interactive comparison
 
-Pick a program and drag each stack's slider. Every cell below was produced by a real
-`qtiming check` run (`tutorials/compare.py`); no qtiming code runs in your browser.
-
-- The slider moves the one latency that matters most on that stack, through `--assume`.
-  IBM: `ff.default` upper bound. QUA: `active_reset`. Q1: `trigger.network` (lower bound fixed at 212 ns).
-  ARTIQ: `timeline.commit_lead`.
-- Gate durations on QUA, Q1 and ARTIQ (x, sx, h = 32 ns, cx = 100 ns, measure and reset = 1000 ns) are
-  **illustrative assumptions of this page**, not vendor numbers; the contracts leave them absent. On ARTIQ
-  `latency.in2cpu.hi` is assumed 0 so the sweep can reach a verdict. IBM takes its durations from the Target.
-- Errors such as `E-ELAB-Q1-NOT-EQUALISABLE` are shown as cells, not hidden. PROVED-UNDER is conditional
-  on the vendor-claimed latencies, which are claims, not certified bounds.
-
-For the walk-through see [Same circuit, four stacks](06-four-stacks.md).
+Pick a program and drag each stack's slider. Every result below was produced by a real
+`qtiming check` run (`tutorials/compare.py`); no qtiming code runs in your browser. Gate durations on
+QUA, Q1 and ARTIQ are **illustrative assumptions of this page**, not vendor numbers: see
+[what the numbers assume](#what-the-numbers-assume) before reading anything into them.
 
 <div id="qtc">
 <style>
 #qtc .bar{display:flex;gap:.6rem;align-items:center;margin:0 0 1rem;font:700 .8rem var(--sans)}
 #qtc select{font:400 .9rem var(--mono);padding:.3rem .5rem;border:1px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:0}
-#qtc .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
-#qtc .col{border:1px solid var(--rule);padding:.8rem;min-width:0}
-#qtc h3{margin:0 0 .5rem;font:700 .85rem var(--sans);letter-spacing:.08em;text-transform:uppercase}
-#qtc .badge{display:inline-block;padding:.15rem .5rem;font:700 .8rem var(--sans);border:1px solid var(--ink)}
-#qtc .b-PROVED-UNDER{background:var(--blue-tint);color:var(--blue);border-color:var(--blue)}
-#qtc .b-PROVED{background:var(--blue);color:#fff;border-color:var(--blue)}
-#qtc .b-REFUTED{background:var(--ink);color:#fff}
-#qtc .b-UNKNOWN{background:var(--wash);color:var(--ink)}
-#qtc .b-ERROR{background:var(--paper);color:var(--ink);border-style:dashed}
+#qtc .grid{border-top:1px solid var(--ink)}
+#qtc .col{padding:1rem 0;border-bottom:1px solid var(--rule);min-width:0}
+#qtc .head{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .8rem}
+#qtc h3{margin:0;font:700 .85rem var(--sans);letter-spacing:.08em;text-transform:uppercase}
+#qtc .ctl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.2rem 1.2rem;align-items:start}
+@media (max-width:560px){#qtc .ctl{grid-template-columns:minmax(0,1fr)}}
 #qtc label{display:block;margin:.7rem 0 .2rem;font:400 .75rem var(--sans);color:var(--muted)}
 #qtc input[type=range]{width:100%}
-#qtc .val{font:400 .85rem var(--mono)}
-#qtc .det{margin:.5rem 0;font:400 .78rem/1.4 var(--mono);color:var(--muted);overflow-wrap:anywhere}
-#qtc .tl{overflow-x:auto;margin-top:.5rem}
-#qtc .tl svg{max-width:none;height:auto}
+#qtc .val{font:400 .85rem var(--mono);color:var(--ink)}
+#qtc .det{margin:.7rem 0 0;font:400 .78rem/1.4 var(--mono);color:var(--muted);overflow-wrap:anywhere}
+#qtc .qt-fig{margin:.6rem 0 0}
 #qtc pre{max-height:16rem;overflow:auto;font-size:.75rem}
 </style>
 <div class="bar"><label for="qtc-prog" style="margin:0">Program</label><select id="qtc-prog"></select></div>
@@ -56,10 +43,10 @@ function draw(){
     var det=cell.verdict==="ERROR"?esc(cell.error):Object.keys(cell.obligations).map(function(k){
       return esc(k+": "+Object.keys(cell.obligations[k]).map(function(r){return cell.obligations[k][r]+" "+r;}).join(", "));}).join("<br>")
       +(cell.min_margin_ns==null?"":"<br>min margin "+cell.min_margin_ns+" ns");
-    col.innerHTML='<h3>'+NAMES[c]+'</h3><span class="badge b-'+cell.verdict+'">'+cell.verdict+'</span>'
-      +'<label for="s-'+c+'">'+esc(S.label)+': <span class="val">'+S.values[i]+'</span></label>'
-      +'<input type="range" id="s-'+c+'" min="0" max="'+(S.values.length-1)+'" step="1" value="'+i+'">'
-      +'<div class="det">'+det+'</div><div class="tl">'+(cell.svg||"")+'</div>';
+    col.innerHTML='<div class="head"><h3>'+NAMES[c]+'</h3><span class="qv qv-'+cell.verdict+'">'+cell.verdict+'</span></div>'
+      +'<div class="ctl"><div><label for="s-'+c+'">'+esc(S.label)+': <span class="val">'+S.values[i]+'</span></label>'
+      +'<input type="range" id="s-'+c+'" min="0" max="'+(S.values.length-1)+'" step="1" value="'+i+'"></div>'
+      +'<div class="det">'+det+'</div></div>'+(cell.svg?'<div class="qt-fig qt-tl">'+cell.svg+'</div>':"");
     col.querySelector("input").addEventListener("input",function(e){idx[c]=+e.target.value;draw();var n=document.getElementById("s-"+c);if(n)n.focus();});
     grid.appendChild(col);
   });
@@ -68,3 +55,16 @@ sel.addEventListener("change",draw);draw();
 })();
 </script>
 </div>
+
+## What the numbers assume
+
+- The slider moves the one latency that matters most on that stack, through `--assume`.
+  IBM: `ff.default` upper bound. QUA: `active_reset`. Q1: `trigger.network` (lower bound fixed at 212 ns).
+  ARTIQ: `timeline.commit_lead`.
+- Gate durations on QUA, Q1 and ARTIQ (x, sx, h = 32 ns, cx = 100 ns, measure and reset = 1000 ns) are
+  **illustrative assumptions of this page**, not vendor numbers; the contracts leave them absent. On ARTIQ
+  `latency.in2cpu.hi` is assumed 0 so the sweep can reach a verdict. IBM takes its durations from the Target.
+- Errors such as `E-ELAB-Q1-NOT-EQUALISABLE` are shown as cells, not hidden. PROVED-UNDER is conditional
+  on the vendor-claimed latencies, which are claims, not certified bounds.
+
+For the walk-through see [Same circuit, four stacks](06-four-stacks.md).

@@ -3,15 +3,17 @@
 #
 # **Question:** what does `check` actually build and run, and what do the knobs `--no-tier1`, `--no-tier2`, `--timeout` and `--no-window` change?
 #
-# We use a distance-3 repetition code (`qec/rep_d3_r3` and `rep_d3_r100`, three and a hundred syndrome rounds) on IBM Heron. Reference: [Command reference](../cli.md), [Obligations](../obligations.md), [Windowing (T4)](../theory/T4-windowing.md).
+# The example is a distance-3 repetition code (`qec/rep_d3_r3` and `rep_d3_r100`, three and a hundred syndrome rounds) on IBM Heron. Reference: [Command reference](../cli.md), [Obligations](../obligations.md), [Windowing (T4)](../theory/T4-windowing.md).
 
 # %%
+# hide
 import json, sys
 from collections import Counter
 from pathlib import Path
 sys.path.insert(0, str(Path.cwd().parent))
 import _show
 
+# %%
 R3 = _show.FAMILIES / "qec/rep_d3_r3.qasm"
 R100 = _show.FAMILIES / "qec/rep_d3_r100.qasm"
 
@@ -31,17 +33,18 @@ code, out = _show.run("explain", R3, "--contract", "ibm_heron")
 assert code == 0 and "115 nodes" in out and "44 obligations" in out
 
 # %% [markdown]
-# `--graph dot` prints the whole graph in Graphviz DOT. The three-round graph is too big to read, so we draw the **one-round** program (`rep_d3_r1`):
+# `--graph dot` prints the whole graph in Graphviz DOT. The three-round graph is too big to read, so this draws the **one-round** program (`rep_d3_r1`):
 
 # %%
 code, dot = _show.run("explain", _show.FAMILIES / "qec/rep_d3_r1.qasm", "--contract", "ibm_heron", "--graph", "dot", show=False)
 assert code == 0 and dot.startswith("digraph lteg")
 print(dot.count("->"), "edges")
-_show.dot(dot, height=500)
+_show.dot(dot, "Timed event graph of rep_d3_r1 on IBM Heron: nodes are start, end and join events, "
+          "edges carry their minimum delay in dt", height=500)
 
 # %% [markdown]
 # ## 2. Solver tiers
-# Obligations go through up to three solvers: **Tier 0** exact evaluation, **Tier 1** interval abstraction (can only prove), **Tier 2** the Z3 SMT solver (proves or refutes). We use `--policy eq` (every branch must take equal time), which this program satisfies under the vendor latency assumption, and count which tier closed each obligation.
+# Obligations go through up to three solvers: **Tier 0** exact evaluation, **Tier 1** interval abstraction (can only prove), **Tier 2** the Z3 SMT solver (proves or refutes). This uses `--policy eq` (every branch must take equal time), which this program satisfies under the vendor latency assumption, and count which tier closed each obligation.
 
 # %%
 def tiers(prog, *opts, policy="eq"):
@@ -67,22 +70,27 @@ assert rows["--no-tier1 --no-tier2"][0] == 3 and rows["--no-tier1 --no-tier2"][1
 # The tier mix as a bar (hand-made SVG; one bar per run):
 
 # %%
-from IPython.display import HTML, display
-COL = {"tier 0": "#4c78a8", "tier 1": "#59a14f", "tier 2": "#f28e2b", "unknown": "#b0b0b0"}
-W, y, parts = 520, 0, []
+# hide-input
+# docs theme tokens: (fill, stroke, label colour); each segment also names its tier in text
+COL = {"tier 0": ("#111418", "#111418", "#fff"), "tier 1": ("#0B5FA5", "#0B5FA5", "#fff"),
+       "tier 2": ("#EAF2FA", "#0B5FA5", "#0B5FA5"), "unknown": ("#F4F6F9", "#4A5563", "#111418")}
+W, y, parts = 440, 0, []
 for name, (_, _, c) in rows.items():
-    tot, x = sum(c.values()), 150
-    parts.append(f'<text x="0" y="{y+16}" font-size="12" fill="currentColor">{name}</text>')
-    for k in COL:
+    tot, x = sum(c.values()), 160
+    parts.append(f'<text x="0" y="{y+16}" font-size="12">{name}</text>')
+    for k, (fill, stroke, ink) in COL.items():
         w = W * c.get(k, 0) / tot
         if w:
-            parts.append(f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="22" fill="{COL[k]}"><title>{k}: {c[k]}</title></rect>')
-            if w > 24:
-                parts.append(f'<text x="{x+w/2:.1f}" y="{y+16}" font-size="11" text-anchor="middle" fill="#fff">{c[k]}</text>')
+            dash = ' stroke-dasharray="3 2"' if k == "unknown" else ""
+            parts.append(f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="22" fill="{fill}" stroke="{stroke}"{dash}>'
+                         f'<title>{k}: {c[k]}</title></rect>')
+            label = f"{k}: {c[k]}" if w > 66 else str(c[k])
+            parts.append(f'<text x="{x+w/2:.1f}" y="{y+15}" font-size="11" text-anchor="middle" fill="{ink}">{label}</text>')
             x += w
     y += 32
-leg = "".join(f'<rect x="{150+i*90}" y="{y+6}" width="12" height="12" fill="{v}"/><text x="{150+i*90+16}" y="{y+16}" font-size="11" fill="currentColor">{k}</text>' for i, (k, v) in enumerate(COL.items()))
-display(HTML(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W+160} {y+28}" width="{W+160}" role="img" aria-label="Obligations closed per solver tier">{"".join(parts)}{leg}</svg>'))
+summary = "; ".join(f"{n}: " + ", ".join(f"{k} {v}" for k, v in sorted(c.items())) for n, (_, _, c) in rows.items())
+_show.figure(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W+160} {y}" width="{W+160}" role="img" '
+             f'aria-label="Obligations closed per solver tier. {summary}">{"".join(parts)}</svg>')
 
 # %% [markdown]
 # Turning Tier 1 off pushes its obligations to Z3: same verdict, different workhorse. Turning Tier 2 off is only safe when Tier 1 is enough; where it is not, the obligation is UNKNOWN, never guessed. Turning both off leaves just exact Tier 0, so the verdict is UNKNOWN (exit 3).

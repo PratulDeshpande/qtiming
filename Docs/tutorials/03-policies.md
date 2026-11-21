@@ -5,11 +5,6 @@
 Three policies (`eq`, `sync`, `exp`) and three annotations that matter here (`within`, `hard`, `cap`). Reference: [Policies and annotations](../policies.md), [Command reference](../cli.md).
 
 ```python
-import sys
-from pathlib import Path
-sys.path.insert(0, str(Path.cwd().parent))
-import _show
-
 TP = _show.FAMILIES / "teleportation"
 MS = _show.FAMILIES / "magic_state"
 QUA = ["--contract", "qua", "--assume", "durations.h=32", "--assume", "durations.cx=64",
@@ -130,7 +125,7 @@ assert code == 0 and out.startswith("PROVED-UNDER") and "O4: 11" in out and "ff.
 _show.report_svg(TP / "tp_basic.qasm", "ibm_heron")
 ```
 
-<svg viewBox="0 0 840 104" role="img" aria-label="typical run" width="100%">
+<div class="qt-fig qt-tl"><svg viewBox="0 0 840 104" role="img" aria-label="typical run" width="100%">
 <text x="2" y="14" font-size="11">typical run</text>
 <text x="2" y="41" font-size="11">q0</text>
 <line x1="80" x2="840" y1="44" y2="44" stroke="#bbb" stroke-width="1"/>
@@ -148,7 +143,7 @@ _show.report_svg(TP / "tp_basic.qasm", "ibm_heron")
 <g><title>measure (node 6) at 2372 ns</title><rect x="672.2" y="58" width="6" height="14" fill="#2c6fbb"/></g>
 <g><title>delay (node 16) at 2972 ns</title><rect x="822.0" y="84" width="6" height="14" fill="#2c6fbb"/></g>
 <g><title>delay (node 13) at 3004 ns</title><rect x="830.0" y="84" width="6" height="14" fill="#2c6fbb"/></g>
-<text x="80" y="102" font-size="10">0</text><text x="780" y="102" font-size="10">3004 ns</text></svg>
+<text x="80" y="102" font-size="10">0</text><text x="780" y="102" font-size="10">3004 ns</text></svg></div>
 
 ## The same circuit under `sync`
 `sync` pads nothing: each arm runs as soon as the result is there. `tp_sync` is the same teleportation with `@timing.policy sync` and the requirement that idle time on `q2` not vary. It varies, so it is REFUTED, and the text report draws the two executions that differ.

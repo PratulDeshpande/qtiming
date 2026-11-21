@@ -10,11 +10,13 @@
 # **Runtime.** The full run (672 cells) takes about a minute and a half. It runs in a temporary directory, so nothing is written into the repository.
 
 # %%
+# hide
 import collections, contextlib, io, json, sys, tempfile
 from pathlib import Path
 sys.path.insert(0, str(Path.cwd().parent))
 import _show
-from IPython.display import HTML, display
+
+# %%
 from qtiming.bench import main as bench
 
 ROOT = _show.ROOT
@@ -49,42 +51,33 @@ assert rc == 0 and len(rows) == 56 * 4 * 3
 
 # %% [markdown]
 # ## The heat-map: family x stack
-# Each cell stacks the verdicts of every (program, policy) pair in that family on that stack. Green is `PROVED-UNDER`, red is a timing `REFUTED` (a counterexample exists), orange is a `REFUTED` that is only a **policy refusal** (see below), grey is `unsupported`. The number inside is the cell count.
+# Each cell counts the verdicts of every (program, policy) pair in that family on that stack, written out under a bar of the same proportions. A **policy refusal** is a `REFUTED` that only says the program does not fit the requested policy (see below), drawn hatched; `unsupported` is drawn as fine stripes.
 
 # %%
+# hide-input
 def kind(r):
     if r["status"] == "REFUTED" and r["reasons"][0].startswith("policy-incompatible"):
         return "policy"
     return r["status"]
 
-COL = {"PROVED": "#2e7d32", "PROVED-UNDER": "#388e3c", "REFUTED": "#c62828", "policy": "#ef6c00",
-       "UNKNOWN": "#f9a825", "unsupported": "#757575"}
-LABEL = {"PROVED": "PROVED", "PROVED-UNDER": "PROVED-UNDER", "REFUTED": "REFUTED (timing)",
-         "policy": "REFUTED (policy refused)", "UNKNOWN": "UNKNOWN", "unsupported": "unsupported"}
+# bar segments are styled by the docs theme's `.qv-bar .f-*` classes; the counts are always written out
+LABEL = {"PROVED": "proved", "PROVED-UNDER": "proved-under", "REFUTED": "refuted (timing)",
+         "policy": "policy refused", "UNKNOWN": "unknown", "unsupported": "unsupported"}
 stacks = sorted({r["contract"] for r in rows})
 famnames = sorted(fams)
 cnt = collections.Counter((r["family"], r["contract"], kind(r)) for r in rows)
 
 def cell(f, s):
-    parts = []
-    for k in COL:
-        n = cnt[(f, s, k)]
-        if n:
-            parts.append(f'<div title="{LABEL[k]}: {n}" style="flex:{n};background:{COL[k]};color:#fff;'
-                         f'text-align:center;padding:6px 0;font-size:12px;min-width:22px">{n}</div>')
-    return ('<div style="display:flex;border-radius:4px;overflow:hidden;min-width:120px">'
-            + "".join(parts) + "</div>")
+    ks = [k for k in LABEL if cnt[(f, s, k)]]
+    bar = "".join(f'<i class="f-{k}" style="flex:{cnt[(f, s, k)]}"></i>' for k in ks)
+    text = "<br>".join(f"{cnt[(f, s, k)]} {LABEL[k]}" for k in ks)
+    return f'<div class="qv-bar" aria-hidden="true">{bar}</div><small>{text}</small>'
 
-th = "padding:6px 10px;text-align:left"
-html = ['<div style="overflow-x:auto"><table style="border-collapse:separate;border-spacing:4px"><tr>',
-        f'<th style="{th}">family</th>'] + [f'<th style="{th}">{s}</th>' for s in stacks] + ["</tr>"]
+html = ["<table><tr><th>family</th>"] + [f"<th><code>{s}</code></th>" for s in stacks] + ["</tr>"]
 for f in famnames:
-    html.append(f'<tr><td style="{th}"><code>{f}</code></td>')
+    html.append(f"<tr><th><code>{f}</code></th>")
     html += [f"<td>{cell(f, s)}</td>" for s in stacks] + ["</tr>"]
-html.append("</table></div><p style='font-size:12px'>" + " &nbsp; ".join(
-    f'<span style="background:{COL[k]};color:#fff;padding:2px 8px;border-radius:3px">{LABEL[k]}</span>'
-    for k in COL if any(v for (f, s, kk), v in cnt.items() if kk == k)) + "</p>")
-display(HTML("".join(html)))
+_show.figure("".join(html) + "</table>")
 
 tot = collections.Counter(kind(r) for r in rows)
 print(dict(sorted(tot.items())))
@@ -95,7 +88,7 @@ assert not any(r["status"] == "PROVED" for r in rows)
 
 # %% [markdown]
 # ## Reading the picture
-# - **Three of four columns are grey, and that is the honest answer.** Only the IBM contract publishes gate durations (from an *unofficial* snapshot). On `artiq`, `q1` and `qua` the contracts leave gate durations absent, so qtiming refuses to guess and reports `unsupported` instead of inventing numbers. The reasons, counted:
+# - **Three of four columns are all `unsupported`, and that is the honest answer.** Only the IBM contract publishes gate durations (from an *unofficial* snapshot). On `artiq`, `q1` and `qua` the contracts leave gate durations absent, so qtiming refuses to guess and reports `unsupported` instead of inventing numbers. The reasons, counted:
 
 # %%
 for (c, why), n in sorted(collections.Counter(
@@ -165,7 +158,7 @@ assert rc == 0
 # ## What just happened
 # - `qtiming-bench run` produced 672 verdicts (56 programs x 4 stacks x 3 policies) and `report` tabulated them.
 # - Only IBM yields verdicts, all conditional on a vendor-claimed latency; the other three stacks are `unsupported` because their contracts omit gate durations, and qtiming does not fill gaps with guesses.
-# - A red or orange cell can be a policy refusal rather than a timing violation; read the reason, not just the colour.
+# - A `REFUTED` count can be a policy refusal rather than a timing violation; read the reason, not just the verdict.
 #
 # **Not built yet** (so absent from the map): repeat-until-success wiring in `check` (the `rus_while_*` programs show up only as refusals), program synthesis, and the external Dynamarq workloads and hardware evidence.
 #

@@ -5,11 +5,6 @@
 A *contract* is a TOML file of hardware timing numbers. qtiming uses only what it states. Every latency carries an evidence class and a source string; a number the contract leaves out is *absent*, never guessed. Reference: [Contracts](../contracts.md), [Reading a verdict](../verdicts.md), [Errors](../errors.md).
 
 ```python
-import json, re, sys
-from pathlib import Path
-sys.path.insert(0, str(Path.cwd().parent))
-import _show
-
 TP = _show.FAMILIES / "teleportation/tp_basic.qasm"
 ```
 
@@ -304,41 +299,9 @@ assert min(flip) == 3004 and dict((n, g) for n, _, g in rows)[3000] == 0
                    4000  REFUTED        
     
 
-Hand-made SVG of the same data: green dots are PROVED-UNDER, red are REFUTED. The line is the O3 margin, which falls one nanosecond per nanosecond until it hits zero at the deadline.
+The same data drawn: blue dots are PROVED-UNDER and sit on the O3 margin line, which falls one nanosecond per nanosecond until it hits zero at the deadline. Crosses on the bottom row are REFUTED.
 
-```python
-from IPython.display import HTML, display
-
-W, H, L, R, T, B = 640, 220, 60, 20, 20, 50
-xs = lambda n: L + (W - L - R) * n / 4000
-ys = lambda g: T + (H - T - B) * (1 - g / 3000)
-pts = [(n, g) for n, _, g in rows if g is not None]
-line = " ".join(f"{xs(n):.1f},{ys(g):.1f}" for n, g in pts)
-dots = "".join(
-    f'<circle cx="{xs(n):.1f}" cy="{(ys(g) if g is not None else H - B + 14):.1f}" r="5" '
-    f'fill="{"#1a7f37" if v != "REFUTED" else "#cf222e"}"><title>{n} ns: {v}</title></circle>'
-    for n, v, g in rows)
-ticks = "".join(
-    f'<text x="{xs(n):.1f}" y="{H - B + 36}" font-size="11" text-anchor="middle" fill="currentColor">{n}</text>'
-    for n in (0, 1000, 2000, 3000, 4000))
-svg = (
-    f'<svg viewBox="0 0 {W} {H}" width="100%" role="img" aria-label="Verdict versus feed-forward upper bound" '
-    f'style="max-width:640px;color:#57606a">'
-    f'<line x1="{L}" y1="{H - B}" x2="{W - R}" y2="{H - B}" stroke="currentColor"/>'
-    f'<line x1="{xs(3000):.1f}" y1="{T}" x2="{xs(3000):.1f}" y2="{H - B}" stroke="#cf222e" stroke-dasharray="4"/>'
-    f'<text x="{xs(3000) + 4:.1f}" y="{T + 10}" font-size="11" fill="#cf222e">deadline 3000 ns</text>'
-    f'<line x1="{xs(600):.1f}" y1="{T}" x2="{xs(600):.1f}" y2="{H - B}" stroke="currentColor" stroke-dasharray="2"/>'
-    f'<text x="{xs(600) + 4:.1f}" y="{T + 10}" font-size="11" fill="currentColor">vendor claim 600 ns</text>'
-    f'<polyline points="{line}" fill="none" stroke="#1a7f37" stroke-width="1.5"/>{dots}{ticks}'
-    f'<text x="{L - 8}" y="{ys(3000) + 4:.1f}" font-size="11" text-anchor="end" fill="currentColor">3000</text>'
-    f'<text x="{L - 8}" y="{ys(0) + 4:.1f}" font-size="11" text-anchor="end" fill="currentColor">0</text>'
-    f'<text x="{L - 8}" y="{H - B + 18}" font-size="11" text-anchor="end" fill="currentColor">refuted</text>'
-    f'<text x="{(L + W - R) / 2}" y="{H - 4}" font-size="12" text-anchor="middle" fill="currentColor">'
-    f'assumed ff.default upper bound (ns); line = O3 margin (ns)</text></svg>')
-display(HTML(svg))
-```
-
-<svg viewBox="0 0 640 220" width="100%" role="img" aria-label="Verdict versus feed-forward upper bound" style="max-width:640px;color:#57606a"><line x1="60" y1="170" x2="620" y2="170" stroke="currentColor"/><line x1="480.0" y1="20" x2="480.0" y2="170" stroke="#cf222e" stroke-dasharray="4"/><text x="484.0" y="30" font-size="11" fill="#cf222e">deadline 3000 ns</text><line x1="144.0" y1="20" x2="144.0" y2="170" stroke="currentColor" stroke-dasharray="2"/><text x="148.0" y="30" font-size="11" fill="currentColor">vendor claim 600 ns</text><polyline points="88.0,30.0 144.0,50.0 200.0,70.0 270.0,95.0 340.0,120.0 410.0,145.0 466.0,165.0 480.0,170.0" fill="none" stroke="#1a7f37" stroke-width="1.5"/><circle cx="88.0" cy="30.0" r="5" fill="#1a7f37"><title>200 ns: PROVED-UNDER</title></circle><circle cx="144.0" cy="50.0" r="5" fill="#1a7f37"><title>600 ns: PROVED-UNDER</title></circle><circle cx="200.0" cy="70.0" r="5" fill="#1a7f37"><title>1000 ns: PROVED-UNDER</title></circle><circle cx="270.0" cy="95.0" r="5" fill="#1a7f37"><title>1500 ns: PROVED-UNDER</title></circle><circle cx="340.0" cy="120.0" r="5" fill="#1a7f37"><title>2000 ns: PROVED-UNDER</title></circle><circle cx="410.0" cy="145.0" r="5" fill="#1a7f37"><title>2500 ns: PROVED-UNDER</title></circle><circle cx="466.0" cy="165.0" r="5" fill="#1a7f37"><title>2900 ns: PROVED-UNDER</title></circle><circle cx="480.0" cy="170.0" r="5" fill="#1a7f37"><title>3000 ns: PROVED-UNDER</title></circle><circle cx="480.6" cy="184.0" r="5" fill="#cf222e"><title>3004 ns: REFUTED</title></circle><circle cx="494.0" cy="184.0" r="5" fill="#cf222e"><title>3100 ns: REFUTED</title></circle><circle cx="550.0" cy="184.0" r="5" fill="#cf222e"><title>3500 ns: REFUTED</title></circle><circle cx="620.0" cy="184.0" r="5" fill="#cf222e"><title>4000 ns: REFUTED</title></circle><text x="60.0" y="206" font-size="11" text-anchor="middle" fill="currentColor">0</text><text x="200.0" y="206" font-size="11" text-anchor="middle" fill="currentColor">1000</text><text x="340.0" y="206" font-size="11" text-anchor="middle" fill="currentColor">2000</text><text x="480.0" y="206" font-size="11" text-anchor="middle" fill="currentColor">3000</text><text x="620.0" y="206" font-size="11" text-anchor="middle" fill="currentColor">4000</text><text x="52" y="24.0" font-size="11" text-anchor="end" fill="currentColor">3000</text><text x="52" y="174.0" font-size="11" text-anchor="end" fill="currentColor">0</text><text x="52" y="188" font-size="11" text-anchor="end" fill="currentColor">refuted</text><text x="340.0" y="216" font-size="12" text-anchor="middle" fill="currentColor">assumed ff.default upper bound (ns); line = O3 margin (ns)</text></svg>
+<div class="qt-fig"><svg viewBox="0 0 620 220" width="620" role="img" aria-label="O3 margin against the assumed feed-forward upper bound: PROVED-UNDER up to 3000 ns with the margin falling to 0, REFUTED from 3004 ns"><line x1="60" y1="170" x2="596" y2="170" stroke="#111418"/><line x1="462.0" y1="20" x2="462.0" y2="170" stroke="#111418" stroke-dasharray="4"/><text x="466.0" y="30" font-size="11">deadline 3000 ns</text><line x1="140.4" y1="20" x2="140.4" y2="170" stroke="#4A5563" stroke-dasharray="2"/><text x="144.4" y="30" font-size="11" fill="#4A5563">vendor claim 600 ns</text><polyline points="86.8,30.0 140.4,50.0 194.0,70.0 261.0,95.0 328.0,120.0 395.0,145.0 448.6,165.0 462.0,170.0" fill="none" stroke="#0B5FA5" stroke-width="1.5"/><circle cx="86.8" cy="30.0" r="4.5" fill="#0B5FA5"><title>200 ns: PROVED-UNDER</title></circle><circle cx="140.4" cy="50.0" r="4.5" fill="#0B5FA5"><title>600 ns: PROVED-UNDER</title></circle><circle cx="194.0" cy="70.0" r="4.5" fill="#0B5FA5"><title>1000 ns: PROVED-UNDER</title></circle><circle cx="261.0" cy="95.0" r="4.5" fill="#0B5FA5"><title>1500 ns: PROVED-UNDER</title></circle><circle cx="328.0" cy="120.0" r="4.5" fill="#0B5FA5"><title>2000 ns: PROVED-UNDER</title></circle><circle cx="395.0" cy="145.0" r="4.5" fill="#0B5FA5"><title>2500 ns: PROVED-UNDER</title></circle><circle cx="448.6" cy="165.0" r="4.5" fill="#0B5FA5"><title>2900 ns: PROVED-UNDER</title></circle><circle cx="462.0" cy="170.0" r="4.5" fill="#0B5FA5"><title>3000 ns: PROVED-UNDER</title></circle><path d="M458.5,180 l8,8 m0,-8 l-8,8" stroke="#111418" stroke-width="2"><title>3004 ns: REFUTED</title></path><path d="M471.4,180 l8,8 m0,-8 l-8,8" stroke="#111418" stroke-width="2"><title>3100 ns: REFUTED</title></path><path d="M525.0,180 l8,8 m0,-8 l-8,8" stroke="#111418" stroke-width="2"><title>3500 ns: REFUTED</title></path><path d="M592.0,180 l8,8 m0,-8 l-8,8" stroke="#111418" stroke-width="2"><title>4000 ns: REFUTED</title></path><text x="60.0" y="206" font-size="11" text-anchor="middle">0</text><text x="194.0" y="206" font-size="11" text-anchor="middle">1000</text><text x="328.0" y="206" font-size="11" text-anchor="middle">2000</text><text x="462.0" y="206" font-size="11" text-anchor="middle">3000</text><text x="596.0" y="206" font-size="11" text-anchor="middle">4000</text><text x="52" y="24.0" font-size="11" text-anchor="end">3000</text><text x="52" y="174.0" font-size="11" text-anchor="end">0</text><text x="52" y="188" font-size="11" text-anchor="end">refuted</text><text x="328.0" y="216" font-size="12" text-anchor="middle">assumed ff.default upper bound (ns); line = O3 margin (ns)</text></svg></div>
 
 ## 8. `--max-safe`: ask for the flip point directly
 Instead of sweeping, bisect. The answer must equal the largest bound the sweep still proved.

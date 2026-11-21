@@ -2,15 +2,9 @@
 
 **Question:** what does `check` actually build and run, and what do the knobs `--no-tier1`, `--no-tier2`, `--timeout` and `--no-window` change?
 
-We use a distance-3 repetition code (`qec/rep_d3_r3` and `rep_d3_r100`, three and a hundred syndrome rounds) on IBM Heron. Reference: [Command reference](../cli.md), [Obligations](../obligations.md), [Windowing (T4)](../theory/T4-windowing.md).
+The example is a distance-3 repetition code (`qec/rep_d3_r3` and `rep_d3_r100`, three and a hundred syndrome rounds) on IBM Heron. Reference: [Command reference](../cli.md), [Obligations](../obligations.md), [Windowing (T4)](../theory/T4-windowing.md).
 
 ```python
-import json, sys
-from collections import Counter
-from pathlib import Path
-sys.path.insert(0, str(Path.cwd().parent))
-import _show
-
 R3 = _show.FAMILIES / "qec/rep_d3_r3.qasm"
 R100 = _show.FAMILIES / "qec/rep_d3_r100.qasm"
 ```
@@ -67,19 +61,20 @@ assert code == 0 and "115 nodes" in out and "44 obligations" in out
     [exit 0]
     
 
-`--graph dot` prints the whole graph in Graphviz DOT. The three-round graph is too big to read, so we draw the **one-round** program (`rep_d3_r1`):
+`--graph dot` prints the whole graph in Graphviz DOT. The three-round graph is too big to read, so this draws the **one-round** program (`rep_d3_r1`):
 
 ```python
 code, dot = _show.run("explain", _show.FAMILIES / "qec/rep_d3_r1.qasm", "--contract", "ibm_heron", "--graph", "dot", show=False)
 assert code == 0 and dot.startswith("digraph lteg")
 print(dot.count("->"), "edges")
-_show.dot(dot, height=500)
+_show.dot(dot, "Timed event graph of rep_d3_r1 on IBM Heron: nodes are start, end and join events, "
+          "edges carry their minimum delay in dt", height=500)
 ```
 
     46 edges
     
 
-<div class="qt-dot" style="min-height:500px"><pre class="qt-dot-src" hidden>digraph lteg {
+<div class="qt-fig qt-dot" style="min-height:500px"><pre class="qt-dot-src" hidden data-label="Timed event graph of rep_d3_r1 on IBM Heron: nodes are start, end and join events, edges carry their minimum delay in dt">digraph lteg {
   rankdir=LR; node [shape=box, fontsize=10];
   n0 [label=&quot;origin/origin@-1&quot;];
   n1 [label=&quot;start/start@1&quot;];
@@ -165,10 +160,10 @@ _show.dot(dot, height=500)
   n13 -&gt; n35 [label=&quot;0&quot;, fontsize=9];
   n35 -&gt; n36 [label=&quot;250&quot;, fontsize=9];
 }
-</pre><script src="https://cdn.jsdelivr.net/npm/@viz-js/viz@3.2.4/lib/viz-standalone.js"></script><script>(async()=>{for(const e of document.querySelectorAll('.qt-dot-src:not([data-done])')){e.dataset.done=1;const v=await Viz.instance();e.parentElement.appendChild(v.renderSVGElement(e.textContent));}})()</script></div>
+</pre><script src="https://cdn.jsdelivr.net/npm/@viz-js/viz@3.2.4/lib/viz-standalone.js"></script><script>(async()=>{for(const e of document.querySelectorAll('.qt-dot-src:not([data-done])')){e.dataset.done=1;const v=await Viz.instance(),f={fontname:'Courier'};const s=v.renderSVGElement(e.textContent,{graphAttributes:f,nodeAttributes:f,edgeAttributes:f});s.setAttribute('role','img');s.setAttribute('aria-label',e.dataset.label);e.parentElement.appendChild(s);}})()</script></div>
 
 ## 2. Solver tiers
-Obligations go through up to three solvers: **Tier 0** exact evaluation, **Tier 1** interval abstraction (can only prove), **Tier 2** the Z3 SMT solver (proves or refutes). We use `--policy eq` (every branch must take equal time), which this program satisfies under the vendor latency assumption, and count which tier closed each obligation.
+Obligations go through up to three solvers: **Tier 0** exact evaluation, **Tier 1** interval abstraction (can only prove), **Tier 2** the Z3 SMT solver (proves or refutes). This uses `--policy eq` (every branch must take equal time), which this program satisfies under the vendor latency assumption, and count which tier closed each obligation.
 
 ```python
 def tiers(prog, *opts, policy="eq"):
@@ -200,26 +195,7 @@ assert rows["--no-tier1 --no-tier2"][0] == 3 and rows["--no-tier1 --no-tier2"][1
 
 The tier mix as a bar (hand-made SVG; one bar per run):
 
-```python
-from IPython.display import HTML, display
-COL = {"tier 0": "#4c78a8", "tier 1": "#59a14f", "tier 2": "#f28e2b", "unknown": "#b0b0b0"}
-W, y, parts = 520, 0, []
-for name, (_, _, c) in rows.items():
-    tot, x = sum(c.values()), 150
-    parts.append(f'<text x="0" y="{y+16}" font-size="12" fill="currentColor">{name}</text>')
-    for k in COL:
-        w = W * c.get(k, 0) / tot
-        if w:
-            parts.append(f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="22" fill="{COL[k]}"><title>{k}: {c[k]}</title></rect>')
-            if w > 24:
-                parts.append(f'<text x="{x+w/2:.1f}" y="{y+16}" font-size="11" text-anchor="middle" fill="#fff">{c[k]}</text>')
-            x += w
-    y += 32
-leg = "".join(f'<rect x="{150+i*90}" y="{y+6}" width="12" height="12" fill="{v}"/><text x="{150+i*90+16}" y="{y+16}" font-size="11" fill="currentColor">{k}</text>' for i, (k, v) in enumerate(COL.items()))
-display(HTML(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W+160} {y+28}" width="{W+160}" role="img" aria-label="Obligations closed per solver tier">{"".join(parts)}{leg}</svg>'))
-```
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 156" width="680" role="img" aria-label="Obligations closed per solver tier"><text x="0" y="16" font-size="12" fill="currentColor">default</text><rect x="150.0" y="0" width="91.0" height="22" fill="#4c78a8"><title>tier 0: 14</title></rect><text x="195.5" y="16" font-size="11" text-anchor="middle" fill="#fff">14</text><rect x="241.0" y="0" width="429.0" height="22" fill="#59a14f"><title>tier 1: 66</title></rect><text x="455.5" y="16" font-size="11" text-anchor="middle" fill="#fff">66</text><text x="0" y="48" font-size="12" fill="currentColor">--no-tier1</text><rect x="150.0" y="32" width="91.0" height="22" fill="#4c78a8"><title>tier 0: 14</title></rect><text x="195.5" y="48" font-size="11" text-anchor="middle" fill="#fff">14</text><rect x="241.0" y="32" width="429.0" height="22" fill="#f28e2b"><title>tier 2: 66</title></rect><text x="455.5" y="48" font-size="11" text-anchor="middle" fill="#fff">66</text><text x="0" y="80" font-size="12" fill="currentColor">--no-tier2</text><rect x="150.0" y="64" width="91.0" height="22" fill="#4c78a8"><title>tier 0: 14</title></rect><text x="195.5" y="80" font-size="11" text-anchor="middle" fill="#fff">14</text><rect x="241.0" y="64" width="429.0" height="22" fill="#59a14f"><title>tier 1: 66</title></rect><text x="455.5" y="80" font-size="11" text-anchor="middle" fill="#fff">66</text><text x="0" y="112" font-size="12" fill="currentColor">--no-tier1 --no-tier2</text><rect x="150.0" y="96" width="91.0" height="22" fill="#4c78a8"><title>tier 0: 14</title></rect><text x="195.5" y="112" font-size="11" text-anchor="middle" fill="#fff">14</text><rect x="241.0" y="96" width="429.0" height="22" fill="#b0b0b0"><title>unknown: 66</title></rect><text x="455.5" y="112" font-size="11" text-anchor="middle" fill="#fff">66</text><rect x="150" y="134" width="12" height="12" fill="#4c78a8"/><text x="166" y="144" font-size="11" fill="currentColor">tier 0</text><rect x="240" y="134" width="12" height="12" fill="#59a14f"/><text x="256" y="144" font-size="11" fill="currentColor">tier 1</text><rect x="330" y="134" width="12" height="12" fill="#f28e2b"/><text x="346" y="144" font-size="11" fill="currentColor">tier 2</text><rect x="420" y="134" width="12" height="12" fill="#b0b0b0"/><text x="436" y="144" font-size="11" fill="currentColor">unknown</text></svg>
+<div class="qt-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 128" width="600" role="img" aria-label="Obligations closed per solver tier. default: tier 0 14, tier 1 66; --no-tier1: tier 0 14, tier 2 66; --no-tier2: tier 0 14, tier 1 66; --no-tier1 --no-tier2: tier 0 14, unknown 66"><text x="0" y="16" font-size="12">default</text><rect x="160.0" y="0" width="77.0" height="22" fill="#111418" stroke="#111418"><title>tier 0: 14</title></rect><text x="198.5" y="15" font-size="11" text-anchor="middle" fill="#fff">tier 0: 14</text><rect x="237.0" y="0" width="363.0" height="22" fill="#0B5FA5" stroke="#0B5FA5"><title>tier 1: 66</title></rect><text x="418.5" y="15" font-size="11" text-anchor="middle" fill="#fff">tier 1: 66</text><text x="0" y="48" font-size="12">--no-tier1</text><rect x="160.0" y="32" width="77.0" height="22" fill="#111418" stroke="#111418"><title>tier 0: 14</title></rect><text x="198.5" y="47" font-size="11" text-anchor="middle" fill="#fff">tier 0: 14</text><rect x="237.0" y="32" width="363.0" height="22" fill="#EAF2FA" stroke="#0B5FA5"><title>tier 2: 66</title></rect><text x="418.5" y="47" font-size="11" text-anchor="middle" fill="#0B5FA5">tier 2: 66</text><text x="0" y="80" font-size="12">--no-tier2</text><rect x="160.0" y="64" width="77.0" height="22" fill="#111418" stroke="#111418"><title>tier 0: 14</title></rect><text x="198.5" y="79" font-size="11" text-anchor="middle" fill="#fff">tier 0: 14</text><rect x="237.0" y="64" width="363.0" height="22" fill="#0B5FA5" stroke="#0B5FA5"><title>tier 1: 66</title></rect><text x="418.5" y="79" font-size="11" text-anchor="middle" fill="#fff">tier 1: 66</text><text x="0" y="112" font-size="12">--no-tier1 --no-tier2</text><rect x="160.0" y="96" width="77.0" height="22" fill="#111418" stroke="#111418"><title>tier 0: 14</title></rect><text x="198.5" y="111" font-size="11" text-anchor="middle" fill="#fff">tier 0: 14</text><rect x="237.0" y="96" width="363.0" height="22" fill="#F4F6F9" stroke="#4A5563" stroke-dasharray="3 2"><title>unknown: 66</title></rect><text x="418.5" y="111" font-size="11" text-anchor="middle" fill="#111418">unknown: 66</text></svg></div>
 
 Turning Tier 1 off pushes its obligations to Z3: same verdict, different workhorse. Turning Tier 2 off is only safe when Tier 1 is enough; where it is not, the obligation is UNKNOWN, never guessed. Turning both off leaves just exact Tier 0, so the verdict is UNKNOWN (exit 3).
 

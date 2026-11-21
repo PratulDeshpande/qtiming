@@ -12,6 +12,7 @@ from pathlib import Path
 import nbformat
 from nbclient import NotebookClient
 from nbconvert import MarkdownExporter
+from traitlets.config import Config
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent / "Docs" / "tutorials"
@@ -28,8 +29,25 @@ def execute(path: Path) -> nbformat.NotebookNode:
     return nb
 
 
+def exporter() -> MarkdownExporter:
+    """A code cell whose first line is `# hide` is dropped from the page; `# hide-input` keeps only its output."""
+    c = Config()
+    c.TagRemovePreprocessor.enabled = True
+    c.TagRemovePreprocessor.remove_cell_tags = {"hide"}
+    c.TagRemovePreprocessor.remove_input_tags = {"hide-input"}
+    return MarkdownExporter(config=c)
+
+
+def tag_hidden(nb: nbformat.NotebookNode) -> None:
+    for cell in nb.cells:
+        first = cell.source.split("\n", 1)[0].strip()
+        if cell.cell_type == "code" and first in ("# hide", "# hide-input"):
+            cell.metadata.setdefault("tags", []).append(first[2:])
+
+
 def render(nb: nbformat.NotebookNode, name: str) -> None:
-    body, _ = MarkdownExporter().from_notebook_node(nb)
+    tag_hidden(nb)
+    body, _ = exporter().from_notebook_node(nb)
     # Markdown pages must be deterministic: drop raw timing/paths that vary per run.
     body = body.replace(str(HERE.parent), "<repo>").replace("\r\n", "\n")
     body = re.sub(r"\n{3,}", "\n\n", body)

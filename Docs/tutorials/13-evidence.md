@@ -7,10 +7,6 @@
 What works: `evidence report`, `evidence ingest` (to a patch), the synthetic guard. What does **not** exist as a command: applying the patch to a contract. `apply_patch` is a Python library function only, and `check` never reads a patch.
 
 ```python
-import difflib, json, sys, tomllib
-from pathlib import Path
-sys.path.insert(0, str(Path.cwd().parent))
-import _show
 FX = "tests/fixtures/evidence"
 ```
 
@@ -84,6 +80,8 @@ assert code == 2 and "synthetic" in out
 
     error: synthetic job(s) ['tests/fixtures/evidence/conclusive/ff1.json']: pass allow_synthetic to ingest test data
     [exit 2]
+
+    
     
 
 ## 2. `evidence report`
@@ -174,6 +172,8 @@ assert patch["personality_params"]["ibm"]["join_behavior"] == "pad_to_longest_bl
     prov = "sched"
     source = "SYNTHETIC TEST DATA, not hardware; 2 unequal-arm job(s) all show pad; backends=['synthetic_backend'] runtime=['0.0.0-synthetic']"
     [exit 0]
+
+    
     
 
 ## 4. The patch as a diff
@@ -212,22 +212,7 @@ assert any('"hi_ns": "520"' in l and l.startswith("+") for l in diff)
     +   "source": "SYNTHETIC TEST DATA, not hardware; scheduler_timing dry_run jobs, n=4; min/max; backends=['synthetic_backend'] runtime=['0.0.0-synthetic']",
     
 
-```python
-from IPython.display import HTML, display
-def bar(y, lo, hi, color, label):
-    x0, x1 = 120 + lo * 0.7, 120 + hi * 0.7
-    return (f'<rect x="{x0:.0f}" y="{y}" width="{x1 - x0:.0f}" height="26" fill="{color}"/>'
-            f'<text x="8" y="{y + 18}" font-size="12" fill="currentColor">{label}</text>'
-            f'<text x="{x1 + 6:.0f}" y="{y + 18}" font-size="12" fill="currentColor">{lo}-{hi} ns</text>')
-svg = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 110" width="100%" role="img" '
-       'aria-label="Vendor claimed feed-forward range 0 to 600 ns versus synthetic observed range 450 to 520 ns">'
-       + bar(10, 0, 600, "#8a8f98", "vendor claim")
-       + bar(50, 450, 520, "#d9822b", "SYNTHETIC obs.")
-       + '<text x="120" y="102" font-size="11" fill="currentColor">feed-forward latency, ns (synthetic data is test-only)</text></svg>')
-display(HTML(svg))
-```
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 110" width="100%" role="img" aria-label="Vendor claimed feed-forward range 0 to 600 ns versus synthetic observed range 450 to 520 ns"><rect x="120" y="10" width="420" height="26" fill="#8a8f98"/><text x="8" y="28" font-size="12" fill="currentColor">vendor claim</text><text x="546" y="28" font-size="12" fill="currentColor">0-600 ns</text><rect x="435" y="50" width="49" height="26" fill="#d9822b"/><text x="8" y="68" font-size="12" fill="currentColor">SYNTHETIC obs.</text><text x="490" y="68" font-size="12" fill="currentColor">450-520 ns</text><text x="120" y="102" font-size="11" fill="currentColor">feed-forward latency, ns (synthetic data is test-only)</text></svg>
+<div class="qt-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 110" width="620" role="img" aria-label="Vendor claimed feed-forward range 0 to 600 ns versus synthetic observed range 450 to 520 ns"><rect x="120" y="10" width="420" height="26" fill="#F4F6F9" stroke="#111418"/><text x="8" y="28" font-size="12">vendor claim</text><text x="546" y="28" font-size="12">0-600 ns</text><rect x="435" y="50" width="49" height="26" fill="#EAF2FA" stroke="#0B5FA5" stroke-dasharray="4 3"/><text x="8" y="68" font-size="12">SYNTHETIC obs.</text><text x="490" y="68" font-size="12">450-520 ns</text><text x="120" y="102" font-size="11">feed-forward latency, ns (synthetic data is test-only)</text></svg></div>
 
 The observed range sits inside the vendor claim, as it should if the claim were sound. The patch records *what was seen* (min and max over n jobs), not a guaranteed bound.
 
@@ -250,8 +235,6 @@ print(prov["join_behavior_prov"]["source"])
     syn-pad1  arms_unequal  synthetic_backend  480  pad  [SYNTHETIC]
     syn-restart1  arms_unequal  synthetic_backend  490  restart  [SYNTHETIC]
     [exit 0]
-    
-
     SYNTHETIC TEST DATA, not hardware; inconclusive: unequal-arm jobs gave ['pad', 'restart']; join_behavior left unchanged; backends=['synthetic_backend'] runtime=['0.0.0-synthetic']
     
 

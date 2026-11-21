@@ -15,11 +15,6 @@ An obligation is one small timing claim about the event graph of one program, ch
 | O7 | equalised blocks end together for every outcome | IBM, Q1 |
 
 ```python
-import sys
-from pathlib import Path
-sys.path.insert(0, str(Path.cwd().parent))
-import _show
-
 HERE = Path.cwd()
 TP = _show.FAMILIES / "teleportation/tp_basic.qasm"
 RESET = _show.FAMILIES / "active_reset/reset_within_tight.qasm"
@@ -140,7 +135,7 @@ assert line(out, "O3").endswith("refuted (tier 2)")
 _show.report_svg(RESET, "ibm_heron")
 ```
 
-<svg viewBox="0 0 840 52" role="img" aria-label="counterexample" width="100%">
+<div class="qt-fig qt-tl"><svg viewBox="0 0 840 52" role="img" aria-label="counterexample" width="100%">
 <text x="2" y="14" font-size="11">counterexample</text>
 <text x="2" y="41" font-size="11">q0</text>
 <line x1="80" x2="840" y1="44" y2="44" stroke="#bbb" stroke-width="1"/>
@@ -153,7 +148,7 @@ _show.report_svg(RESET, "ibm_heron")
 <line x1="80" x2="840" y1="44" y2="44" stroke="#bbb" stroke-width="1"/>
 <g><title>measure (node 1) at 2180 ns</title><rect x="819.2" y="32" width="6" height="14" fill="#2c6fbb"/></g>
 <g><title>x (node 6) at 2212 ns</title><rect x="830.0" y="32" width="6" height="14" fill="#2c6fbb"/></g>
-<text x="80" y="50" font-size="10">0</text><text x="780" y="50" font-size="10">2212 ns</text></svg>
+<text x="80" y="50" font-size="10">0</text><text x="780" y="50" font-size="10">2212 ns</text></svg></div>
 
 (The picture uses the default policy, so it shows the `sync` counterexample, which fails O4; the text above is the `eq` run. Under `eq` the branch starts only after the full 600 ns, so no 300 ns deadline can hold. The fix is a deadline of at least 600 ns, only if that is a real requirement.)
 
@@ -288,7 +283,7 @@ A passing program has no counterexample timeline in the text report; the HTML re
 _show.report_svg(Q1PROG, "q1", *Q1)
 ```
 
-<svg viewBox="0 0 840 52" role="img" aria-label="typical run" width="100%">
+<div class="qt-fig qt-tl"><svg viewBox="0 0 840 52" role="img" aria-label="typical run" width="100%">
 <text x="2" y="14" font-size="11">typical run</text>
 <text x="2" y="41" font-size="11">rt</text>
 <line x1="80" x2="840" y1="44" y2="44" stroke="#bbb" stroke-width="1"/>
@@ -300,10 +295,10 @@ _show.report_svg(Q1PROG, "q1", *Q1)
 <g><title>wait (node 21) at 2280 ns</title><rect x="757.5" y="32" width="6" height="14" fill="#2c6fbb"/></g>
 <g><title>x (node 14) at 2520 ns</title><rect x="828.8" y="32" width="6" height="14" fill="#2c6fbb"/></g>
 <g><title>wait (node 16) at 2524 ns</title><rect x="830.0" y="32" width="6" height="14" fill="#2c6fbb"/></g>
-<text x="80" y="50" font-size="10">0</text><text x="780" y="50" font-size="10">2524 ns</text></svg>
+<text x="80" y="50" font-size="10">0</text><text x="780" y="50" font-size="10">2524 ns</text></svg></div>
 
 ## ARTIQ: O1 (fails) and O5 (unknown)
-`artiq_ramsey_fb` is a synthetic Ramsey kernel (written by the qtiming authors, not ARTIQ code) with a feedback correction. The ARTIQ contract publishes no commit lead, so we assume 200 ns (illustrative). The first `h` is at time 0, so nothing gives it any lead.
+`artiq_ramsey_fb` is a synthetic Ramsey kernel (written by the qtiming authors, not ARTIQ code) with a feedback correction. The ARTIQ contract publishes no commit lead, so this example assumes 200 ns (illustrative). The first `h` is at time 0, so nothing gives it any lead.
 
 ```python
 RAMSEY = _show.FAMILIES / "artiq/artiq_ramsey_fb.qasm"
@@ -400,7 +395,7 @@ assert "unknown" in line(out, "O5")
     [exit 3]
     
 
-**The symbolic encoding of O5 is not built in this version.** O5 on ARTIQ (SED lane capacity) is UNKNOWN for every ARTIQ program I ran, even when all of O1 holds. Do not read an ARTIQ `UNKNOWN` of this kind as "probably fine". On Q1, O5 (trigger-network busy window) *is* checked, as above.
+**The symbolic encoding of O5 is not built in this version.** O5 on ARTIQ (SED lane capacity) is UNKNOWN for every ARTIQ program in these tutorials, even when all of O1 holds. Do not read an ARTIQ `UNKNOWN` of this kind as "probably fine". On Q1, O5 (trigger-network busy window) *is* checked, as above.
 
 ## What is not checked by this build
 Every report ends with the same line. A verdict does not cover these:

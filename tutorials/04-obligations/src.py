@@ -16,11 +16,13 @@
 # | O7 | equalised blocks end together for every outcome | IBM, Q1 |
 
 # %%
+# hide
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path.cwd().parent))
 import _show
 
+# %%
 HERE = Path.cwd()
 TP = _show.FAMILIES / "teleportation/tp_basic.qasm"
 RESET = _show.FAMILIES / "active_reset/reset_within_tight.qasm"
@@ -132,7 +134,7 @@ _show.report_svg(Q1PROG, "q1", *Q1)
 
 # %% [markdown]
 # ## ARTIQ: O1 (fails) and O5 (unknown)
-# `artiq_ramsey_fb` is a synthetic Ramsey kernel (written by the qtiming authors, not ARTIQ code) with a feedback correction. The ARTIQ contract publishes no commit lead, so we assume 200 ns (illustrative). The first `h` is at time 0, so nothing gives it any lead.
+# `artiq_ramsey_fb` is a synthetic Ramsey kernel (written by the qtiming authors, not ARTIQ code) with a feedback correction. The ARTIQ contract publishes no commit lead, so this example assumes 200 ns (illustrative). The first `h` is at time 0, so nothing gives it any lead.
 
 # %%
 RAMSEY = _show.FAMILIES / "artiq/artiq_ramsey_fb.qasm"
@@ -162,7 +164,7 @@ assert "Tier 2 does not encode Events (O5) yet" in out
 assert "unknown" in line(out, "O5")
 
 # %% [markdown]
-# **The symbolic encoding of O5 is not built in this version.** O5 on ARTIQ (SED lane capacity) is UNKNOWN for every ARTIQ program I ran, even when all of O1 holds. Do not read an ARTIQ `UNKNOWN` of this kind as "probably fine". On Q1, O5 (trigger-network busy window) *is* checked, as above.
+# **The symbolic encoding of O5 is not built in this version.** O5 on ARTIQ (SED lane capacity) is UNKNOWN for every ARTIQ program in these tutorials, even when all of O1 holds. Do not read an ARTIQ `UNKNOWN` of this kind as "probably fine". On Q1, O5 (trigger-network busy window) *is* checked, as above.
 
 # %% [markdown]
 # ## What is not checked by this build

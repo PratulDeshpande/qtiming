@@ -45,18 +45,31 @@ def report_svg(program: str | Path, contract: str, *assume: str) -> None:
         run(*args, show=False)
         text = out.read_text(encoding="utf-8") if out.exists() else ""
     i, j = text.find("<svg"), text.rfind("</svg>")
-    display(HTML(text[i : j + 6] if i >= 0 and j >= 0 else "<em>no timeline in this report</em>"))
+    svg = text[i : j + 6] if i >= 0 and j >= 0 else "<em>no timeline in this report</em>"
+    # natural size in a scroller: scaled to the column, the 11px labels became unreadable
+    display(HTML(f'<div class="qt-fig qt-tl">{svg}</div>'))
 
 
-def dot(text: str, height: int = 420) -> None:
+def figure(markup: str) -> None:
+    """Show a figure at its natural size inside the theme's horizontal scroller."""
+    from IPython.display import HTML, display
+
+    display(HTML(f'<div class="qt-fig">{markup}</div>'))
+
+
+def dot(text: str, label: str, height: int = 420) -> None:
     """Render DOT client-side with viz.js (no Graphviz install needed)."""
     from IPython.display import HTML, display
 
     src = _html.escape(text)
+    # Courier metrics for layout; the theme draws it in Source Code Pro, which has the same 0.6em advance
     display(HTML(
-        f'<div class="qt-dot" style="min-height:{height}px"><pre class="qt-dot-src" hidden>{src}</pre>'
+        f'<div class="qt-fig qt-dot" style="min-height:{height}px"><pre class="qt-dot-src" hidden '
+        f'data-label="{_html.escape(label)}">{src}</pre>'
         '<script src="https://cdn.jsdelivr.net/npm/@viz-js/viz@3.2.4/lib/viz-standalone.js"></script>'
         "<script>(async()=>{for(const e of document.querySelectorAll('.qt-dot-src:not([data-done])')){"
-        "e.dataset.done=1;const v=await Viz.instance();e.parentElement.appendChild("
-        "v.renderSVGElement(e.textContent));}})()</script></div>"
+        "e.dataset.done=1;const v=await Viz.instance(),f={fontname:'Courier'};"
+        "const s=v.renderSVGElement(e.textContent,{graphAttributes:f,nodeAttributes:f,edgeAttributes:f});"
+        "s.setAttribute('role','img');s.setAttribute('aria-label',e.dataset.label);"
+        "e.parentElement.appendChild(s);}})()</script></div>"
     ))

@@ -29,8 +29,14 @@ STACKS = {  # contract -> (swept key, format, values in ns, fixed assumes, label
 
 INTRO = """# Same circuit, four stacks: interactive comparison
 
-Pick a program and drag each stack's slider. Every cell below was produced by a real
-`qtiming check` run (`tutorials/compare.py`); no qtiming code runs in your browser.
+Pick a program and drag each stack's slider. Every result below was produced by a real
+`qtiming check` run (`tutorials/compare.py`); no qtiming code runs in your browser. Gate durations on
+QUA, Q1 and ARTIQ are **illustrative assumptions of this page**, not vendor numbers: see
+[what the numbers assume](#what-the-numbers-assume) before reading anything into them.
+"""
+
+NOTES = """
+## What the numbers assume
 
 - The slider moves the one latency that matters most on that stack, through `--assume`.
   IBM: `ff.default` upper bound. QUA: `active_reset`. Q1: `trigger.network` (lower bound fixed at 212 ns).
@@ -91,7 +97,8 @@ def main() -> None:
     OUT.write_text(json.dumps(data, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     page = (Path(__file__).parent / "compare_page.html").read_text(encoding="utf-8")
     blob = json.dumps(data, sort_keys=True, separators=(",", ":")).replace("</", "<\\/")
-    (OUT.parent / "compare.md").write_text(INTRO + "\n" + page.replace("__DATA__", blob), encoding="utf-8")
+    (OUT.parent / "compare.md").write_text(INTRO + "\n" + page.replace("__DATA__", blob) + NOTES,
+                                           encoding="utf-8")
 
 
 if __name__ == "__main__":

@@ -6,6 +6,7 @@
 # Every `check` ends in exactly one of four verdicts. This tutorial produces each one from a real program, on IBM Heron and on ARTIQ, and shows how `--strict-proved` and `--assume` change what you get. Reference: [Reading a verdict](../verdicts.md), [Contracts](../contracts.md), [Command reference](../cli.md).
 
 # %%
+# hide
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path.cwd().parent))
@@ -17,18 +18,14 @@ FAM = _show.FAMILIES
 
 
 def card(rows):
-    """Verdict cards, one per (title, exit code, report text). The label is text, not just colour."""
+    """One row per (title, exit code, report text), styled by the docs theme's `.qv` classes."""
     import html
-    css = ("<style>.qv{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.6rem}"
-           ".qv div{border:1px solid #8886;border-left:6px solid var(--c);border-radius:6px;padding:.5rem .7rem}"
-           ".qv b{font-size:1.05em}.qv small{display:block;opacity:.8}</style>")
-    colour = {"PROVED": "#1a7f37", "PROVED-UNDER": "#9a6700", "REFUTED": "#cf222e", "UNKNOWN": "#6e7781"}
     out = []
     for title, code, text in rows:
         v = text.split()[0]
-        out.append(f'<div style="--c:{colour[v]}"><b>{html.escape(v)}</b> (exit {code})'
+        out.append(f'<div><span class="qv qv-{v}">{html.escape(v)}</span> exit {code}'
                    f'<small>{html.escape(title)}</small></div>')
-    display(HTML(css + '<div class="qv">' + "".join(out) + "</div>"))
+    display(HTML('<div class="qv-list">' + "".join(out) + "</div>"))
 
 
 # %% [markdown]
@@ -48,7 +45,7 @@ assert code == 0 and out.startswith("PROVED ") and "assumptions" not in out
 proved = (code, out)
 
 # %% [markdown]
-# No `assumptions:` block: the result was decided by exact evaluation (tier 0). This is the only way a program reaches `PROVED` with the shipped contracts: every shipped contract states its latencies at the `vendor` class, and only `cyc` or `cert` evidence can discharge a latency-dependent obligation (see [assumption classes](../verdicts.md#assumptions-and-evidence-classes)). I found no family program with a branch that is PROVED, and `--assume` cannot raise a number above `vendor`.
+# No `assumptions:` block: the result was decided by exact evaluation (tier 0). This is the only way a program reaches `PROVED` with the shipped contracts: every shipped contract states its latencies at the `vendor` class, and only `cyc` or `cert` evidence can discharge a latency-dependent obligation (see [assumption classes](../verdicts.md#assumptions-and-evidence-classes)). No program in the benchmark families that has a branch comes out PROVED, and `--assume` cannot raise a number above `vendor`.
 
 # %% [markdown]
 # ## 2. PROVED-UNDER: true if the vendor number is
@@ -160,6 +157,7 @@ a4 = (code, out)
 # ## All results side by side
 
 # %%
+# hide-input
 card([
     ("plain.qasm, ibm_heron", *proved),
     ("tp_basic, ibm_heron", *under),

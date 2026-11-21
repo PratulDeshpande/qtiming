@@ -4,14 +4,7 @@
 
 `qtiming repair` proposes a patch for one kind of failure only: **O1**, the commit-lead (RTIO underflow) obligation. It inserts a declared `delay`, then **re-verifies** the patched program with the normal pipeline before showing it. It refuses O3 (deadlines). Reference: [Command reference](../cli.md), [Obligations](../obligations.md).
 
-```python
-import difflib, json, sys, tempfile
-from pathlib import Path
-sys.path.insert(0, str(Path.cwd().parent))
-import _show
-```
-
-## The program and the numbers we have to supply
+## The program and the numbers you have to supply
 `artiq_burst` fires four `x` gates back to back, then measures. It is a synthetic kernel written for this repo, not ARTIQ project code.
 
 ```python
@@ -52,7 +45,7 @@ assert code == 2 and "E-CT-MISSING" in out
     [exit 2]
     
 
-So we supply them with `--assume`. **These values are illustrative, not ARTIQ numbers**: 32 ns per `x`, 1000 ns measurement, `commit_lead` 100 ns, `in2cpu` 0 to 300 ns. Every one is recorded as an assumption in the report.
+So they are supplied with `--assume`. **These values are illustrative, not ARTIQ numbers**: 32 ns per `x`, 1000 ns measurement, `commit_lead` 100 ns, `in2cpu` 0 to 300 ns. Every one is recorded as an assumption in the report.
 
 ```python
 A = ["durations.x=32", "durations.measure=1000", "timeline.commit_lead=100", "in2cpu=0:300"]
@@ -160,7 +153,7 @@ with tempfile.TemporaryDirectory() as d:
       O1: 5 obligation(s): proved (tier 0, margin 0 ns); proved (tier 0, margin 32 ns); proved (tier 0, margin 64 ns); proved (tier 0, margin 96 ns); proved (tier 1, margin 400 ns)
     
 
-<svg viewBox="0 0 840 52" role="img" aria-label="typical run" width="100%">
+<div class="qt-fig qt-tl"><svg viewBox="0 0 840 52" role="img" aria-label="typical run" width="100%">
 <text x="2" y="14" font-size="11">typical run</text>
 <text x="2" y="41" font-size="11">q0</text>
 <line x1="80" x2="840" y1="44" y2="44" stroke="#bbb" stroke-width="1"/>
@@ -168,7 +161,7 @@ with tempfile.TemporaryDirectory() as d:
 <g><title>event (node 3) at 132 ns</title><rect x="585.1" y="32" width="6" height="14" fill="#2c6fbb"/></g>
 <g><title>event (node 4) at 164 ns</title><rect x="707.6" y="32" width="6" height="14" fill="#2c6fbb"/></g>
 <g><title>event (node 5) at 196 ns</title><rect x="830.0" y="32" width="6" height="14" fill="#2c6fbb"/></g>
-<text x="80" y="50" font-size="10">0</text><text x="780" y="50" font-size="10">196 ns</text></svg>
+<text x="80" y="50" font-size="10">0</text><text x="780" y="50" font-size="10">196 ns</text></svg></div>
 
 The picture is the patched program's report (a typical run, as the report labels it). The text report above it shows the patched O1 margins: 0, 32, 64, 96 ns, none negative.
 
@@ -205,7 +198,7 @@ assert code == 1 and "unsupported: no automatic patch for O1" in out
     [exit 1]
     
 
-`repair` gives up. Its search only pads shortfalls it can compute exactly (Tier 0 counterexamples with a fixed `short by N ns`); this one comes from the solver and depends on the `in2cpu` range, so there is no exact number to pad. **This differs from what the project plan expected** (an automatic O1 patch here); the shipped build reports "no automatic patch" and we show it as it is. Without the `in2cpu` bound the verdict is not even REFUTED:
+`repair` gives up. Its search only pads shortfalls it can compute exactly (Tier 0 counterexamples with a fixed `short by N ns`); this one comes from the solver and depends on the `in2cpu` range, so there is no exact number to pad. This build reports "no automatic patch" for this case, and the page shows that as it is. Without the `in2cpu` bound the verdict is not even REFUTED:
 
 ```python
 NOIN = ["--assume", "durations.x=32", "--assume", "durations.measure=1000",
