@@ -125,6 +125,9 @@ And `repair` patches what it can and says so when it cannot:
 Report formats: `text`, `json`, `sarif`, `html`. Full reference:
 [`Docs/cli.md`](https://pratuldeshpande.github.io/qtiming/cli/).
 
+Worked examples with pictures, one per feature, plus an interactive four-stack comparison:
+[Tutorials](https://pratuldeshpande.github.io/qtiming/tutorials/).
+
 | Exit | Meaning |
 | --- | --- |
 | `0` | PROVED or PROVED-UNDER |
