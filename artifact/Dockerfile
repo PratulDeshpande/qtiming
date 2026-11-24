@@ -3,6 +3,7 @@
 # No network is needed at run time. The CSTNU Tool jar and IBM hardware data are NOT included.
 FROM python:3.12-slim
 WORKDIR /qtiming
+# .dockerignore keeps .env (IBM credentials) and .venv out of the build context; do not remove those lines.
 COPY . /qtiming
 RUN pip install --no-cache-dir -e ".[qiskit,z3,dev]"
 CMD ["./artifact/smoke.sh"]

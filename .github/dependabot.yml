@@ -4,3 +4,11 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+  # Qiskit Ecosystem check [Q02]: widen the qiskit cap (<2.7) within 90 days of a new release.
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    versioning-strategy: "widen"
+    allow:
+      - dependency-name: "qiskit"
