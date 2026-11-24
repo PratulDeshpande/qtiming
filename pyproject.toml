@@ -33,12 +33,14 @@ dependencies = ["pydantic>=2.5", "tomli>=2; python_version<'3.11'"]
 [project.urls]
 Homepage = "https://github.com/PratulDeshpande/QTiming"
 Source = "https://github.com/PratulDeshpande/QTiming"
+Documentation = "https://pratuldeshpande.github.io/qtiming/"
 Issues = "https://github.com/PratulDeshpande/QTiming/issues"
 Changelog = "https://github.com/PratulDeshpande/QTiming/blob/HEAD/CHANGELOG.md"
 
 [project.optional-dependencies]
 qiskit = ["qiskit>=2.3,<2.7", "openqasm3[parser]>=1.0,<2", "qiskit-qasm3-import>=0.5"]
 z3 = ["z3-solver>=4.13"]
+ibm = ["qiskit-ibm-runtime>=0.51"]
 synth = []  # no optional import is used by solve/synth today; the extra is kept for the documented name
 bench = ["pyarrow", "matplotlib"]
 docs = ["mkdocs>=1.6,<2"]

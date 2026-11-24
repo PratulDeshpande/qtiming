@@ -16,3 +16,6 @@ graphify-out/
 .import_linter_cache/
 _site/
 site/
+
+# local secrets (IBM token etc.)
+.env

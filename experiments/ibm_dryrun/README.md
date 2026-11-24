@@ -9,13 +9,23 @@ resulting patch says so in every `source` string.
 ## Collector
 
     python experiments/ibm_dryrun/collect.py                 # local: writes specs/, submits nothing
-    QISKIT_IBM_TOKEN=... python experiments/ibm_dryrun/collect.py --submit   # needs account
+    pip install -e ".[ibm]"                                  # qiskit-ibm-runtime >= 0.51
+    cp .env.example .env                                     # then fill in .env (gitignored)
+    python experiments/ibm_dryrun/collect.py --submit        # real dry-run submission
 
-`--submit` always passes `dry_run=True` (there is no way to run for real), aborts if the returned
-metadata does not carry `dry_run: true`, and refuses without credentials in the environment. No
-credentials are stored. `qiskit-ibm-runtime` is imported only on `--submit`. The real runtime adapter
-is a stub: the dry-run option name and the raw `scheduler_timing` schema are `[verify]` items (plan
-18.1) and must be captured from current docs and then normalised to the schema below.
+Setup: `QISKIT_IBM_TOKEN` (IBM Quantum Platform API key), `QISKIT_IBM_INSTANCE` (CRN of a Flex,
+Premium or On-Prem plan; dry-run jobs are not available on Open or Pay-As-You-Go) and optionally
+`QISKIT_IBM_BACKEND`. They are read from the shell environment, or from a repo-root `.env` that
+never overrides the shell. `.env` is gitignored; commit only `.env.example`.
+
+`--submit` always calls `Sampler.run(..., dry_run=True)` (no QPU time; there is no way to run for
+real) and requests timing with `options.experimental = {"execution": {"scheduler_timing": True}}`.
+A job is saved only if the service reports it ran on a mock device (`is_mock`); otherwise the
+collector aborts and saves nothing. IBM's raw timing is a text table (`branch,instr,channel,t0,
+duration,pulse`); it is normalised to the schema below and kept untouched in `raw_scheduler_timing`.
+Dry-run results are random mock data, so `arms.taken` is set only when the schedule shows exactly
+one arm. Verified against IBM's docs only: the adapter has not yet run against a live account, so
+the first real job should be inspected (do delay instructions appear as rows?).
 
 ## Job record schema `qtiming-evidence-job/1` (one JSON file per job)
 
