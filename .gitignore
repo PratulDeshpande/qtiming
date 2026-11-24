@@ -19,3 +19,8 @@ site/
 
 # local secrets (IBM token etc.)
 .env
+
+# design-tool state (local only)
+.impeccable/
+.claude/
+.superpowers/
