@@ -2,8 +2,8 @@
 
 [![test](https://github.com/PratulDeshpande/QTiming/actions/workflows/test.yml/badge.svg)](https://github.com/PratulDeshpande/QTiming/actions/workflows/test.yml)
 [![PyPI](https://img.shields.io/pypi/v/qtiming)](https://pypi.org/project/qtiming/)
-[![Python versions](https://img.shields.io/pypi/pyversions/qtiming)](https://pypi.org/project/qtiming/)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![Qiskit Ecosystem](https://qisk.it/e-ed3c43d8)](https://qisk.it/e)
 
 **A static timing checker for dynamic quantum circuits.** Give it a program (OpenQASM 3 or a
 Qiskit circuit) and a hardware timing contract. Before anything runs, it tells you whether the
